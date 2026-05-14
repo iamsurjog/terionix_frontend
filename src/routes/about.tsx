@@ -47,13 +47,13 @@ function About() {
           </div>
           <div className="mt-12 flex flex-wrap gap-4">
             <a
-              href="#"
+              href="/about"
               className="bg-primary text-white font-sans font-semibold px-6 py-2.5 rounded-lg hover:brightness-110 transition-all"
             >
               Get in Touch
             </a>
             <a
-              href="#"
+              href="/services"
               className="bg-secondary text-white font-sans font-semibold px-6 py-2.5 rounded-lg hover:brightness-110 transition-all"
             >
               Our Services
