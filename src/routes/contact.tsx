@@ -1,13 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { Navbar } from '../components/Navbar'
 
-export const Route = createFileRoute('/contact')({ component: ContactUs })
+export const Route = createFileRoute('/contact')({
+    component: ContactUs,
+    validateSearch: (search: Record<string, unknown>) => {
+        return { tab: search.tab as string | undefined }
+    },
+})
 
 const tabs = ['General Inquiry', 'Career']
 
 function ContactUs() {
+    const { tab } = Route.useSearch()
     const [activeTab, setActiveTab] = useState(0)
+
+    useEffect(() => {
+        if (tab === 'career') setActiveTab(1)
+    }, [tab])
 
     return (
         <div className="font-sans text-text">
