@@ -5,14 +5,17 @@ import { Navbar } from '../components/Navbar'
 export const Route = createFileRoute('/contact')({
     component: ContactUs,
     validateSearch: (search: Record<string, unknown>) => {
-        return { tab: search.tab as string | undefined }
+        return {
+            tab: search.tab as string | undefined,
+            position: search.position as string | undefined,
+        }
     },
 })
 
 const tabs = ['General Inquiry', 'Career']
 
 function ContactUs() {
-    const { tab } = Route.useSearch()
+    const { tab, position } = Route.useSearch()
     const [activeTab, setActiveTab] = useState(0)
 
     useEffect(() => {
@@ -54,7 +57,7 @@ function ContactUs() {
                     </div>
 
                     {activeTab === 0 && <GeneralForm />}
-                    {activeTab === 1 && <CareerForm />}
+                    {activeTab === 1 && <CareerForm preselectedPosition={position} />}
                 </div>
             </main>
         </div>
@@ -110,10 +113,25 @@ function GeneralForm() {
     )
 }
 
-function CareerForm() {
+const categoryToFirstPosition: Record<string, string> = {
+    'collection-logistics': 'e-waste-collection-staff',
+    'sorting-processing': 'sorting-operator',
+    'technical-it': 'data-destruction-specialist',
+    'compliance-certification': 'ehs-officer',
+    'business-operations': 'operations-manager',
+    'sales-marketing': 'epr-consultant',
+    'research-innovation': 'rd-specialist',
+    'admin-support': 'hr-executive',
+}
+
+function CareerForm({ preselectedPosition }: { preselectedPosition?: string }) {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
     }
+
+    const defaultPosition = preselectedPosition
+        ? categoryToFirstPosition[preselectedPosition] || ''
+        : ''
 
     return (
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -145,14 +163,56 @@ function CareerForm() {
                 <label className="block text-sm font-semibold text-text/80 mb-1.5">Position Interested In</label>
                 <select
                     required
+                    defaultValue={defaultPosition}
                     className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
                 >
                     <option value="">Select a position</option>
-                    <option value="software-engineer">Software Engineer</option>
-                    <option value="data-scientist">Data Scientist</option>
-                    <option value="devops">DevOps Engineer</option>
-                    <option value="product-manager">Product Manager</option>
-                    <option value="designer">UI/UX Designer</option>
+                    <optgroup label="Collection & Logistics">
+                        <option value="e-waste-collection-staff">E-Waste Collection Staff</option>
+                        <option value="reverse-logistics-coordinator">Reverse Logistics Coordinator</option>
+                        <option value="driver-vehicle-operator">Driver / Vehicle Operator</option>
+                        <option value="field-coordinator">Field Coordinator</option>
+                    </optgroup>
+                    <optgroup label="Sorting & Processing">
+                        <option value="sorting-operator">Sorting Operator</option>
+                        <option value="disassembly-technician">Disassembly Technician</option>
+                        <option value="hazardous-waste-handler">Hazardous Waste Handler</option>
+                        <option value="recycling-plant-operator">Recycling Plant Operator</option>
+                    </optgroup>
+                    <optgroup label="Technical & IT">
+                        <option value="data-destruction-specialist">Data Destruction Specialist</option>
+                        <option value="asset-recovery-technician">Asset Recovery Technician</option>
+                        <option value="it-hardware-technician">IT Hardware Technician</option>
+                        <option value="inventory-tracking-executive">Inventory & Tracking Executive</option>
+                    </optgroup>
+                    <optgroup label="Compliance & Certification">
+                        <option value="ehs-officer">EHS (Environment, Health & Safety) Officer</option>
+                        <option value="compliance-manager">Compliance Manager</option>
+                        <option value="certification-officer">Certification Officer</option>
+                    </optgroup>
+                    <optgroup label="Business & Operations">
+                        <option value="operations-manager">Operations Manager</option>
+                        <option value="procurement-officer">Procurement Officer</option>
+                        <option value="business-development-executive">Business Development Executive</option>
+                        <option value="client-relationship-manager">Client Relationship Manager</option>
+                    </optgroup>
+                    <optgroup label="Sales & Marketing">
+                        <option value="epr-consultant">EPR Consultant</option>
+                        <option value="sales-executive">Sales Executive</option>
+                        <option value="marketing-coordinator">Marketing Coordinator</option>
+                        <option value="csr-coordinator">CSR Coordinator</option>
+                    </optgroup>
+                    <optgroup label="Research & Innovation">
+                        <option value="rd-specialist">R&D Specialist</option>
+                        <option value="sustainability-analyst">Sustainability Analyst</option>
+                        <option value="circular-economy-consultant">Circular Economy Consultant</option>
+                    </optgroup>
+                    <optgroup label="Administration & Support">
+                        <option value="hr-executive">HR Executive</option>
+                        <option value="accounts-finance-officer">Accounts & Finance Officer</option>
+                        <option value="customer-support-executive">Customer Support Executive</option>
+                        <option value="office-administrator">Office Administrator</option>
+                    </optgroup>
                     <option value="other">Other</option>
                 </select>
             </div>
