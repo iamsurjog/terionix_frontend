@@ -1,90 +1,12 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { Navbar } from '../components/Navbar'
+import content from '#/content.json'
 
 export const Route = createFileRoute('/careers')({ component: Careers })
 
-const jobCategories = [
-    {
-        title: 'Collection & Logistics',
-        slug: 'collection-logistics',
-        roles: [
-            'E-Waste Collection Staff – pickup from clients, households, and businesses.',
-            'Reverse Logistics Coordinator – manage routes, transport scheduling.',
-            'Driver / Vehicle Operator – safe transport of e-waste materials.',
-            'Field Coordinator – liaison with collection centres and clients.',
-        ],
-    },
-    {
-        title: 'Sorting & Processing',
-        slug: 'sorting-processing',
-        roles: [
-            'Sorting Operator – segregate metals, plastics, PCBs, batteries, etc.',
-            'Disassembly Technician – dismantle electronics safely.',
-            'Hazardous Waste Handler – manage batteries, CRTs, fluorescent lamps.',
-            'Recycling Plant Operator – oversee shredding, crushing, and refining.',
-        ],
-    },
-    {
-        title: 'Technical & IT',
-        slug: 'technical-it',
-        roles: [
-            'Data Destruction Specialist – ensure secure erasure/shredding of hard drives.',
-            'Asset Recovery Technician – test and refurbish reusable electronics.',
-            'IT Hardware Technician – repair and resell usable devices.',
-            'Inventory & Tracking Executive – maintain digital records of collected/recycled items.',
-        ],
-    },
-    {
-        title: 'Compliance & Certification',
-        slug: 'compliance-certification',
-        roles: [
-            'EHS (Environment, Health & Safety) Officer – ensure safety standards.',
-            'Compliance Manager – handle e-waste rules, documentation, CPCB/SPCB licenses.',
-            'Certification Officer – issue recycling/disposal certificates to clients.',
-        ],
-    },
-    {
-        title: 'Business & Operations',
-        slug: 'business-operations',
-        roles: [
-            'Operations Manager – oversee plant, staff, and workflow.',
-            'Procurement Officer – source tools, machinery, and consumables.',
-            'Business Development Executive – generate leads for e-waste collection.',
-            'Client Relationship Manager – maintain B2B client satisfaction.',
-        ],
-    },
-    {
-        title: 'Sales & Marketing',
-        slug: 'sales-marketing',
-        roles: [
-            'EPR Consultant – help producers comply with Extended Producer Responsibility.',
-            'Sales Executive – corporate tie-ups for bulk e-waste disposal.',
-            'Marketing Coordinator – awareness campaigns, online/offline promotions.',
-            'CSR Coordinator – manage community and corporate social responsibility programs.',
-        ],
-    },
-    {
-        title: 'Research & Innovation',
-        slug: 'research-innovation',
-        roles: [
-            'R&D Specialist – new recycling technologies, material recovery.',
-            'Sustainability Analyst – measure environmental impact, carbon savings.',
-            'Circular Economy Consultant – explore reuse/resell opportunities.',
-        ],
-    },
-    {
-        title: 'Administration & Support',
-        slug: 'admin-support',
-        roles: [
-            'HR Executive – recruit and train staff.',
-            'Accounts & Finance Officer – billing, payroll, tax compliance.',
-            'Customer Support Executive – handle client inquiries.',
-            'Office Administrator – manage documentation and day-to-day tasks.',
-        ],
-    },
-]
-
 function Careers() {
+    const { heading, subtitle, categories, cta } = content.careers
+
     return (
         <div className="font-sans text-text">
             <Navbar active="Careers in Terionix" />
@@ -97,15 +19,14 @@ function Careers() {
                         <span className="w-16 h-1 bg-primary/30 rounded-full" />
                     </div>
                     <h1 className="font-title text-5xl sm:text-6xl font-bold text-text mb-4">
-                        Careers at <span className="text-primary">Terionix</span>
+                        {heading.prefix}<span className="text-primary">{heading.highlight}</span>
                     </h1>
                     <p className="text-lg text-text/60 max-w-2xl mb-12">
-                        Join us in building a sustainable future through responsible e-waste management.
-                        Explore open positions across our teams.
+                        {subtitle}
                     </p>
 
                     <div className="grid gap-6 md:grid-cols-2">
-                        {jobCategories.map((cat) => (
+                        {categories.map((cat) => (
                             <div
                                 key={cat.title}
                                 className="bg-white/50 rounded-xl p-6 border border-primary/10 hover:border-primary/30 transition-colors"
@@ -135,14 +56,14 @@ function Careers() {
 
                     <div className="mt-12 text-center">
                         <p className="text-text/60 mb-4">
-                            Don't see the right fit? Reach out to us — we're always looking for talent.
+                            {cta.text}
                         </p>
                         <Link
                             to="/contact"
                             search={{ tab: 'career', position: undefined }}
                             className="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:brightness-110 transition-all"
                         >
-                            Apply Now
+                            {cta.buttonLabel}
                         </Link>
                     </div>
                 </div>

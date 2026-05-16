@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { Navbar } from '../components/Navbar'
+import content from '#/content.json'
 
 export const Route = createFileRoute('/contact')({
     component: ContactUs,
@@ -12,7 +13,8 @@ export const Route = createFileRoute('/contact')({
     },
 })
 
-const tabs = ['General Inquiry', 'Career']
+const tabs = content.contact.tabs
+const categoryToFirstPosition: Record<string, string> = content.contact.careerForm.categoryMapping
 
 function ContactUs() {
     const { tab, position } = Route.useSearch()
@@ -21,6 +23,8 @@ function ContactUs() {
     useEffect(() => {
         if (tab === 'career') setActiveTab(1)
     }, [tab])
+
+    const { heading } = content.contact
 
     return (
         <div className="font-sans text-text">
@@ -34,7 +38,7 @@ function ContactUs() {
                         <span className="w-16 h-1 bg-primary/30 rounded-full" />
                     </div>
                     <h1 className="font-title text-5xl sm:text-6xl font-bold text-text mb-8">
-                        Contact <span className="text-primary">Us</span>
+                        {heading.prefix}<span className="text-primary">{heading.highlight}</span>
                     </h1>
 
                     <div className="flex border-b border-primary/20 mb-8">
@@ -69,59 +73,36 @@ function GeneralForm() {
         e.preventDefault()
     }
 
+    const { fields, submitText } = content.contact.generalForm
+
     return (
         <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-                <label className="block text-sm font-semibold text-text/80 mb-1.5">Name</label>
-                <input
-                    type="text"
-                    required
-                    className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
-                />
-            </div>
-            <div>
-                <label className="block text-sm font-semibold text-text/80 mb-1.5">Email</label>
-                <input
-                    type="email"
-                    required
-                    className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
-                />
-            </div>
-            <div>
-                <label className="block text-sm font-semibold text-text/80 mb-1.5">Subject</label>
-                <input
-                    type="text"
-                    required
-                    className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
-                />
-            </div>
-            <div>
-                <label className="block text-sm font-semibold text-text/80 mb-1.5">Message</label>
-                <textarea
-                    rows={5}
-                    required
-                    className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors resize-y"
-                />
-            </div>
+            {fields.map((field) => (
+                <div key={field.label}>
+                    <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
+                    {field.type === 'textarea' ? (
+                        <textarea
+                            rows={field.rows ?? 4}
+                            required={field.required}
+                            className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors resize-y"
+                        />
+                    ) : (
+                        <input
+                            type={field.type}
+                            required={field.required}
+                            className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
+                        />
+                    )}
+                </div>
+            ))}
             <button
                 type="submit"
                 className="bg-primary text-white font-semibold px-8 py-2.5 rounded-lg hover:brightness-110 transition-all"
             >
-                Send Message
+                {submitText}
             </button>
         </form>
     )
-}
-
-const categoryToFirstPosition: Record<string, string> = {
-    'collection-logistics': 'e-waste-collection-staff',
-    'sorting-processing': 'sorting-operator',
-    'technical-it': 'data-destruction-specialist',
-    'compliance-certification': 'ehs-officer',
-    'business-operations': 'operations-manager',
-    'sales-marketing': 'epr-consultant',
-    'research-innovation': 'rd-specialist',
-    'admin-support': 'hr-executive',
 }
 
 function CareerForm({ preselectedPosition }: { preselectedPosition?: string }) {
@@ -129,115 +110,82 @@ function CareerForm({ preselectedPosition }: { preselectedPosition?: string }) {
         e.preventDefault()
     }
 
+    const { fields, positions, submitText } = content.contact.careerForm
+
     const defaultPosition = preselectedPosition
         ? categoryToFirstPosition[preselectedPosition] || ''
         : ''
 
     return (
         <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-                <label className="block text-sm font-semibold text-text/80 mb-1.5">Name</label>
-                <input
-                    type="text"
-                    required
-                    className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
-                />
-            </div>
-            <div>
-                <label className="block text-sm font-semibold text-text/80 mb-1.5">Email</label>
-                <input
-                    type="email"
-                    required
-                    className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
-                />
-            </div>
-            <div>
-                <label className="block text-sm font-semibold text-text/80 mb-1.5">Phone</label>
-                <input
-                    type="tel"
-                    required
-                    className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
-                />
-            </div>
-            <div>
-                <label className="block text-sm font-semibold text-text/80 mb-1.5">Position Interested In</label>
-                <select
-                    required
-                    defaultValue={defaultPosition}
-                    className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
-                >
-                    <option value="">Select a position</option>
-                    <optgroup label="Collection & Logistics">
-                        <option value="e-waste-collection-staff">E-Waste Collection Staff</option>
-                        <option value="reverse-logistics-coordinator">Reverse Logistics Coordinator</option>
-                        <option value="driver-vehicle-operator">Driver / Vehicle Operator</option>
-                        <option value="field-coordinator">Field Coordinator</option>
-                    </optgroup>
-                    <optgroup label="Sorting & Processing">
-                        <option value="sorting-operator">Sorting Operator</option>
-                        <option value="disassembly-technician">Disassembly Technician</option>
-                        <option value="hazardous-waste-handler">Hazardous Waste Handler</option>
-                        <option value="recycling-plant-operator">Recycling Plant Operator</option>
-                    </optgroup>
-                    <optgroup label="Technical & IT">
-                        <option value="data-destruction-specialist">Data Destruction Specialist</option>
-                        <option value="asset-recovery-technician">Asset Recovery Technician</option>
-                        <option value="it-hardware-technician">IT Hardware Technician</option>
-                        <option value="inventory-tracking-executive">Inventory & Tracking Executive</option>
-                    </optgroup>
-                    <optgroup label="Compliance & Certification">
-                        <option value="ehs-officer">EHS (Environment, Health & Safety) Officer</option>
-                        <option value="compliance-manager">Compliance Manager</option>
-                        <option value="certification-officer">Certification Officer</option>
-                    </optgroup>
-                    <optgroup label="Business & Operations">
-                        <option value="operations-manager">Operations Manager</option>
-                        <option value="procurement-officer">Procurement Officer</option>
-                        <option value="business-development-executive">Business Development Executive</option>
-                        <option value="client-relationship-manager">Client Relationship Manager</option>
-                    </optgroup>
-                    <optgroup label="Sales & Marketing">
-                        <option value="epr-consultant">EPR Consultant</option>
-                        <option value="sales-executive">Sales Executive</option>
-                        <option value="marketing-coordinator">Marketing Coordinator</option>
-                        <option value="csr-coordinator">CSR Coordinator</option>
-                    </optgroup>
-                    <optgroup label="Research & Innovation">
-                        <option value="rd-specialist">R&D Specialist</option>
-                        <option value="sustainability-analyst">Sustainability Analyst</option>
-                        <option value="circular-economy-consultant">Circular Economy Consultant</option>
-                    </optgroup>
-                    <optgroup label="Administration & Support">
-                        <option value="hr-executive">HR Executive</option>
-                        <option value="accounts-finance-officer">Accounts & Finance Officer</option>
-                        <option value="customer-support-executive">Customer Support Executive</option>
-                        <option value="office-administrator">Office Administrator</option>
-                    </optgroup>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <div>
-                <label className="block text-sm font-semibold text-text/80 mb-1.5">Resume</label>
-                <input
-                    type="file"
-                    accept=".pdf"
-                    required
-                    className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors file:mr-4 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-primary/10 file:text-primary file:font-semibold file:text-sm hover:file:bg-primary/20"
-                />
-                <p className="text-xs text-text/50 mt-1">PDF files only</p>
-            </div>
-            <div>
-                <label className="block text-sm font-semibold text-text/80 mb-1.5">Cover Letter</label>
-                <textarea
-                    rows={4}
-                    className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors resize-y"
-                />
-            </div>
+            {fields.map((field) => {
+                if (field.type === 'select') {
+                    return (
+                        <div key={field.label}>
+                            <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
+                            <select
+                                required={field.required}
+                                defaultValue={defaultPosition}
+                                className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
+                            >
+                                <option value="">Select a position</option>
+                                {positions.map((group) => (
+                                    <optgroup key={group.group} label={group.group}>
+                                        {group.options.map((opt) => (
+                                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                                        ))}
+                                    </optgroup>
+                                ))}
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    )
+                }
+
+                if (field.type === 'file') {
+                    return (
+                        <div key={field.label}>
+                            <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
+                            <input
+                                type="file"
+                                accept={field.accept}
+                                required={field.required}
+                                className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors file:mr-4 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-primary/10 file:text-primary file:font-semibold file:text-sm hover:file:bg-primary/20"
+                            />
+                            {field.note && <p className="text-xs text-text/50 mt-1">{field.note}</p>}
+                        </div>
+                    )
+                }
+
+                if (field.type === 'textarea') {
+                    return (
+                        <div key={field.label}>
+                            <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
+                            <textarea
+                                rows={field.rows ?? 4}
+                                required={field.required}
+                                className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors resize-y"
+                            />
+                        </div>
+                    )
+                }
+
+                return (
+                    <div key={field.label}>
+                        <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
+                        <input
+                            type={field.type}
+                            required={field.required}
+                            className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors"
+                        />
+                    </div>
+                )
+            })}
             <button
                 type="submit"
                 className="bg-accent text-white font-semibold px-8 py-2.5 rounded-lg hover:brightness-110 transition-all"
             >
-                Submit Application
+                {submitText}
             </button>
         </form>
     )

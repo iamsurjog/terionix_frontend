@@ -1,0 +1,290 @@
+{
+  "site": {
+    "title": "TanStack Start Starter",
+    "name": "Terionix",
+    "logo": "/logo_big.png"
+  },
+  "navbar": {
+    "links": [
+      { "name": "Home", "to": "/" },
+      { "name": "About", "to": "/about" },
+      { "name": "Services & Solutions", "to": "/services" },
+      { "name": "Our History", "to": "/history" },
+      { "name": "Careers in Terionix", "to": "/careers" },
+      { "name": "Contact Us", "to": "/contact" }
+    ]
+  },
+  "home": {
+    "heading": "LANDING PAGE COMING SOON..."
+  },
+  "about": {
+    "heading": { "prefix": "About ", "highlight": "Us" },
+    "paragraphs": [
+      {
+        "className": "relative pl-6 border-l-4 border-secondary",
+        "segments": [
+          { "text": "Lorem ipsum", "className": "text-accent font-semibold" },
+          { "text": " dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." }
+        ]
+      },
+      {
+        "segments": [
+          { "text": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo." }
+        ]
+      },
+      {
+        "segments": [
+          { "text": "Nemo enim ipsam", "className": "text-secondary font-semibold" },
+          { "text": " voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem." }
+        ]
+      },
+      {
+        "segments": [
+          { "text": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur." }
+        ]
+      }
+    ],
+    "cta": [
+      {
+        "label": "Get in Touch",
+        "href": "/about",
+        "className": "bg-primary text-white font-sans font-semibold px-6 py-2.5 rounded-lg hover:brightness-110 transition-all"
+      },
+      {
+        "label": "Our Services",
+        "href": "/services",
+        "className": "bg-secondary text-white font-sans font-semibold px-6 py-2.5 rounded-lg hover:brightness-110 transition-all"
+      },
+      {
+        "label": "Learn More",
+        "href": "#",
+        "className": "border-2 border-accent text-accent font-sans font-semibold px-6 py-2.5 rounded-lg hover:bg-accent hover:text-white transition-all"
+      }
+    ]
+  },
+  "services": {
+    "heading": "PAGE COMING SOON..."
+  },
+  "history": {
+    "heading": { "prefix": "Our ", "highlight": "History" },
+    "paragraphs": [
+      {
+        "className": "relative pl-6 border-l-4 border-secondary",
+        "segments": [
+          { "text": "Lorem ipsum", "className": "text-accent font-semibold" },
+          { "text": " dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." }
+        ]
+      },
+      {
+        "segments": [
+          { "text": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo." }
+        ]
+      },
+      {
+        "segments": [
+          { "text": "Nemo enim ipsam", "className": "text-secondary font-semibold" },
+          { "text": " voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem." }
+        ]
+      },
+      {
+        "segments": [
+          { "text": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur." }
+        ]
+      }
+    ]
+  },
+  "careers": {
+    "heading": { "prefix": "Careers at ", "highlight": "Terionix" },
+    "subtitle": "Join us in building a sustainable future through responsible e-waste management. Explore open positions across our teams.",
+    "categories": [
+      {
+        "title": "Collection & Logistics",
+        "slug": "collection-logistics",
+        "roles": [
+          "E-Waste Collection Staff \u2013 pickup from clients, households, and businesses.",
+          "Reverse Logistics Coordinator \u2013 manage routes, transport scheduling.",
+          "Driver / Vehicle Operator \u2013 safe transport of e-waste materials.",
+          "Field Coordinator \u2013 liaison with collection centres and clients."
+        ]
+      },
+      {
+        "title": "Sorting & Processing",
+        "slug": "sorting-processing",
+        "roles": [
+          "Sorting Operator \u2013 segregate metals, plastics, PCBs, batteries, etc.",
+          "Disassembly Technician \u2013 dismantle electronics safely.",
+          "Hazardous Waste Handler \u2013 manage batteries, CRTs, fluorescent lamps.",
+          "Recycling Plant Operator \u2013 oversee shredding, crushing, and refining."
+        ]
+      },
+      {
+        "title": "Technical & IT",
+        "slug": "technical-it",
+        "roles": [
+          "Data Destruction Specialist \u2013 ensure secure erasure/shredding of hard drives.",
+          "Asset Recovery Technician \u2013 test and refurbish reusable electronics.",
+          "IT Hardware Technician \u2013 repair and resell usable devices.",
+          "Inventory & Tracking Executive \u2013 maintain digital records of collected/recycled items."
+        ]
+      },
+      {
+        "title": "Compliance & Certification",
+        "slug": "compliance-certification",
+        "roles": [
+          "EHS (Environment, Health & Safety) Officer \u2013 ensure safety standards.",
+          "Compliance Manager \u2013 handle e-waste rules, documentation, CPCB/SPCB licenses.",
+          "Certification Officer \u2013 issue recycling/disposal certificates to clients."
+        ]
+      },
+      {
+        "title": "Business & Operations",
+        "slug": "business-operations",
+        "roles": [
+          "Operations Manager \u2013 oversee plant, staff, and workflow.",
+          "Procurement Officer \u2013 source tools, machinery, and consumables.",
+          "Business Development Executive \u2013 generate leads for e-waste collection.",
+          "Client Relationship Manager \u2013 maintain B2B client satisfaction."
+        ]
+      },
+      {
+        "title": "Sales & Marketing",
+        "slug": "sales-marketing",
+        "roles": [
+          "EPR Consultant \u2013 help producers comply with Extended Producer Responsibility.",
+          "Sales Executive \u2013 corporate tie-ups for bulk e-waste disposal.",
+          "Marketing Coordinator \u2013 awareness campaigns, online/offline promotions.",
+          "CSR Coordinator \u2013 manage community and corporate social responsibility programs."
+        ]
+      },
+      {
+        "title": "Research & Innovation",
+        "slug": "research-innovation",
+        "roles": [
+          "R&D Specialist \u2013 new recycling technologies, material recovery.",
+          "Sustainability Analyst \u2013 measure environmental impact, carbon savings.",
+          "Circular Economy Consultant \u2013 explore reuse/resell opportunities."
+        ]
+      },
+      {
+        "title": "Administration & Support",
+        "slug": "admin-support",
+        "roles": [
+          "HR Executive \u2013 recruit and train staff.",
+          "Accounts & Finance Officer \u2013 billing, payroll, tax compliance.",
+          "Customer Support Executive \u2013 handle client inquiries.",
+          "Office Administrator \u2013 manage documentation and day-to-day tasks."
+        ]
+      }
+    ],
+    "cta": {
+      "text": "Don't see the right fit? Reach out to us \u2014 we're always looking for talent.",
+      "buttonLabel": "Apply Now"
+    }
+  },
+  "contact": {
+    "heading": { "prefix": "Contact ", "highlight": "Us" },
+    "tabs": ["General Inquiry", "Career"],
+    "generalForm": {
+      "fields": [
+        { "label": "Name", "type": "text", "required": true },
+        { "label": "Email", "type": "email", "required": true },
+        { "label": "Subject", "type": "text", "required": true },
+        { "label": "Message", "type": "textarea", "required": true, "rows": 5 }
+      ],
+      "submitText": "Send Message"
+    },
+    "careerForm": {
+      "fields": [
+        { "label": "Name", "type": "text", "required": true },
+        { "label": "Email", "type": "email", "required": true },
+        { "label": "Phone", "type": "tel", "required": true },
+        { "label": "Position Interested In", "type": "select", "required": true },
+        { "label": "Resume", "type": "file", "required": true, "accept": ".pdf", "note": "PDF files only" },
+        { "label": "Cover Letter", "type": "textarea", "required": false, "rows": 4 }
+      ],
+      "categoryMapping": {
+        "collection-logistics": "e-waste-collection-staff",
+        "sorting-processing": "sorting-operator",
+        "technical-it": "data-destruction-specialist",
+        "compliance-certification": "ehs-officer",
+        "business-operations": "operations-manager",
+        "sales-marketing": "epr-consultant",
+        "research-innovation": "rd-specialist",
+        "admin-support": "hr-executive"
+      },
+      "positions": [
+        {
+          "group": "Collection & Logistics",
+          "options": [
+            { "value": "e-waste-collection-staff", "label": "E-Waste Collection Staff" },
+            { "value": "reverse-logistics-coordinator", "label": "Reverse Logistics Coordinator" },
+            { "value": "driver-vehicle-operator", "label": "Driver / Vehicle Operator" },
+            { "value": "field-coordinator", "label": "Field Coordinator" }
+          ]
+        },
+        {
+          "group": "Sorting & Processing",
+          "options": [
+            { "value": "sorting-operator", "label": "Sorting Operator" },
+            { "value": "disassembly-technician", "label": "Disassembly Technician" },
+            { "value": "hazardous-waste-handler", "label": "Hazardous Waste Handler" },
+            { "value": "recycling-plant-operator", "label": "Recycling Plant Operator" }
+          ]
+        },
+        {
+          "group": "Technical & IT",
+          "options": [
+            { "value": "data-destruction-specialist", "label": "Data Destruction Specialist" },
+            { "value": "asset-recovery-technician", "label": "Asset Recovery Technician" },
+            { "value": "it-hardware-technician", "label": "IT Hardware Technician" },
+            { "value": "inventory-tracking-executive", "label": "Inventory & Tracking Executive" }
+          ]
+        },
+        {
+          "group": "Compliance & Certification",
+          "options": [
+            { "value": "ehs-officer", "label": "EHS (Environment, Health & Safety) Officer" },
+            { "value": "compliance-manager", "label": "Compliance Manager" },
+            { "value": "certification-officer", "label": "Certification Officer" }
+          ]
+        },
+        {
+          "group": "Business & Operations",
+          "options": [
+            { "value": "operations-manager", "label": "Operations Manager" },
+            { "value": "procurement-officer", "label": "Procurement Officer" },
+            { "value": "business-development-executive", "label": "Business Development Executive" },
+            { "value": "client-relationship-manager", "label": "Client Relationship Manager" }
+          ]
+        },
+        {
+          "group": "Sales & Marketing",
+          "options": [
+            { "value": "epr-consultant", "label": "EPR Consultant" },
+            { "value": "sales-executive", "label": "Sales Executive" },
+            { "value": "marketing-coordinator", "label": "Marketing Coordinator" },
+            { "value": "csr-coordinator", "label": "CSR Coordinator" }
+          ]
+        },
+        {
+          "group": "Research & Innovation",
+          "options": [
+            { "value": "rd-specialist", "label": "R&D Specialist" },
+            { "value": "sustainability-analyst", "label": "Sustainability Analyst" },
+            { "value": "circular-economy-consultant", "label": "Circular Economy Consultant" }
+          ]
+        },
+        {
+          "group": "Administration & Support",
+          "options": [
+            { "value": "hr-executive", "label": "HR Executive" },
+            { "value": "accounts-finance-officer", "label": "Accounts & Finance Officer" },
+            { "value": "customer-support-executive", "label": "Customer Support Executive" },
+            { "value": "office-administrator", "label": "Office Administrator" }
+          ]
+        }
+      ],
+      "submitText": "Submit Application"
+    }
+  }
+}

@@ -1,9 +1,8 @@
-import { Link } from '@tanstack/react-router'
 import content from '#/content.json'
 
 const { links } = content.navbar
 
-export function Navbar({ active }: { active: string }) {
+export function AdminNavbar({ active }: { active: string }) {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -12,9 +11,9 @@ export function Navbar({ active }: { active: string }) {
         </div>
         <div className="hidden sm:flex items-center gap-8">
           {links.map((link) => (
-            <Link
+            <a
               key={link.name}
-              to={link.to}
+              href={`/admin${link.to}`}
               className={`font-sans text-sm font-medium transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-accent after:transition-all ${
                 active === link.name
                   ? 'text-primary after:w-full'
@@ -22,7 +21,7 @@ export function Navbar({ active }: { active: string }) {
               }`}
             >
               {link.name}
-            </Link>
+            </a>
           ))}
         </div>
         <button className="sm:hidden text-text">

@@ -1,5 +1,6 @@
 import { Navbar } from '#/components/Navbar'
 import { createFileRoute } from '@tanstack/react-router'
+import content from '#/content.json'
 
 export const Route = createFileRoute('/services')({
   component: Services,
@@ -12,7 +13,7 @@ function Services() {
             <main className="pt-32 pb-24 px-4 relative">
                 <div className="max-w-4xl mx-auto text-center">
                     <h1 className="font-title text-4xl sm:text-5xl font-bold text-text">
-                        PAGE COMING SOON...
+                        {content.services.heading}
                     </h1>
                 </div>
             </main>
