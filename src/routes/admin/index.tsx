@@ -1,7 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { AdminNavbar } from '#/components/AdminNavbar'
+import { readContent } from '#/lib/content'
 
 export const Route = createFileRoute('/admin/')({
+  loader: async () => readContent(),
   component: AdminDashboard,
 })
 
@@ -15,9 +17,10 @@ const sections = [
 ]
 
 function AdminDashboard() {
+  const data = Route.useLoaderData()!
   return (
     <div className="font-sans text-text">
-      <AdminNavbar active="Home" />
+      <AdminNavbar active="Home" links={data.navbar.links} logo={data.site.logo} siteName={data.site.name} />
       <main className="pt-32 pb-24 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="font-title text-4xl font-bold mb-2">Admin Panel</h1>

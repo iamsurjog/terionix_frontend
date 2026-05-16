@@ -16,7 +16,6 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
-import { Route as AdminTempRouteImport } from './routes/admin/temp'
 import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as AdminHomeRouteImport } from './routes/admin/home'
 import { Route as AdminHistoryRouteImport } from './routes/admin/history'
@@ -57,11 +56,6 @@ const IndexRoute = IndexRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminTempRoute = AdminTempRouteImport.update({
-  id: '/admin/temp',
-  path: '/admin/temp',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminServicesRoute = AdminServicesRouteImport.update({
@@ -108,7 +102,6 @@ export interface FileRoutesByFullPath {
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
   '/admin/services': typeof AdminServicesRoute
-  '/admin/temp': typeof AdminTempRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -124,7 +117,6 @@ export interface FileRoutesByTo {
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
   '/admin/services': typeof AdminServicesRoute
-  '/admin/temp': typeof AdminTempRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -141,7 +133,6 @@ export interface FileRoutesById {
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
   '/admin/services': typeof AdminServicesRoute
-  '/admin/temp': typeof AdminTempRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -159,7 +150,6 @@ export interface FileRouteTypes {
     | '/admin/history'
     | '/admin/home'
     | '/admin/services'
-    | '/admin/temp'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -175,7 +165,6 @@ export interface FileRouteTypes {
     | '/admin/history'
     | '/admin/home'
     | '/admin/services'
-    | '/admin/temp'
     | '/admin'
   id:
     | '__root__'
@@ -191,7 +180,6 @@ export interface FileRouteTypes {
     | '/admin/history'
     | '/admin/home'
     | '/admin/services'
-    | '/admin/temp'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -208,7 +196,6 @@ export interface RootRouteChildren {
   AdminHistoryRoute: typeof AdminHistoryRoute
   AdminHomeRoute: typeof AdminHomeRoute
   AdminServicesRoute: typeof AdminServicesRoute
-  AdminTempRoute: typeof AdminTempRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -261,13 +248,6 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/temp': {
-      id: '/admin/temp'
-      path: '/admin/temp'
-      fullPath: '/admin/temp'
-      preLoaderRoute: typeof AdminTempRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/services': {
@@ -328,7 +308,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdminHistoryRoute: AdminHistoryRoute,
   AdminHomeRoute: AdminHomeRoute,
   AdminServicesRoute: AdminServicesRoute,
-  AdminTempRoute: AdminTempRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport

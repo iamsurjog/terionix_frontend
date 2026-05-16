@@ -1,14 +1,11 @@
 import { Link } from '@tanstack/react-router'
-import content from '#/content.json'
 
-const { links } = content.navbar
-
-export function Navbar({ active }: { active: string }) {
+export function Navbar({ active, links, logo, siteName }: { active: string; links: { name: string; to: string }[]; logo: string; siteName: string }) {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <img src={content.site.logo} alt={content.site.name} className="h-30 w-auto" />
+          <img src={logo} alt={siteName} className="h-30 w-auto" />
         </div>
         <div className="hidden sm:flex items-center gap-8">
           {links.map((link) => (

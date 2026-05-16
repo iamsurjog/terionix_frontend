@@ -1,17 +1,19 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Navbar } from '../components/Navbar'
-import content from '#/content.json'
+import { readContent } from '#/lib/content'
 
 export const Route = createFileRoute('/about')({
+  loader: async () => readContent(),
   component: About,
 })
 
 function About() {
+  const content = Route.useLoaderData()!
   const { heading, paragraphs, cta } = content.about
 
   return (
     <div className="font-sans text-text">
-      <Navbar active="About" />
+      <Navbar active="About" links={content.navbar.links} logo={content.site.logo} siteName={content.site.name} />
       <main className="pt-32 pb-24 px-4 relative">
         <div className="absolute top-40 right-0 w-72 h-72 bg-secondary/10 rounded-full blur-3xl -z-10" />
         <div className="absolute bottom-20 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl -z-10" />
@@ -38,13 +40,7 @@ function About() {
           </div>
           <div className="mt-12 flex flex-wrap gap-4">
             {cta.map((btn, i) => (
-              <a
-                key={i}
-                href={btn.href}
-                className={btn.className}
-              >
-                {btn.label}
-              </a>
+              <a key={i} href={btn.href} className={btn.className}>{btn.label}</a>
             ))}
           </div>
         </div>

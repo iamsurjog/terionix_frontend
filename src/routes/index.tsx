@@ -1,20 +1,21 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Navbar } from '../components/Navbar'
-import content from '#/content.json'
+import { readContent } from '#/lib/content'
 
-export const Route = createFileRoute('/')({ component: Home })
+export const Route = createFileRoute('/')({ loader: async () => readContent(), component: Home })
 
 function Home() {
-    return (
-        <div className="font-sans text-text">
-            <Navbar active="Home" />
-            <main className="pt-32 pb-24 px-4 relative">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h1 className="font-title text-4xl sm:text-5xl font-bold text-text">
-                        {content.home.heading}
-                    </h1>
-                </div>
-            </main>
+  const content = Route.useLoaderData()!
+  return (
+    <div className="font-sans text-text">
+      <Navbar active="Home" links={content.navbar.links} logo={content.site.logo} siteName={content.site.name} />
+      <main className="pt-32 pb-24 px-4 relative">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="font-title text-4xl sm:text-5xl font-bold text-text">
+            {content.home.heading}
+          </h1>
         </div>
-    )
+      </main>
+    </div>
+  )
 }
