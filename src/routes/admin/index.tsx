@@ -8,12 +8,13 @@ export const Route = createFileRoute('/admin/')({
 })
 
 const sections = [
-  { key: 'home', label: 'Home', desc: 'Landing page heading' },
-  { key: 'about', label: 'About', desc: 'About page content and CTA' },
-  { key: 'history', label: 'History', desc: 'Our History page content' },
-  { key: 'services', label: 'Services', desc: 'Services page heading' },
-  { key: 'careers', label: 'Careers', desc: 'Job categories and roles' },
-  { key: 'contact', label: 'Contact', desc: 'Form fields, tabs, and positions' },
+  { key: 'home', label: 'Home', desc: 'Landing page heading and section' },
+  { key: 'about', label: 'About Us', desc: 'About page content and links' },
+  { key: 'services', label: 'Services & Solutions', desc: 'Services page content' },
+  { key: 'history', label: 'Our History', desc: 'History page content' },
+  { key: 'about-recycling', label: 'About Recycling', desc: 'About recycling page content' },
+  { key: 'careers', label: 'Careers', desc: 'Job categories, roles, and why Terionix' },
+  { key: 'contact', label: 'Contact Us', desc: 'Contact form fields and segments' },
   { key: 'game', label: 'Recycling Game', desc: 'Game items and leaderboard' },
 ]
 

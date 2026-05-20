@@ -28,19 +28,11 @@ function AdminHistory() {
         {(values, onChange) => (
           <>
             <div className="grid grid-cols-2 gap-4">
-              <Field label="Heading Prefix (before highlight)">
-                <Input
-                  value={values.heading.prefix}
-                  onChange={(v) => onChange('heading.prefix', v)}
-                  placeholder="e.g. Our"
-                />
+              <Field label="Heading Prefix">
+                <Input value={values.heading.prefix} onChange={(v) => onChange('heading.prefix', v)} placeholder="e.g. Our" />
               </Field>
-              <Field label="Heading Highlight (colored part)">
-                <Input
-                  value={values.heading.highlight}
-                  onChange={(v) => onChange('heading.highlight', v)}
-                  placeholder="e.g. History"
-                />
+              <Field label="Heading Highlight (colored)">
+                <Input value={values.heading.highlight} onChange={(v) => onChange('heading.highlight', v)} placeholder="e.g. History" />
               </Field>
             </div>
             <div className="space-y-4">
@@ -51,12 +43,7 @@ function AdminHistory() {
                   {p.segments.map((seg: { text: string; className?: string }, j: number) => (
                     <div key={j}>
                       <Field label={j === 0 ? 'Text' : 'Continuation'}>
-                        <Textarea
-                          value={seg.text}
-                          onChange={(v) => onChange(`paragraphs.${i}.segments.${j}.text`, v)}
-                          placeholder="Enter paragraph text..."
-                          rows={3}
-                        />
+                        <Textarea value={seg.text} onChange={(v) => onChange(`paragraphs.${i}.segments.${j}.text`, v)} placeholder="Enter text..." rows={3} />
                       </Field>
                     </div>
                   ))}

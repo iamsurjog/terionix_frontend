@@ -12,9 +12,9 @@ function AdminAbout() {
   const data = Route.useLoaderData()!
   return (
     <div className="font-sans text-text">
-      <AdminNavbar active="About" links={data.navbar.links} logo={data.site.logo} siteName={data.site.name} />
+      <AdminNavbar active="About Us" links={data.navbar.links} logo={data.site.logo} siteName={data.site.name} />
       <AdminSection
-        title="About Page"
+        title="About Us Page"
         onSave={(vals) => writeSection('about', vals)}
         defaultValues={data.about}
         validate={(v: unknown) => {
@@ -28,19 +28,11 @@ function AdminAbout() {
         {(values, onChange) => (
           <>
             <div className="grid grid-cols-2 gap-4">
-              <Field label="Heading Prefix (before highlight)">
-                <Input
-                  value={values.heading.prefix}
-                  onChange={(v) => onChange('heading.prefix', v)}
-                  placeholder="e.g. About"
-                />
+              <Field label="Heading Prefix">
+                <Input value={values.heading.prefix} onChange={(v) => onChange('heading.prefix', v)} placeholder="e.g. About" />
               </Field>
-              <Field label="Heading Highlight (colored part)">
-                <Input
-                  value={values.heading.highlight}
-                  onChange={(v) => onChange('heading.highlight', v)}
-                  placeholder="e.g. Us"
-                />
+              <Field label="Heading Highlight (colored)">
+                <Input value={values.heading.highlight} onChange={(v) => onChange('heading.highlight', v)} placeholder="e.g. Us" />
               </Field>
             </div>
             <div className="space-y-4">
@@ -50,16 +42,24 @@ function AdminAbout() {
                   <div className="text-xs text-text/50 font-medium uppercase tracking-wide">Paragraph {i + 1}</div>
                   {p.segments.map((seg: { text: string; className?: string }, j: number) => (
                     <div key={j}>
-                      <Field label={j === 0 ? 'Text' : 'Continuation (optional styling)'}>
-                        <Textarea
-                          value={seg.text}
-                          onChange={(v) => onChange(`paragraphs.${i}.segments.${j}.text`, v)}
-                          placeholder="Enter paragraph text..."
-                          rows={3}
-                        />
+                      <Field label={j === 0 ? 'Text' : 'Continuation'}>
+                        <Textarea value={seg.text} onChange={(v) => onChange(`paragraphs.${i}.segments.${j}.text`, v)} placeholder="Enter text..." rows={3} />
                       </Field>
                     </div>
                   ))}
+                </div>
+              ))}
+            </div>
+            <div className="space-y-3">
+              <h3 className="font-medium text-sm">Quick Links</h3>
+              {values.links.map((link: { label: string; href: string }, i: number) => (
+                <div key={i} className="grid grid-cols-2 gap-3">
+                  <Field label="Label">
+                    <Input value={link.label} onChange={(v) => onChange(`links.${i}.label`, v)} placeholder="Link label" />
+                  </Field>
+                  <Field label="URL">
+                    <Input value={link.href} onChange={(v) => onChange(`links.${i}.href`, v)} placeholder="/page" />
+                  </Field>
                 </div>
               ))}
             </div>

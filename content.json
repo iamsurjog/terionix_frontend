@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "TanStack Start Starter",
+    "title": "Terionix - E-Waste Management",
     "name": "Terionix",
     "logo": "/logo_big.png"
   },
@@ -11,7 +11,7 @@
         "to": "/"
       },
       {
-        "name": "About",
+        "name": "About Us",
         "to": "/about"
       },
       {
@@ -19,11 +19,11 @@
         "to": "/services"
       },
       {
-        "name": "Our History",
-        "to": "/history"
+        "name": "About Recycling",
+        "to": "/about-recycling"
       },
       {
-        "name": "Careers in Terionix",
+        "name": "Careers",
         "to": "/careers"
       },
       {
@@ -33,7 +33,30 @@
     ]
   },
   "home": {
-    "heading": "LANDING PAGE COMING SOON..."
+    "heading": "E-Waste Recycling Made Simple",
+    "tagline": "Responsible e-waste management for a sustainable future",
+    "aboutPreview": "Terionix is a leading e-waste management company dedicated to safe, compliant, and sustainable disposal and recycling of electronic waste. We help businesses and individuals ensure their electronic waste is handled responsibly.",
+    "previewCta": {
+      "label": "Learn More About Us",
+      "href": "/about"
+    },
+    "pageButtons": [
+      {
+        "label": "Our Services",
+        "href": "/services",
+        "style": "bg-primary text-white"
+      },
+      {
+        "label": "View Careers",
+        "href": "/careers",
+        "style": "bg-secondary text-white"
+      },
+      {
+        "label": "Contact Us",
+        "href": "/contact",
+        "style": "border-2 border-accent text-accent"
+      }
+    ]
   },
   "about": {
     "heading": {
@@ -45,60 +68,95 @@
         "className": "relative pl-6 border-l-4 border-secondary",
         "segments": [
           {
-            "text": "Lorem ipsum",
+            "text": "Terionix",
             "className": "text-accent font-semibold"
           },
           {
-            "text": " dolor is not here frnd sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            "text": " is a forward-thinking e-waste management company committed to solving the growing problem of electronic waste. We provide comprehensive solutions for businesses, governments, and individuals who want to dispose of their electronic waste responsibly."
           }
         ]
       },
       {
         "segments": [
           {
-            "text": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+            "text": "Founded with a vision to create a cleaner, greener future, Terionix operates across the entire e-waste lifecycle — from collection and transportation to sorting, processing, and certified disposal. We ensure that every piece of electronic waste is tracked, handled, and recycled in full compliance with environmental regulations."
           }
         ]
       },
       {
         "segments": [
           {
-            "text": "Nemo enim ipsam",
+            "text": "Our mission",
             "className": "text-secondary font-semibold"
           },
           {
-            "text": " voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+            "text": " is to reduce the environmental and health hazards caused by improper e-waste disposal. We believe in the principles of the circular economy — recovering valuable materials from end-of-life electronics and reintroducing them into the supply chain."
           }
         ]
       },
       {
         "segments": [
           {
-            "text": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur."
+            "text": "Whether you are a corporation clearing out old IT equipment, a manufacturer managing production waste, or an individual dropping off a pile of old chargers, Terionix has a solution tailored to your needs."
           }
         ]
       }
     ],
-    "cta": [
+    "links": [
       {
-        "label": "Get in Touch",
-        "href": "/about",
-        "className": "bg-primary text-white font-sans font-semibold px-6 py-2.5 rounded-lg hover:brightness-110 transition-all"
+        "label": "Our History",
+        "href": "/history"
       },
       {
-        "label": "Our Services",
-        "href": "/services",
-        "className": "bg-secondary text-white font-sans font-semibold px-6 py-2.5 rounded-lg hover:brightness-110 transition-all"
+        "label": "Services & Solutions",
+        "href": "/services"
       },
       {
-        "label": "Learn More",
-        "href": "#",
-        "className": "border-2 border-accent text-accent font-sans font-semibold px-6 py-2.5 rounded-lg hover:bg-accent hover:text-white transition-all"
+        "label": "Careers",
+        "href": "/careers"
+      },
+      {
+        "label": "Contact Us",
+        "href": "/contact"
       }
     ]
   },
   "services": {
-    "heading": "PAGE COMING SOON..."
+    "heading": {
+      "prefix": "Services & ",
+      "highlight": "Solutions"
+    },
+    "intro": "Terionix offers end-to-end e-waste management solutions tailored for businesses, institutions, and individuals. From collection to certified disposal, we handle it all.",
+    "segments": [
+      {
+        "title": "Collection & Pickup",
+        "body": "We offer scheduled pickup services for businesses and institutions. Our logistics team arrives at your location, carefully packs and transports the e-waste to our processing facility, ensuring zero damage or data breach during transit."
+      },
+      {
+        "title": "Data Destruction & Security",
+        "body": "Before any device is recycled, we ensure all data is securely erased or physically destroyed. Our data destruction process meets international standards, giving you peace of mind that sensitive information does not fall into the wrong hands."
+      },
+      {
+        "title": "Sorting & Segregation",
+        "body": "At our facility, e-waste is sorted into categories — metals, plastics, PCBs, glass, batteries, and hazardous components. Each category is processed separately using the most efficient and safe methods available."
+      },
+      {
+        "title": "Material Recovery",
+        "body": "We recover valuable materials like copper, aluminum, gold, silver, and rare earth metals from e-waste. These materials are sent back to manufacturers, closing the loop in the circular economy and reducing the need for virgin mining."
+      },
+      {
+        "title": "Certified Disposal",
+        "body": "For components that cannot be recycled, we provide certified disposal services in compliance with CPCB and SPCB guidelines. We maintain detailed records and provide disposal certificates for your regulatory compliance."
+      },
+      {
+        "title": "EPR Compliance Support",
+        "body": "Terionix helps producers meet their Extended Producer Responsibility obligations under the E-Waste Management Rules. We provide end-to-end documentation, reporting, and compliance support so you stay ahead of regulatory requirements."
+      },
+      {
+        "title": "Awareness & Training",
+        "body": "We conduct workshops and training sessions for organizations on responsible e-waste management. Our team educates employees on proper segregation, storage, and disposal practices to build a culture of sustainability."
+      }
+    ]
   },
   "history": {
     "heading": {
@@ -110,38 +168,71 @@
         "className": "relative pl-6 border-l-4 border-secondary",
         "segments": [
           {
-            "text": "Lorem ipsum",
+            "text": "Terionix",
             "className": "text-accent font-semibold"
           },
           {
-            "text": " dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            "text": " began its journey with a simple belief — that electronic waste should not end up in landfills. What started as a small initiative by a group of environmental enthusiasts has grown into a full-fledged e-waste management company serving hundreds of clients across the region."
           }
         ]
       },
       {
         "segments": [
           {
-            "text": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+            "text": "In our early years, we focused on awareness — reaching out to schools, offices, and communities to educate people about the dangers of improper e-waste disposal. We organized collection drives and partnered with local municipalities to set up drop-off points."
           }
         ]
       },
       {
         "segments": [
           {
-            "text": "Nemo enim ipsam",
+            "text": "As demand grew",
             "className": "text-secondary font-semibold"
           },
           {
-            "text": " voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+            "text": ", we invested in building a proper processing facility equipped with shredding, sorting, and material recovery equipment. Today, we have the infrastructure to handle large volumes of e-waste safely and efficiently."
           }
         ]
       },
       {
         "segments": [
           {
-            "text": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur."
+            "text": "Looking ahead, Terionix aims to expand its reach, develop partnerships with more manufacturers, and continue pushing for better e-waste infrastructure across the country. Our goal is to make responsible e-waste disposal the norm, not the exception."
           }
         ]
+      }
+    ]
+  },
+  "aboutRecycling": {
+    "heading": {
+      "prefix": "About ",
+      "highlight": "Recycling"
+    },
+    "intro": "Electronic waste, or e-waste, is one of the fastest-growing waste streams in the world. Learn why recycling e-waste matters and how it works.",
+    "facts": [
+      {
+        "title": "What is E-Waste?",
+        "body": "E-waste refers to discarded electrical or electronic devices. This includes everything from old smartphones and laptops to large appliances like refrigerators and air conditioners. E-waste contains both valuable and hazardous materials, making proper handling critical."
+      },
+      {
+        "title": "Why Recycle E-Waste?",
+        "body": "Electronics contain toxic substances like lead, mercury, cadmium, and brominated flame retardants. When sent to landfills, these toxins leach into soil and water, causing serious environmental and health problems. Recycling captures valuable materials like gold, silver, copper, and aluminum, reducing the need for mining and conserving natural resources."
+      },
+      {
+        "title": "The E-Waste Recycling Process",
+        "body": "The recycling process involves several steps: collection and transport, manual dismantling, shredding and size reduction, sorting by material type (metals, plastics, glass),无害化处理 of hazardous components, and finally material recovery where valuable metals and plastics are extracted and sent for re-processing."
+      },
+      {
+        "title": "What Can Be Recycled?",
+        "body": "Almost all electronic devices can be recycled. Common items include: computers and laptops, mobile phones and tablets, Televisions and monitors, printers and scanners, keyboards, mice, and cables, small and large home appliances, batteries and power banks, LED panels and circuit boards."
+      },
+      {
+        "title": "E-Waste Rules in India",
+        "body": "India's E-Waste Management Rules, 2022 mandate that producers of electronic goods are responsible for the collection and environmentally sound management of their end-of-life products through Extended Producer Responsibility (EPR). Terionix helps producers comply with these regulations by providing complete EPR services."
+      },
+      {
+        "title": "Terionix's Role",
+        "body": "As an authorized e-waste recycler, Terionix bridges the gap between the generators of e-waste and the environment. We ensure that every device we collect is either recycled responsibly or refurbished for reuse. Our certified processes meet all regulatory standards, and we maintain full traceability from pickup to final disposal."
       }
     ]
   },
@@ -151,6 +242,23 @@
       "highlight": "Terionix"
     },
     "subtitle": "Join us in building a sustainable future through responsible e-waste management. Explore open positions across our teams.",
+    "whyTerionix": [
+      {
+        "text": "Meaningful work that makes a real environmental impact"
+      },
+      {
+        "text": "Opportunities for growth in a growing industry"
+      },
+      {
+        "text": "Training and certification support"
+      },
+      {
+        "text": "Collaborative and mission-driven team culture"
+      },
+      {
+        "text": "Safe working environment with proper safety protocols"
+      }
+    ],
     "categories": [
       {
         "title": "Collection & Logistics",
@@ -236,120 +344,18 @@
       "buttonLabel": "Apply Now"
     }
   },
-  "game": {
-    "items": [
-      {
-        "name": "Aluminum Can",
-        "recyclable": true
-      },
-      {
-        "name": "Plastic Bottle",
-        "recyclable": true
-      },
-      {
-        "name": "Glass Jar",
-        "recyclable": true
-      },
-      {
-        "name": "Cardboard Box",
-        "recyclable": true
-      },
-      {
-        "name": "Newspaper",
-        "recyclable": true
-      },
-      {
-        "name": "Old Phone Charger",
-        "recyclable": false
-      },
-      {
-        "name": "Broken CRT Monitor",
-        "recyclable": false
-      },
-      {
-        "name": "Used Tissue Paper",
-        "recyclable": false
-      },
-      {
-        "name": "Batteries",
-        "recyclable": false
-      },
-      {
-        "name": "Pizza Box (greasy)",
-        "recyclable": false
-      },
-      {
-        "name": "Tin Foil",
-        "recyclable": true
-      },
-      {
-        "name": "Milk Carton",
-        "recyclable": true
-      },
-      {
-        "name": "Styrofoam Cup",
-        "recyclable": false
-      },
-      {
-        "name": "Old Printer Cartridge",
-        "recyclable": false
-      },
-      {
-        "name": "Steel Can",
-        "recyclable": true
-      },
-      {
-        "name": "Juice Carton",
-        "recyclable": true
-      },
-      {
-        "name": "Light Bulb",
-        "recyclable": false
-      },
-      {
-        "name": "Copper Wire",
-        "recyclable": true
-      },
-      {
-        "name": "Chip Bags",
-        "recyclable": false
-      },
-      {
-        "name": "Old Keyboard",
-        "recyclable": false
-      }
-    ]
-  },
-  "leaderboard": [
-    {
-      "name": "asd",
-      "time": 0
-    },
-    {
-      "name": "asd",
-      "time": 0
-    },
-    {
-      "name": "SG",
-      "time": 6.226
-    },
-    {
-      "name": "Riya",
-      "time": 8.4
-    },
-    {
-      "name": "Arjun",
-      "time": 9.1
-    },
-    {
-      "name": "Priya",
-      "time": 10.2
-    }
-  ],
   "contact": {
     "heading": {
       "prefix": "Contact ",
       "highlight": "Us"
+    },
+    "generalSegment": {
+      "heading": "General Inquiries",
+      "description": "Have a question about our services? Want to schedule a pickup? Drop us a message and we'll get back to you."
+    },
+    "careerSegment": {
+      "heading": "Career Opportunities",
+      "description": "Interested in joining Terionix? Fill out the form below with your details and the position you're interested in."
     },
     "tabs": [
       "General Inquiry",
@@ -496,7 +502,7 @@
           "options": [
             {
               "value": "ehs-officer",
-              "label": "EHS (Environment, Health & Safety) Officer"
+              "label": "EHS Officer"
             },
             {
               "value": "compliance-manager",
@@ -591,5 +597,107 @@
       ],
       "submitText": "Submit Application"
     }
-  }
+  },
+  "game": {
+    "items": [
+      {
+        "name": "Aluminum Can",
+        "recyclable": true
+      },
+      {
+        "name": "Plastic Bottle",
+        "recyclable": true
+      },
+      {
+        "name": "Glass Jar",
+        "recyclable": true
+      },
+      {
+        "name": "Cardboard Box",
+        "recyclable": true
+      },
+      {
+        "name": "Newspaper",
+        "recyclable": true
+      },
+      {
+        "name": "Old Phone Charger",
+        "recyclable": false
+      },
+      {
+        "name": "Broken CRT Monitor",
+        "recyclable": false
+      },
+      {
+        "name": "Used Tissue Paper",
+        "recyclable": false
+      },
+      {
+        "name": "Batteries",
+        "recyclable": false
+      },
+      {
+        "name": "Pizza Box (greasy)",
+        "recyclable": false
+      },
+      {
+        "name": "Tin Foil",
+        "recyclable": true
+      },
+      {
+        "name": "Milk Carton",
+        "recyclable": true
+      },
+      {
+        "name": "Styrofoam Cup",
+        "recyclable": false
+      },
+      {
+        "name": "Old Printer Cartridge",
+        "recyclable": false
+      },
+      {
+        "name": "Steel Can",
+        "recyclable": true
+      },
+      {
+        "name": "Juice Carton",
+        "recyclable": true
+      },
+      {
+        "name": "Light Bulb",
+        "recyclable": false
+      },
+      {
+        "name": "Copper Wire",
+        "recyclable": true
+      },
+      {
+        "name": "Chip Bags",
+        "recyclable": false
+      },
+      {
+        "name": "Old Keyboard",
+        "recyclable": false
+      }
+    ]
+  },
+  "leaderboard": [
+    {
+      "name": "TEST",
+      "time": 3.917
+    },
+    {
+      "name": "Riya",
+      "time": 8.4
+    },
+    {
+      "name": "Arjun",
+      "time": 9.1
+    },
+    {
+      "name": "Priya",
+      "time": 10.2
+    }
+  ]
 }

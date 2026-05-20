@@ -35,7 +35,7 @@ function ContactUs() {
   }, [tab])
 
   const tabs = content.contact.tabs
-  const { heading } = content.contact
+  const { heading, generalSegment, careerSegment } = content.contact
 
   return (
     <div className="font-sans text-text">
@@ -64,15 +64,15 @@ function ContactUs() {
             ))}
           </div>
 
-          {activeTab === 0 && <GeneralForm />}
-          {activeTab === 1 && <CareerForm preselectedPosition={position} />}
+          {activeTab === 0 && <GeneralForm segment={generalSegment} />}
+          {activeTab === 1 && <CareerForm segment={careerSegment} preselectedPosition={position} />}
         </div>
       </main>
     </div>
   )
 }
 
-function GeneralForm() {
+function GeneralForm({ segment }: { segment: { heading: string; description: string } }) {
   const content = Route.useLoaderData()!
   const { fields, submitText } = content.contact.generalForm
 
@@ -81,77 +81,32 @@ function GeneralForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      {fields.map((field) => (
-        <div key={field.label}>
-          <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
-          {field.type === 'textarea' ? (
-            <textarea rows={field.rows ?? 4} required={field.required}
-              className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors resize-y" />
-          ) : (
-            <input type={field.type} required={field.required}
-              className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors" />
-          )}
-        </div>
-      ))}
-      <button type="submit"
-        className="bg-primary text-white font-semibold px-8 py-2.5 rounded-lg hover:brightness-110 transition-all">{submitText}</button>
-    </form>
+    <div>
+      <h2 className="font-title text-xl font-bold mb-2">{segment.heading}</h2>
+      <p className="text-text/60 mb-6">{segment.description}</p>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {fields.map((field) => (
+          <div key={field.label}>
+            <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
+            {field.type === 'textarea' ? (
+              <textarea rows={field.rows ?? 4} required={field.required}
+                className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors resize-y" />
+            ) : (
+              <input type={field.type} required={field.required}
+                className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors" />
+            )}
+          </div>
+        ))}
+        <button type="submit"
+          className="bg-primary text-white font-semibold px-8 py-2.5 rounded-lg hover:brightness-110 transition-all">{submitText}</button>
+      </form>
+    </div>
   )
 }
 
-const positions = [
-  { group: 'Collection & Logistics', options: [
-    { value: 'e-waste-collection-staff', label: 'E-Waste Collection Staff' },
-    { value: 'reverse-logistics-coordinator', label: 'Reverse Logistics Coordinator' },
-    { value: 'driver-vehicle-operator', label: 'Driver / Vehicle Operator' },
-    { value: 'field-coordinator', label: 'Field Coordinator' },
-  ]},
-  { group: 'Sorting & Processing', options: [
-    { value: 'sorting-operator', label: 'Sorting Operator' },
-    { value: 'disassembly-technician', label: 'Disassembly Technician' },
-    { value: 'hazardous-waste-handler', label: 'Hazardous Waste Handler' },
-    { value: 'recycling-plant-operator', label: 'Recycling Plant Operator' },
-  ]},
-  { group: 'Technical & IT', options: [
-    { value: 'data-destruction-specialist', label: 'Data Destruction Specialist' },
-    { value: 'asset-recovery-technician', label: 'Asset Recovery Technician' },
-    { value: 'it-hardware-technician', label: 'IT Hardware Technician' },
-    { value: 'inventory-tracking-executive', label: 'Inventory & Tracking Executive' },
-  ]},
-  { group: 'Compliance & Certification', options: [
-    { value: 'ehs-officer', label: 'EHS (Environment, Health & Safety) Officer' },
-    { value: 'compliance-manager', label: 'Compliance Manager' },
-    { value: 'certification-officer', label: 'Certification Officer' },
-  ]},
-  { group: 'Business & Operations', options: [
-    { value: 'operations-manager', label: 'Operations Manager' },
-    { value: 'procurement-officer', label: 'Procurement Officer' },
-    { value: 'business-development-executive', label: 'Business Development Executive' },
-    { value: 'client-relationship-manager', label: 'Client Relationship Manager' },
-  ]},
-  { group: 'Sales & Marketing', options: [
-    { value: 'epr-consultant', label: 'EPR Consultant' },
-    { value: 'sales-executive', label: 'Sales Executive' },
-    { value: 'marketing-coordinator', label: 'Marketing Coordinator' },
-    { value: 'csr-coordinator', label: 'CSR Coordinator' },
-  ]},
-  { group: 'Research & Innovation', options: [
-    { value: 'rd-specialist', label: 'R&D Specialist' },
-    { value: 'sustainability-analyst', label: 'Sustainability Analyst' },
-    { value: 'circular-economy-consultant', label: 'Circular Economy Consultant' },
-  ]},
-  { group: 'Administration & Support', options: [
-    { value: 'hr-executive', label: 'HR Executive' },
-    { value: 'accounts-finance-officer', label: 'Accounts & Finance Officer' },
-    { value: 'customer-support-executive', label: 'Customer Support Executive' },
-    { value: 'office-administrator', label: 'Office Administrator' },
-  ]},
-]
-
-function CareerForm({ preselectedPosition }: { preselectedPosition?: string }) {
+function CareerForm({ segment, preselectedPosition }: { segment: { heading: string; description: string }; preselectedPosition?: string }) {
   const content = Route.useLoaderData()!
-  const { fields, submitText } = content.contact.careerForm
+  const { fields, submitText, positions } = content.contact.careerForm
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -162,59 +117,63 @@ function CareerForm({ preselectedPosition }: { preselectedPosition?: string }) {
     : ''
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      {fields.map((field) => {
-        if (field.type === 'select') {
+    <div>
+      <h2 className="font-title text-xl font-bold mb-2">{segment.heading}</h2>
+      <p className="text-text/60 mb-6">{segment.description}</p>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {fields.map((field) => {
+          if (field.type === 'select') {
+            return (
+              <div key={field.label}>
+                <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
+                <select required={field.required} defaultValue={defaultPosition}
+                  className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors">
+                  <option value="">Select a position</option>
+                  {positions.map((group) => (
+                    <optgroup key={group.group} label={group.group}>
+                      {group.options.map((opt) => (
+                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                      ))}
+                    </optgroup>
+                  ))}
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            )
+          }
+
+          if (field.type === 'file') {
+            return (
+              <div key={field.label}>
+                <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
+                <input type="file" accept={field.accept} required={field.required}
+                  className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors file:mr-4 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-primary/10 file:text-primary file:font-semibold file:text-sm hover:file:bg-primary/20" />
+                {field.note && <p className="text-xs text-text/50 mt-1">{field.note}</p>}
+              </div>
+            )
+          }
+
+          if (field.type === 'textarea') {
+            return (
+              <div key={field.label}>
+                <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
+                <textarea rows={field.rows ?? 4} required={field.required}
+                  className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors resize-y" />
+              </div>
+            )
+          }
+
           return (
             <div key={field.label}>
               <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
-              <select required={field.required} defaultValue={defaultPosition}
-                className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors">
-                <option value="">Select a position</option>
-                {positions.map((group) => (
-                  <optgroup key={group.group} label={group.group}>
-                    {group.options.map((opt) => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                  </optgroup>
-                ))}
-                <option value="other">Other</option>
-              </select>
+              <input type={field.type} required={field.required}
+                className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors" />
             </div>
           )
-        }
-
-        if (field.type === 'file') {
-          return (
-            <div key={field.label}>
-              <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
-              <input type="file" accept={field.accept} required={field.required}
-                className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors file:mr-4 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-primary/10 file:text-primary file:font-semibold file:text-sm hover:file:bg-primary/20" />
-              {field.note && <p className="text-xs text-text/50 mt-1">{field.note}</p>}
-            </div>
-          )
-        }
-
-        if (field.type === 'textarea') {
-          return (
-            <div key={field.label}>
-              <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
-              <textarea rows={field.rows ?? 4} required={field.required}
-                className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors resize-y" />
-            </div>
-          )
-        }
-
-        return (
-          <div key={field.label}>
-            <label className="block text-sm font-semibold text-text/80 mb-1.5">{field.label}</label>
-            <input type={field.type} required={field.required}
-              className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors" />
-          </div>
-        )
-      })}
-      <button type="submit"
-        className="bg-accent text-white font-semibold px-8 py-2.5 rounded-lg hover:brightness-110 transition-all">{submitText}</button>
-    </form>
+        })}
+        <button type="submit"
+          className="bg-accent text-white font-semibold px-8 py-2.5 rounded-lg hover:brightness-110 transition-all">{submitText}</button>
+      </form>
+    </div>
   )
 }
