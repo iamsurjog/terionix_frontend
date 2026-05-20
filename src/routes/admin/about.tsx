@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { AdminNavbar } from '#/components/AdminNavbar'
-import { readContent, contentAction } from '#/lib/content'
-import { useState } from 'react'
+import { readContent } from '#/lib/content'
+import { AdminSection, Field, Input, Textarea, writeSection } from '#/components/AdminSection'
 
 export const Route = createFileRoute('/admin/about')({
   loader: async () => readContent(),
@@ -10,37 +10,62 @@ export const Route = createFileRoute('/admin/about')({
 
 function AdminAbout() {
   const data = Route.useLoaderData()!
-  const [json, setJson] = useState(JSON.stringify(data.about, null, 2))
-  const [msg, setMsg] = useState('')
-
-  const handleSave = () => {
-    setMsg('')
-    try {
-      const parsed = JSON.parse(json)
-      contentAction({ data: { action: 'write', section: 'about', content: parsed } })
-        .then(() => setMsg('Saved!'))
-        .catch((e) => setMsg('Error: ' + (e?.message ?? e)))
-    } catch {
-      setMsg('Invalid JSON')
-    }
-  }
-
   return (
     <div className="font-sans text-text">
       <AdminNavbar active="About" links={data.navbar.links} logo={data.site.logo} siteName={data.site.name} />
-      <main className="pt-32 pb-24 px-4">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="font-title text-3xl font-bold mb-2">About</h1>
-          <textarea value={json} onChange={e => setJson(e.target.value)} rows={24}
-            className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white/50 focus:bg-white focus:border-primary outline-none transition-colors resize-y font-mono text-sm mb-4"
-          />
-          <button onClick={handleSave}
-            className="bg-primary text-white font-semibold px-8 py-2.5 rounded-lg hover:brightness-110 transition-all">
-            Save
-          </button>
-          {msg && <p className="text-sm mt-2 text-text/60">{msg}</p>}
-        </div>
-      </main>
+      <AdminSection
+        title="About Page"
+        onSave={(vals) => writeSection('about', vals)}
+        defaultValues={data.about}
+        validate={(v: unknown) => {
+          const o = v as { heading?: { prefix?: string; highlight?: string }; paragraphs?: unknown[] }
+          if (!o.heading?.prefix?.trim()) return 'Heading prefix is required'
+          if (!o.heading?.highlight?.trim()) return 'Heading highlight is required'
+          if (!o.paragraphs?.length) return 'At least one paragraph is required'
+          return null
+        }}
+      >
+        {(values, onChange) => (
+          <>
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Heading Prefix (before highlight)">
+                <Input
+                  value={values.heading.prefix}
+                  onChange={(v) => onChange('heading.prefix', v)}
+                  placeholder="e.g. About"
+                />
+              </Field>
+              <Field label="Heading Highlight (colored part)">
+                <Input
+                  value={values.heading.highlight}
+                  onChange={(v) => onChange('heading.highlight', v)}
+                  placeholder="e.g. Us"
+                />
+              </Field>
+            </div>
+            <div className="space-y-4">
+              <h3 className="font-medium text-sm">Page Content</h3>
+              {values.paragraphs.map((p: { className?: string; segments: { text: string; className?: string }[] }, i: number) => (
+                <div key={i} className="p-4 bg-white/50 rounded-lg border border-primary/10 space-y-2">
+                  <div className="text-xs text-text/50 font-medium uppercase tracking-wide">Paragraph {i + 1}</div>
+                  {p.segments.map((seg: { text: string; className?: string }, j: number) => (
+                    <div key={j}>
+                      <Field label={j === 0 ? 'Text' : 'Continuation (optional styling)'}>
+                        <Textarea
+                          value={seg.text}
+                          onChange={(v) => onChange(`paragraphs.${i}.segments.${j}.text`, v)}
+                          placeholder="Enter paragraph text..."
+                          rows={3}
+                        />
+                      </Field>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </AdminSection>
     </div>
   )
 }
