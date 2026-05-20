@@ -19,6 +19,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as AdminHomeRouteImport } from './routes/admin/home'
 import { Route as AdminHistoryRouteImport } from './routes/admin/history'
+import { Route as AdminGameRouteImport } from './routes/admin/game'
 import { Route as AdminContactRouteImport } from './routes/admin/contact'
 import { Route as AdminCareersRouteImport } from './routes/admin/careers'
 import { Route as AdminAboutRouteImport } from './routes/admin/about'
@@ -73,6 +74,11 @@ const AdminHistoryRoute = AdminHistoryRouteImport.update({
   path: '/admin/history',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminGameRoute = AdminGameRouteImport.update({
+  id: '/admin/game',
+  path: '/admin/game',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminContactRoute = AdminContactRouteImport.update({
   id: '/admin/contact',
   path: '/admin/contact',
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/admin/about': typeof AdminAboutRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/contact': typeof AdminContactRoute
+  '/admin/game': typeof AdminGameRoute
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
   '/admin/services': typeof AdminServicesRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/admin/about': typeof AdminAboutRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/contact': typeof AdminContactRoute
+  '/admin/game': typeof AdminGameRoute
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
   '/admin/services': typeof AdminServicesRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/admin/about': typeof AdminAboutRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/contact': typeof AdminContactRoute
+  '/admin/game': typeof AdminGameRoute
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
   '/admin/services': typeof AdminServicesRoute
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/admin/about'
     | '/admin/careers'
     | '/admin/contact'
+    | '/admin/game'
     | '/admin/history'
     | '/admin/home'
     | '/admin/services'
@@ -162,6 +172,7 @@ export interface FileRouteTypes {
     | '/admin/about'
     | '/admin/careers'
     | '/admin/contact'
+    | '/admin/game'
     | '/admin/history'
     | '/admin/home'
     | '/admin/services'
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/admin/about'
     | '/admin/careers'
     | '/admin/contact'
+    | '/admin/game'
     | '/admin/history'
     | '/admin/home'
     | '/admin/services'
@@ -193,6 +205,7 @@ export interface RootRouteChildren {
   AdminAboutRoute: typeof AdminAboutRoute
   AdminCareersRoute: typeof AdminCareersRoute
   AdminContactRoute: typeof AdminContactRoute
+  AdminGameRoute: typeof AdminGameRoute
   AdminHistoryRoute: typeof AdminHistoryRoute
   AdminHomeRoute: typeof AdminHomeRoute
   AdminServicesRoute: typeof AdminServicesRoute
@@ -271,6 +284,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminHistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/game': {
+      id: '/admin/game'
+      path: '/admin/game'
+      fullPath: '/admin/game'
+      preLoaderRoute: typeof AdminGameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/contact': {
       id: '/admin/contact'
       path: '/admin/contact'
@@ -305,6 +325,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminAboutRoute: AdminAboutRoute,
   AdminCareersRoute: AdminCareersRoute,
   AdminContactRoute: AdminContactRoute,
+  AdminGameRoute: AdminGameRoute,
   AdminHistoryRoute: AdminHistoryRoute,
   AdminHomeRoute: AdminHomeRoute,
   AdminServicesRoute: AdminServicesRoute,

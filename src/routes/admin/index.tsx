@@ -14,6 +14,7 @@ const sections = [
   { key: 'services', label: 'Services', desc: 'Services page heading' },
   { key: 'careers', label: 'Careers', desc: 'Job categories and roles' },
   { key: 'contact', label: 'Contact', desc: 'Form fields, tabs, and positions' },
+  { key: 'game', label: 'Recycling Game', desc: 'Game items and leaderboard' },
 ]
 
 function AdminDashboard() {

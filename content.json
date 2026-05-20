@@ -236,6 +236,116 @@
       "buttonLabel": "Apply Now"
     }
   },
+  "game": {
+    "items": [
+      {
+        "name": "Aluminum Can",
+        "recyclable": true
+      },
+      {
+        "name": "Plastic Bottle",
+        "recyclable": true
+      },
+      {
+        "name": "Glass Jar",
+        "recyclable": true
+      },
+      {
+        "name": "Cardboard Box",
+        "recyclable": true
+      },
+      {
+        "name": "Newspaper",
+        "recyclable": true
+      },
+      {
+        "name": "Old Phone Charger",
+        "recyclable": false
+      },
+      {
+        "name": "Broken CRT Monitor",
+        "recyclable": false
+      },
+      {
+        "name": "Used Tissue Paper",
+        "recyclable": false
+      },
+      {
+        "name": "Batteries",
+        "recyclable": false
+      },
+      {
+        "name": "Pizza Box (greasy)",
+        "recyclable": false
+      },
+      {
+        "name": "Tin Foil",
+        "recyclable": true
+      },
+      {
+        "name": "Milk Carton",
+        "recyclable": true
+      },
+      {
+        "name": "Styrofoam Cup",
+        "recyclable": false
+      },
+      {
+        "name": "Old Printer Cartridge",
+        "recyclable": false
+      },
+      {
+        "name": "Steel Can",
+        "recyclable": true
+      },
+      {
+        "name": "Juice Carton",
+        "recyclable": true
+      },
+      {
+        "name": "Light Bulb",
+        "recyclable": false
+      },
+      {
+        "name": "Copper Wire",
+        "recyclable": true
+      },
+      {
+        "name": "Chip Bags",
+        "recyclable": false
+      },
+      {
+        "name": "Old Keyboard",
+        "recyclable": false
+      }
+    ]
+  },
+  "leaderboard": [
+    {
+      "name": "asd",
+      "time": 0
+    },
+    {
+      "name": "asd",
+      "time": 0
+    },
+    {
+      "name": "SG",
+      "time": 6.226
+    },
+    {
+      "name": "Riya",
+      "time": 8.4
+    },
+    {
+      "name": "Arjun",
+      "time": 9.1
+    },
+    {
+      "name": "Priya",
+      "time": 10.2
+    }
+  ],
   "contact": {
     "heading": {
       "prefix": "Contact ",
