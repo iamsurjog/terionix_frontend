@@ -14,38 +14,65 @@ function About() {
   return (
     <div className="font-sans text-text">
       <Navbar active="About Us" links={content.navbar.links} logo={content.site.logo} siteName={content.site.name} />
-      <main className="pt-32 pb-24 px-4 relative">
-        <div className="absolute top-40 right-0 w-72 h-72 bg-secondary/10 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-20 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl -z-10" />
-        <div className="max-w-4xl mx-auto relative">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-8 h-1 bg-secondary rounded-full" />
-            <span className="w-16 h-1 bg-primary/30 rounded-full" />
-          </div>
-          <h1 className="font-title text-5xl sm:text-6xl font-bold text-text mb-8">
-            {heading.prefix}<span className="text-primary">{heading.highlight}</span>
-          </h1>
-          <div className="space-y-6 text-text/70 leading-relaxed text-lg mb-12">
-            {paragraphs.map((para, i) => (
-              <p key={i} className={para.className ?? ''}>
-                {para.segments.map((seg, j) =>
-                  seg.className ? (
-                    <span key={j} className={seg.className}>{seg.text}</span>
-                  ) : (
-                    <span key={j}>{seg.text}</span>
-                  )
-                )}
-              </p>
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-4">
-            {links.map((link, i) => (
-              <a key={i} href={link.href} className="bg-primary/10 text-primary font-semibold px-6 py-2.5 rounded-lg hover:bg-primary/20 transition-all">
-                {link.label}
-              </a>
-            ))}
+
+      <main className="relative overflow-hidden">
+        <div className="absolute top-40 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-10 motion-preset-float motion-duration-4000" />
+        <div className="absolute bottom-20 left-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl -z-10 motion-preset-float motion-duration-5000 motion-delay-1000" />
+
+        <div className="pt-32 pb-24 px-4">
+          <div className="max-w-4xl mx-auto">
+            {/* Header */}
+            <div className="mb-12 motion-preset-slide-up">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-10 h-1 bg-secondary rounded-full" />
+                <span className="w-20 h-1 bg-primary/40 rounded-full" />
+              </div>
+              <h1 className="font-title text-5xl sm:text-6xl lg:text-7xl font-bold text-text">
+                {heading.prefix}<span className="text-primary">{heading.highlight}</span>
+              </h1>
+            </div>
+
+            {/* Content cards */}
+            <div className="space-y-8 mb-16">
+              {paragraphs.map((para, i) => (
+                <div
+                  key={i}
+                  className={`group bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 hover:border-primary/20 hover:bg-white/60 transition-all duration-500 ${
+                    i === 0 ? 'border-l-4 border-l-secondary' : ''
+                  } motion-preset-slide-up motion-delay-${(i + 1) * 100}`}
+                >
+                  <p className={`text-lg leading-relaxed text-text/70 ${para.className ?? ''}`}>
+                    {para.segments.map((seg, j) =>
+                      seg.className ? (
+                        <span key={j} className={seg.className}>{seg.text}</span>
+                      ) : (
+                        <span key={j}>{seg.text}</span>
+                      )
+                    )}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Quick links */}
+            <div className="flex flex-wrap gap-3 motion-preset-slide-up motion-delay-300">
+              {links.map((link, i) => (
+                <a
+                  key={i}
+                  href={link.href}
+                  className="group inline-flex items-center gap-2 bg-primary/10 text-primary font-semibold px-6 py-3 rounded-xl hover:bg-primary hover:text-white transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-primary/20"
+                >
+                  <span>{link.label}</span>
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
+
+        <div className="h-1 bg-gradient-to-r from-primary via-secondary to-accent" />
       </main>
     </div>
   )

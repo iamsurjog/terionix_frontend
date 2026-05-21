@@ -9,15 +9,24 @@
     --color-primary: #3fd96d;
     --color-secondary: #5ddfd9;
     --color-accent: #fa8c4d;
-    
+
     --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-    --font-title: "Exo 2",  ui-sans-serif, system-ui, sans-serif;
+    --font-title: "Exo 2", ui-sans-serif, system-ui, sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
 html,
 body {
     min-height: 100%;
     background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+::selection {
+    background-color: var(--color-primary);
+    color: white;
+}

@@ -48,23 +48,41 @@ export function AdminSection({ title, onSave, defaultValues, validate, children 
   return (
     <div className="font-sans text-text">
       <main className="pt-32 pb-24 px-4">
-        <div className="max-w-2xl mx-auto">
-          <h1 className="font-title text-3xl font-bold mb-2">{title}</h1>
-          <div className="bg-white/50 rounded-xl border border-primary/20 p-6 space-y-5">
+        <div className="max-w-2xl mx-auto motion-preset-slide-up">
+          <h1 className="font-title text-3xl font-bold mb-6">{title}</h1>
+          <div className="bg-white/40 backdrop-blur-sm rounded-2xl border border-primary/20 p-8 space-y-5 shadow-lg">
             {children(values, handleChange)}
-            <div className="pt-4 border-t border-primary/10">
+            <div className="pt-6 border-t border-primary/10 flex items-center justify-between">
+              <div>
+                {msg && (
+                  <p className={`text-sm flex items-center gap-1.5 ${msg.type === 'success' ? 'text-green-600' : 'text-red-500'}`}>
+                    {msg.type === 'success' ? (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )}
+                    {msg.text}
+                  </p>
+                )}
+              </div>
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="bg-primary text-white font-semibold px-8 py-2.5 rounded-lg hover:brightness-110 transition-all disabled:opacity-50"
+                className="bg-gradient-to-r from-primary to-primary/80 text-white font-semibold px-8 py-3 rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:brightness-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {saving ? 'Saving...' : 'Save Changes'}
+                {saving ? (
+                  <span className="flex items-center gap-2">
+                    <svg className="w-4 h-4 motion-preset-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Saving...
+                  </span>
+                ) : 'Save Changes'}
               </button>
-              {msg && (
-                <p className={`mt-2 text-sm ${msg.type === 'success' ? 'text-green-600' : 'text-red-500'}`}>
-                  {msg.text}
-                </p>
-              )}
             </div>
           </div>
         </div>
@@ -81,7 +99,7 @@ interface FieldProps {
 export function Field({ label, children }: FieldProps) {
   return (
     <div>
-      <label className="block text-sm font-medium mb-1.5">{label}</label>
+      <label className="block text-sm font-medium mb-1.5 text-text/80">{label}</label>
       {children}
     </div>
   )
@@ -101,7 +119,7 @@ export function Input({ value, onChange, placeholder, className = '' }: InputPro
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
-      className={`w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white focus:bg-white focus:border-primary outline-none transition-colors ${className}`}
+      className={`w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 ${className}`}
     />
   )
 }
@@ -120,7 +138,7 @@ export function Textarea({ value, onChange, placeholder, rows = 4 }: TextareaPro
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
       rows={rows}
-      className="w-full px-4 py-2.5 rounded-lg border border-primary/20 bg-white focus:bg-white focus:border-primary outline-none transition-colors resize-y"
+      className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 resize-y"
     />
   )
 }
