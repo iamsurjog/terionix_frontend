@@ -18,6 +18,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminServicesRouteImport } from './routes/admin/services'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminJsonRouteImport } from './routes/admin/json'
 import { Route as AdminHomeRouteImport } from './routes/admin/home'
 import { Route as AdminHistoryRouteImport } from './routes/admin/history'
@@ -70,6 +71,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const AdminServicesRoute = AdminServicesRouteImport.update({
   id: '/admin/services',
   path: '/admin/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminJsonRoute = AdminJsonRouteImport.update({
@@ -129,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
   '/admin/json': typeof AdminJsonRoute
+  '/admin/login': typeof AdminLoginRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -148,6 +155,7 @@ export interface FileRoutesByTo {
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
   '/admin/json': typeof AdminJsonRoute
+  '/admin/login': typeof AdminLoginRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -168,6 +176,7 @@ export interface FileRoutesById {
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
   '/admin/json': typeof AdminJsonRoute
+  '/admin/login': typeof AdminLoginRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -189,6 +198,7 @@ export interface FileRouteTypes {
     | '/admin/history'
     | '/admin/home'
     | '/admin/json'
+    | '/admin/login'
     | '/admin/services'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/admin/history'
     | '/admin/home'
     | '/admin/json'
+    | '/admin/login'
     | '/admin/services'
     | '/admin'
   id:
@@ -227,6 +238,7 @@ export interface FileRouteTypes {
     | '/admin/history'
     | '/admin/home'
     | '/admin/json'
+    | '/admin/login'
     | '/admin/services'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -247,6 +259,7 @@ export interface RootRouteChildren {
   AdminHistoryRoute: typeof AdminHistoryRoute
   AdminHomeRoute: typeof AdminHomeRoute
   AdminJsonRoute: typeof AdminJsonRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   AdminServicesRoute: typeof AdminServicesRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -314,6 +327,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/services'
       fullPath: '/admin/services'
       preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/json': {
@@ -391,6 +411,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminHistoryRoute: AdminHistoryRoute,
   AdminHomeRoute: AdminHomeRoute,
   AdminJsonRoute: AdminJsonRoute,
+  AdminLoginRoute: AdminLoginRoute,
   AdminServicesRoute: AdminServicesRoute,
   AdminIndexRoute: AdminIndexRoute,
 }

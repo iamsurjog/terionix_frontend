@@ -1,4 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { useEffect } from 'react'
+import { isAuthenticated } from '#/lib/auth'
 import { AdminNavbar } from '#/components/AdminNavbar'
 import { readContent } from '#/lib/content'
 import { AdminSection, Field, Input, Textarea, writeSection } from '#/components/AdminSection'
@@ -9,6 +11,8 @@ export const Route = createFileRoute('/admin/about')({
 })
 
 function AdminAbout() {
+  const navigate = useNavigate()
+  useEffect(() => { if (!isAuthenticated()) navigate({ to: '/admin/login' }) }, [navigate])
   const data = Route.useLoaderData()!
   return (
     <div className="font-sans text-text">

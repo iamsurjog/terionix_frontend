@@ -1,7 +1,15 @@
 import { useState } from 'react'
+import { logout } from '#/lib/auth'
+import { useNavigate } from '@tanstack/react-router'
 
 export function AdminNavbar({ active, links, logo, siteName }: { active: string; links: { name: string; to: string }[]; logo: string; siteName: string }) {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate({ to: '/admin/login' })
+  }
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-b border-primary/10">
@@ -49,15 +57,29 @@ export function AdminNavbar({ active, links, logo, siteName }: { active: string;
           >
             JSON
           </a>
+          <button
+            onClick={handleLogout}
+            className="ml-2 px-4 py-2 font-sans text-sm font-medium rounded-full text-red-500 hover:bg-red-50 transition-all"
+          >
+            Logout
+          </button>
         </div>
 
-        <button onClick={() => setOpen(!open)} className="sm:hidden relative w-10 h-10 flex items-center justify-center rounded-lg text-text hover:bg-primary/5 transition-colors" aria-label="Toggle menu">
-          <div className="w-5 h-4 relative flex flex-col justify-between">
-            <span className={`block h-0.5 w-full bg-current rounded-full transition-all duration-300 ${open ? 'rotate-45 translate-y-[7px]' : ''}`} />
-            <span className={`block h-0.5 w-full bg-current rounded-full transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
-            <span className={`block h-0.5 w-full bg-current rounded-full transition-all duration-300 ${open ? '-rotate-45 -translate-y-[7px]' : ''}`} />
-          </div>
-        </button>
+        <div className="sm:hidden flex items-center gap-2">
+          <button
+            onClick={handleLogout}
+            className="text-xs font-medium text-red-500 hover:text-red-600 transition-colors px-2 py-1"
+          >
+            Logout
+          </button>
+          <button onClick={() => setOpen(!open)} className="relative w-10 h-10 flex items-center justify-center rounded-lg text-text hover:bg-primary/5 transition-colors" aria-label="Toggle menu">
+            <div className="w-5 h-4 relative flex flex-col justify-between">
+              <span className={`block h-0.5 w-full bg-current rounded-full transition-all duration-300 ${open ? 'rotate-45 translate-y-[7px]' : ''}`} />
+              <span className={`block h-0.5 w-full bg-current rounded-full transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
+              <span className={`block h-0.5 w-full bg-current rounded-full transition-all duration-300 ${open ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+            </div>
+          </button>
+        </div>
       </div>
 
       <div className={`sm:hidden overflow-hidden transition-all duration-300 ${open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>

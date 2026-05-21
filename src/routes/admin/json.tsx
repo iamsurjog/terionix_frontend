@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import { createFileRoute } from '@tanstack/react-router'
+import { useState, useEffect } from 'react'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { AdminNavbar } from '#/components/AdminNavbar'
 import { readContent } from '#/lib/content'
+import { isAuthenticated } from '#/lib/auth'
 
 export const Route = createFileRoute('/admin/json')({
   loader: async () => readContent(),
@@ -9,6 +10,8 @@ export const Route = createFileRoute('/admin/json')({
 })
 
 function AdminJson() {
+  const navigate = useNavigate()
+  useEffect(() => { if (!isAuthenticated()) navigate({ to: '/admin/login' }) }, [navigate])
   const data = Route.useLoaderData()!
   const [copied, setCopied] = useState(false)
   const [search, setSearch] = useState('')

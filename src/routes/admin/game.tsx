@@ -1,8 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { useEffect } from 'react'
 import { AdminNavbar } from '#/components/AdminNavbar'
 import { readContent } from '#/lib/content'
 import { AdminSection, Field, Input, writeSection } from '#/components/AdminSection'
 import { useState } from 'react'
+import { isAuthenticated } from '#/lib/auth'
 
 export const Route = createFileRoute('/admin/game')({
   loader: async () => readContent(),
@@ -10,6 +12,8 @@ export const Route = createFileRoute('/admin/game')({
 })
 
 function AdminGame() {
+  const navigate = useNavigate()
+  useEffect(() => { if (!isAuthenticated()) navigate({ to: '/admin/login' }) }, [navigate])
   const data = Route.useLoaderData()!
   return (
     <div className="font-sans text-text">
