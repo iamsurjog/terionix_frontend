@@ -18,6 +18,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminServicesRouteImport } from './routes/admin/services'
+import { Route as AdminJsonRouteImport } from './routes/admin/json'
 import { Route as AdminHomeRouteImport } from './routes/admin/home'
 import { Route as AdminHistoryRouteImport } from './routes/admin/history'
 import { Route as AdminGameRouteImport } from './routes/admin/game'
@@ -71,6 +72,11 @@ const AdminServicesRoute = AdminServicesRouteImport.update({
   path: '/admin/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminJsonRoute = AdminJsonRouteImport.update({
+  id: '/admin/json',
+  path: '/admin/json',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminHomeRoute = AdminHomeRouteImport.update({
   id: '/admin/home',
   path: '/admin/home',
@@ -122,6 +128,7 @@ export interface FileRoutesByFullPath {
   '/admin/game': typeof AdminGameRoute
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
+  '/admin/json': typeof AdminJsonRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -140,6 +147,7 @@ export interface FileRoutesByTo {
   '/admin/game': typeof AdminGameRoute
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
+  '/admin/json': typeof AdminJsonRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -159,6 +167,7 @@ export interface FileRoutesById {
   '/admin/game': typeof AdminGameRoute
   '/admin/history': typeof AdminHistoryRoute
   '/admin/home': typeof AdminHomeRoute
+  '/admin/json': typeof AdminJsonRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/admin/game'
     | '/admin/history'
     | '/admin/home'
+    | '/admin/json'
     | '/admin/services'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -197,6 +207,7 @@ export interface FileRouteTypes {
     | '/admin/game'
     | '/admin/history'
     | '/admin/home'
+    | '/admin/json'
     | '/admin/services'
     | '/admin'
   id:
@@ -215,6 +226,7 @@ export interface FileRouteTypes {
     | '/admin/game'
     | '/admin/history'
     | '/admin/home'
+    | '/admin/json'
     | '/admin/services'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -234,6 +246,7 @@ export interface RootRouteChildren {
   AdminGameRoute: typeof AdminGameRoute
   AdminHistoryRoute: typeof AdminHistoryRoute
   AdminHomeRoute: typeof AdminHomeRoute
+  AdminJsonRoute: typeof AdminJsonRoute
   AdminServicesRoute: typeof AdminServicesRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -303,6 +316,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/json': {
+      id: '/admin/json'
+      path: '/admin/json'
+      fullPath: '/admin/json'
+      preLoaderRoute: typeof AdminJsonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/home': {
       id: '/admin/home'
       path: '/admin/home'
@@ -370,6 +390,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminGameRoute: AdminGameRoute,
   AdminHistoryRoute: AdminHistoryRoute,
   AdminHomeRoute: AdminHomeRoute,
+  AdminJsonRoute: AdminJsonRoute,
   AdminServicesRoute: AdminServicesRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
