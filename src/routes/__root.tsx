@@ -36,6 +36,7 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:image',
+        itemProp: 'image',
         content: ogImage,
       },
       {
