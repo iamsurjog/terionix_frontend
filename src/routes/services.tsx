@@ -28,9 +28,9 @@ function Services() {
                 <span className="w-20 h-1 bg-primary/40 rounded-full" />
               </div>
               <h1 className="font-title text-5xl sm:text-6xl lg:text-7xl font-bold text-text mb-4">
-                {heading.prefix}<span className="text-primary">{heading.highlight}</span>
+                {heading.prefix}<span className="text-gradient">{heading.highlight}</span>
               </h1>
-              <p className="text-lg text-text/60 max-w-2xl">{intro}</p>
+              <p className="text-lg text-text/60 max-w-2xl font-light">{intro}</p>
             </div>
 
             <div className="space-y-3">
@@ -62,11 +62,11 @@ function SegmentItem({ seg, index }: { seg: { title: string; body: string }; ind
 
   return (
     <div
-      className={`group bg-white/40 backdrop-blur-sm rounded-2xl border transition-all duration-500 overflow-hidden ${
+      className={`group bg-white/40 backdrop-blur-sm rounded-2xl border transition-all duration-500 overflow-hidden card-hover ${
         open
           ? 'border-primary/30 shadow-lg shadow-primary/5'
           : 'border-primary/10 hover:border-primary/20 hover:bg-white/60'
-      } motion-preset-slide-up motion-delay-${(index + 1) * 100}`}
+      } motion-preset-slide-up`}
     >
       <button
         onClick={() => setOpen(!open)}

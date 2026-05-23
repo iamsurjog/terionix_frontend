@@ -21,25 +21,23 @@ function About() {
 
         <div className="pt-32 pb-24 px-4">
           <div className="max-w-4xl mx-auto">
-            {/* Header */}
             <div className="mb-12 motion-preset-slide-up">
               <div className="flex items-center gap-2 mb-4">
                 <span className="w-10 h-1 bg-secondary rounded-full" />
                 <span className="w-20 h-1 bg-primary/40 rounded-full" />
               </div>
               <h1 className="font-title text-5xl sm:text-6xl lg:text-7xl font-bold text-text">
-                {heading.prefix}<span className="text-primary">{heading.highlight}</span>
+                {heading.prefix}<span className="text-gradient">{heading.highlight}</span>
               </h1>
             </div>
 
-            {/* Content cards */}
             <div className="space-y-8 mb-16">
               {paragraphs.map((para, i) => (
                 <div
                   key={i}
-                  className={`group bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 hover:border-primary/20 hover:bg-white/60 transition-all duration-500 ${
+                  className={`group bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 hover:border-primary/20 hover:bg-white/60 hover:shadow-xl transition-all duration-500 card-hover ${
                     i === 0 ? 'border-l-4 border-l-secondary' : ''
-                  } motion-preset-slide-up motion-delay-${(i + 1) * 100}`}
+                  } motion-preset-slide-up`}
                 >
                   <p className={`text-lg leading-relaxed text-text/70 ${para.className ?? ''}`}>
                     {para.segments.map((seg, j) =>
@@ -54,7 +52,6 @@ function About() {
               ))}
             </div>
 
-            {/* Quick links */}
             <div className="flex flex-wrap gap-3 motion-preset-slide-up motion-delay-300">
               {links.map((link, i) => (
                 <a

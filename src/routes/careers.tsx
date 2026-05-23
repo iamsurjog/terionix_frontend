@@ -22,20 +22,18 @@ function Careers() {
 
         <div className="pt-32 pb-24 px-4">
           <div className="max-w-5xl mx-auto">
-            {/* Header */}
             <div className="mb-12 motion-preset-slide-up">
               <div className="flex items-center gap-2 mb-4">
                 <span className="w-10 h-1 bg-secondary rounded-full" />
                 <span className="w-20 h-1 bg-primary/40 rounded-full" />
               </div>
               <h1 className="font-title text-5xl sm:text-6xl lg:text-7xl font-bold text-text mb-4">
-                {heading.prefix}<span className="text-primary">{heading.highlight}</span>
+                {heading.prefix}<span className="text-gradient">{heading.highlight}</span>
               </h1>
-              <p className="text-lg text-text/60 max-w-2xl">{subtitle}</p>
+              <p className="text-lg text-text/60 max-w-2xl font-light">{subtitle}</p>
             </div>
 
-            {/* Why Terionix */}
-            <div className="bg-white/40 backdrop-blur-sm rounded-2xl border border-primary/10 p-8 mb-16 hover:shadow-xl hover:border-primary/20 transition-all duration-500 motion-preset-slide-up motion-delay-100">
+            <div className="bg-white/40 backdrop-blur-sm rounded-2xl border border-primary/10 p-8 mb-16 hover:shadow-xl hover:border-primary/20 transition-all duration-500 motion-preset-slide-up card-hover">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center">
                   <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
@@ -58,12 +56,11 @@ function Careers() {
               </div>
             </div>
 
-            {/* Categories */}
             <div className="grid gap-6 md:grid-cols-2 mb-16">
               {categories.map((cat, i) => (
                 <div
                   key={cat.title}
-                  className="group bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-primary/10 hover:border-primary/30 hover:bg-white/60 hover:shadow-xl transition-all duration-500 motion-preset-slide-up motion-delay-${(i + 2) * 100}"
+                  className="group bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-primary/10 hover:border-primary/30 hover:bg-white/60 hover:shadow-xl transition-all duration-500 motion-preset-slide-up card-hover"
                 >
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <div className="flex items-center gap-3">
@@ -94,8 +91,7 @@ function Careers() {
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="text-center bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-12 border border-primary/10 motion-preset-pop motion-delay-300">
+            <div className="text-center bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl p-12 border border-primary/10 motion-preset-pop">
               <p className="text-xl text-text/70 mb-6 font-medium">{cta.text}</p>
               <Link
                 to="/contact"

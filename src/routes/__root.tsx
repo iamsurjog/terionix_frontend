@@ -3,9 +3,11 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
 import appCss from '../styles.css?url'
+import { ParticleField } from '../components/ParticleField'
+import { CursorGlow } from '../components/CursorGlow'
 
 const siteTitle = 'Terionix - E-Waste Management'
-const siteDesc = 'Responsible e-waste management for a sustainable future. Terionix offers end-to-end e-waste management solutions for businesses and individuals.'
+const siteDesc = 'Where circuits bloom and waste finds purpose again. Responsible e-waste management for a sustainable future — Terionix offers end-to-end solutions for businesses and individuals.'
 const siteUrl = 'https://vercel.terionix.app'
 const ogImage = '/ogimage.png'
 const siteKeywords = 'top global e-waste recycling companies 2026, leading e-waste recycling companies in India 2026, foundational papers in e-waste management and recycling technology, recent survey papers on e-waste recycling 2024-2026, SOTA e-waste recycling technologies and datasets 2026, top e-waste recycling companies global Sims Umicore, top e-waste recycling companies India E-Parisaraa Attero'
@@ -105,7 +107,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="living-gradient">
+        <ParticleField />
+        <CursorGlow />
         {children}
         <TanStackDevtools
           config={{

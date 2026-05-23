@@ -27,28 +27,24 @@ function History() {
                 <span className="w-20 h-1 bg-primary/40 rounded-full" />
               </div>
               <h1 className="font-title text-5xl sm:text-6xl lg:text-7xl font-bold text-text">
-                {heading.prefix}<span className="text-primary">{heading.highlight}</span>
+                {heading.prefix}<span className="text-gradient">{heading.highlight}</span>
               </h1>
             </div>
 
-            {/* Timeline */}
             <div className="relative">
-              {/* Vertical line */}
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/30 via-secondary/30 to-accent/30 hidden sm:block" />
 
               <div className="space-y-12">
                 {paragraphs.map((para, i) => (
                   <div
                     key={i}
-                    className="relative pl-0 sm:pl-20 motion-preset-slide-up motion-delay-${(i + 1) * 100}"
+                    className="relative pl-0 sm:pl-20 motion-preset-slide-up"
                   >
-                    {/* Timeline dot */}
-                    <div className="hidden sm:flex absolute left-0 top-1 w-16 h-16 rounded-full bg-white/60 backdrop-blur-sm border-2 border-primary/20 items-center justify-center shadow-lg shadow-primary/5 group-hover:border-primary transition-all duration-300">
-                      <span className="font-title font-bold text-primary">{String(i + 1).padStart(2, '0')}</span>
+                    <div className="hidden sm:flex absolute left-0 top-1 w-16 h-16 rounded-full bg-white/60 backdrop-blur-sm border-2 border-primary/20 items-center justify-center shadow-lg shadow-primary/5 transition-all duration-300 hover:border-primary hover:shadow-primary/20">
+                      <span className="font-title font-bold text-gradient">{String(i + 1).padStart(2, '0')}</span>
                     </div>
 
-                    {/* Card */}
-                    <div className="group bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 hover:border-primary/20 hover:bg-white/60 hover:shadow-xl transition-all duration-500">
+                    <div className="group bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 hover:border-primary/20 hover:bg-white/60 hover:shadow-xl transition-all duration-500 card-hover">
                       <div className="flex items-center gap-2 mb-4">
                         <div className="sm:hidden w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
                           <span className="font-title font-bold text-primary text-sm">{i + 1}</span>

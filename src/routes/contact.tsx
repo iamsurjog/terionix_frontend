@@ -53,12 +53,11 @@ function ContactUs() {
                 <span className="w-20 h-1 bg-primary/40 rounded-full" />
               </div>
               <h1 className="font-title text-5xl sm:text-6xl lg:text-7xl font-bold text-text">
-                {heading.prefix}<span className="text-primary">{heading.highlight}</span>
+                {heading.prefix}<span className="text-gradient">{heading.highlight}</span>
               </h1>
             </div>
 
-            {/* Tabs */}
-            <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-1.5 border border-primary/10 flex mb-8 motion-preset-slide-up motion-delay-100">
+            <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-1.5 border border-primary/10 flex mb-8 motion-preset-slide-up">
               {tabs.map((tab, i) => (
                 <button
                   key={tab}
@@ -74,7 +73,6 @@ function ContactUs() {
               ))}
             </div>
 
-            {/* Form content */}
             <div className="motion-preset-pop motion-duration-500">
               {activeTab === 0 && <GeneralForm segment={generalSegment} />}
               {activeTab === 1 && <CareerForm segment={careerSegment} preselectedPosition={position} />}
@@ -97,9 +95,9 @@ function GeneralForm({ segment }: { segment: { heading: string; description: str
   }
 
   return (
-    <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10">
+    <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 card-hover">
       <h2 className="font-title text-2xl font-bold mb-2">{segment.heading}</h2>
-      <p className="text-text/60 mb-8">{segment.description}</p>
+      <p className="text-text/60 mb-8 font-light">{segment.description}</p>
       <form onSubmit={handleSubmit} className="space-y-5">
         {fields.map((field) => (
           <div key={field.label} className="group">
@@ -121,7 +119,7 @@ function GeneralForm({ segment }: { segment: { heading: string; description: str
         ))}
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-primary to-primary/80 text-white font-semibold px-8 py-3 rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:brightness-110 transition-all duration-300"
+          className="w-full bg-gradient-to-r from-primary to-primary-deep text-white font-semibold px-8 py-3 rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:brightness-110 transition-all duration-300"
         >
           {submitText}
         </button>
@@ -143,9 +141,9 @@ function CareerForm({ segment, preselectedPosition }: { segment: { heading: stri
     : ''
 
   return (
-    <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10">
+    <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 card-hover">
       <h2 className="font-title text-2xl font-bold mb-2">{segment.heading}</h2>
-      <p className="text-text/60 mb-8">{segment.description}</p>
+      <p className="text-text/60 mb-8 font-light">{segment.description}</p>
       <form onSubmit={handleSubmit} className="space-y-5">
         {fields.map((field) => {
           if (field.type === 'select') {

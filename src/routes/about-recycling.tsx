@@ -27,20 +27,20 @@ function AboutRecycling() {
                 <span className="w-20 h-1 bg-primary/40 rounded-full" />
               </div>
               <h1 className="font-title text-5xl sm:text-6xl lg:text-7xl font-bold text-text mb-4">
-                {heading.prefix}<span className="text-primary">{heading.highlight}</span>
+                {heading.prefix}<span className="text-gradient">{heading.highlight}</span>
               </h1>
-              <p className="text-lg text-text/60 max-w-2xl">{intro}</p>
+              <p className="text-lg text-text/60 max-w-2xl font-light">{intro}</p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
               {facts.map((fact, i) => (
                 <div
                   key={i}
-                  className={`group bg-white/40 backdrop-blur-sm rounded-2xl p-6 border transition-all duration-500 hover:shadow-xl hover:-translate-y-1 ${
+                  className={`group bg-white/40 backdrop-blur-sm rounded-2xl p-6 border transition-all duration-500 hover:shadow-xl hover:-translate-y-1 card-hover ${
                     i === 0
                       ? 'border-l-4 border-l-secondary border-primary/10 md:col-span-2'
                       : 'border-primary/10 hover:border-primary/20 hover:bg-white/60'
-                  } motion-preset-slide-up motion-delay-${(i + 1) * 100}`}
+                  } motion-preset-slide-up`}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
