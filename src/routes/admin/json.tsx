@@ -58,7 +58,7 @@ function AdminJson() {
               >
                 {copied ? (
                   <>
-                    <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <svg className="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     Copied!
@@ -99,11 +99,11 @@ function AdminJson() {
           </div>
 
           {/* JSON viewer */}
-          <div className="bg-[#0d1117] rounded-2xl border border-primary/10 overflow-hidden shadow-xl motion-preset-pop motion-delay-200">
-            <div className="flex items-center gap-2 px-5 py-3 bg-[#161b22] border-b border-white/5">
-              <span className="w-3 h-3 rounded-full bg-red-500/80" />
-              <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
-              <span className="w-3 h-3 rounded-full bg-green-500/80" />
+          <div className="bg-json-bg rounded-2xl border border-primary/10 overflow-hidden shadow-xl motion-preset-pop motion-delay-200">
+            <div className="flex items-center gap-2 px-5 py-3 bg-json-surface border-b border-white/5">
+              <span className="w-3 h-3 rounded-full bg-error/80" />
+              <span className="w-3 h-3 rounded-full bg-warning/80" />
+              <span className="w-3 h-3 rounded-full bg-success/80" />
               <span className="text-xs text-white/30 ml-2 font-mono">content.json</span>
               <span className="text-xs text-white/20 ml-auto font-mono">
                 {(raw.length / 1024).toFixed(1)} KB
@@ -115,14 +115,14 @@ function AdminJson() {
                   ? filtered.split('\n').map((line, i) => (
                       <span key={i}>
                         <span className="text-white/20 select-none mr-4 inline-block w-8 text-right">{i + 1}</span>
-                        <span className="text-green-400">{highlightJson(line)}</span>
+                        <span className="text-json-key">{highlightJson(line)}</span>
                         {'\n'}
                       </span>
                     ))
                   : raw.split('\n').map((line, i) => (
                       <span key={i}>
                         <span className="text-white/20 select-none mr-4 inline-block w-8 text-right">{i + 1}</span>
-                        <span className="text-green-400">{highlightJson(line)}</span>
+                        <span className="text-json-key">{highlightJson(line)}</span>
                         {'\n'}
                       </span>
                     ))}
@@ -152,9 +152,9 @@ function highlightJson(line: string): React.ReactNode {
     return (
       <>
         {indentation && <span className="text-white/20">{indentation}</span>}
-        <span className="text-cyan-400">{keyMatch[1]}</span>
+        <span className="text-json-key">{keyMatch[1]}</span>
         <span className="text-white/50">{key.replace(/^"([^"]+)"\s*:/, '')}</span>
-        <span className="text-amber-300">{rest}</span>
+        <span className="text-json-string">{rest}</span>
       </>
     )
   }
@@ -166,7 +166,7 @@ function highlightJson(line: string): React.ReactNode {
     return (
       <>
         {indentation && <span className="text-white/20">{indentation}</span>}
-        <span className="text-amber-300">"{quote}"{comma}</span>
+        <span className="text-json-string">"{quote}"{comma}</span>
       </>
     )
   }
@@ -176,7 +176,7 @@ function highlightJson(line: string): React.ReactNode {
     return (
       <>
         {indentation && <span className="text-white/20">{indentation}</span>}
-        <span className="text-purple-400">{boolMatch[0]}</span>
+        <span className="text-json-bool">{boolMatch[0]}</span>
       </>
     )
   }
@@ -186,7 +186,7 @@ function highlightJson(line: string): React.ReactNode {
     return (
       <>
         {indentation && <span className="text-white/20">{indentation}</span>}
-        <span className="text-blue-400">{numMatch[0]}</span>
+        <span className="text-json-number">{numMatch[0]}</span>
       </>
     )
   }

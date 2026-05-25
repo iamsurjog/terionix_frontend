@@ -59,7 +59,7 @@ export function AdminNavbar({ active, links, logo, siteName }: { active: string;
           </a>
           <button
             onClick={handleLogout}
-            className="ml-2 px-4 py-2 font-sans text-sm font-medium rounded-full text-red-500 hover:bg-red-50 transition-all"
+            className="ml-2 px-4 py-2 font-sans text-sm font-medium rounded-full text-error hover:bg-error-soft transition-all"
           >
             Logout
           </button>
@@ -68,7 +68,7 @@ export function AdminNavbar({ active, links, logo, siteName }: { active: string;
         <div className="sm:hidden flex items-center gap-2">
           <button
             onClick={handleLogout}
-            className="text-xs font-medium text-red-500 hover:text-red-600 transition-colors px-2 py-1"
+            className="text-xs font-medium text-error hover:text-error-deep transition-colors px-2 py-1"
           >
             Logout
           </button>

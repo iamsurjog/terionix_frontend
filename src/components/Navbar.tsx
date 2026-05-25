@@ -42,7 +42,7 @@ export function Navbar({ active, links, logo, siteName }: { active: string; link
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative">
                 <Link to="/" ref={logoRef} className="flex items-center gap-2 group">
-                    <img src={logo} alt={siteName} className="h-30 w-auto drop-shadow-[0_0_12px_rgba(46,196,90,0.15)] group-hover:drop-shadow-[0_0_20px_rgba(46,196,90,0.3)] transition-all duration-500" />
+                    <img src={logo} alt={siteName} className="h-30 w-auto drop-shadow-glow group-hover:drop-shadow-glow-strong transition-all duration-500" />
                 </Link>
 
                 <div className="hidden sm:flex items-center gap-1">

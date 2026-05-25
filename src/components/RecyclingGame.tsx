@@ -109,8 +109,8 @@ export function RecyclingGame({ items }: GameProps) {
     const timeStr = elapsed.toFixed(2)
     return (
       <div className="text-center motion-preset-pop">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-400/20 to-primary/20 flex items-center justify-center mx-auto mb-4 motion-preset-wobble motion-duration-1000">
-          <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-success/20 to-primary/20 flex items-center justify-center mx-auto mb-4 motion-preset-wobble motion-duration-1000">
+          <svg className="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
@@ -137,7 +137,7 @@ export function RecyclingGame({ items }: GameProps) {
           </div>
         )}
         {submitted && (
-          <div className="flex items-center justify-center gap-2 text-green-600 font-medium py-3">
+          <div className="flex items-center justify-center gap-2 text-success font-medium py-3">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
@@ -169,7 +169,7 @@ export function RecyclingGame({ items }: GameProps) {
           {round}/10
         </span>
         <span className="text-2xl font-mono font-bold tabular-nums motion-preset-pulse motion-duration-2000 motion-loop-infinite">{elapsed.toFixed(2)}<span className="text-sm text-text/40">s</span></span>
-        <span className="flex items-center gap-1.5 text-sm font-medium text-green-600">
+        <span className="flex items-center gap-1.5 text-sm font-medium text-success">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -187,7 +187,7 @@ export function RecyclingGame({ items }: GameProps) {
       <div className="flex gap-4 justify-center" key={animKey + 1}>
         <button
           onClick={() => handleAnswer(true)}
-          className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-400 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-green-500/25 hover:shadow-green-500/40 hover:brightness-110 hover:-translate-y-0.5 transition-all duration-300"
+          className="flex items-center gap-2 bg-gradient-to-r from-primary to-primary/80 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:brightness-110 hover:-translate-y-0.5 transition-all duration-300"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -196,7 +196,7 @@ export function RecyclingGame({ items }: GameProps) {
         </button>
         <button
           onClick={() => handleAnswer(false)}
-          className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-red-400 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-red-500/25 hover:shadow-red-500/40 hover:brightness-110 hover:-translate-y-0.5 transition-all duration-300"
+          className="flex items-center gap-2 bg-gradient-to-r from-error to-error/80 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-error/25 hover:shadow-error/40 hover:brightness-110 hover:-translate-y-0.5 transition-all duration-300"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -214,7 +214,7 @@ interface LeaderboardProps {
 
 export function Leaderboard({ scores }: LeaderboardProps) {
   const sorted = [...scores].sort((a, b) => a.time - b.time).slice(0, 10)
-  const medals = ['text-yellow-500', 'text-gray-400', 'text-amber-600']
+  const medals = ['text-warning', 'text-text/40', 'text-accent']
 
   return (
     <div className="mt-8 pt-6 border-t border-primary/10">

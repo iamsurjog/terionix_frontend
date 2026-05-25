@@ -4,16 +4,71 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-    --color-text: #020d06;
-    --color-background: #eefcf3;
-    --color-primary: #2ec45a;
-    --color-primary-deep: #1a8a3a;
-    --color-secondary: #3dd4ce;
-    --color-secondary-deep: #1fa8a2;
-    --color-accent: #fa8c4d;
-    --color-accent-deep: #e06020;
-    --color-glow: rgba(46, 196, 90, 0.15);
-    --color-glass: rgba(255, 255, 255, 0.25);
+    /* --- MIDNIGHT EMERALD THEME --- */
+    
+    /* Base */
+    --color-text: #f1f7f5;
+    --color-background: #080b10;
+    
+    /* Primary (Electric Emerald) */
+    --color-primary: #00dc82;
+    --color-primary-deep: #00a35c;
+    --color-primary-rgb: 0, 220, 130;
+    
+    /* Secondary (Teal — for text accents, badges, gradients) */
+    --color-secondary: #2dd4bf;
+    --color-secondary-deep: #14b8a6;
+    --color-secondary-rgb: 45, 212, 191;
+    
+    /* Surface (for cards, elevated panels) */
+    --color-surface: #0f172a;
+    --color-surface-deep: #0b1120;
+    --color-surface-rgb: 15, 23, 42;
+    
+    /* Accent (Vibrant Gold) */
+    --color-accent: #facc15;
+    --color-accent-deep: #ca8a04;
+    --color-accent-rgb: 250, 204, 21;
+    
+    /* Base Effects */
+    --color-glow: rgba(0, 220, 130, 0.15);
+    --color-glass: rgba(255, 255, 255, 0.08);
+    
+    /* System & Status */
+    --color-success: #10b981;
+    --color-error: #f43f5e;
+    --color-warning: #facc15;
+    --color-success-soft: rgba(16, 185, 129, 0.15);
+    --color-error-soft: rgba(244, 63, 94, 0.15);
+    --color-success-deep: #047857;
+    --color-error-deep: #be123c;
+    
+    /* JSON Formatting */
+    --color-json-bg: #0b1018;
+    --color-json-surface: #121b29;
+    --color-json-key: #00dc82;
+    --color-json-string: #facc15;
+    --color-json-bool: #a78bfa;
+    --color-json-number: #38bdf8;
+    
+    /* Extended Effects & Shadows */
+    --color-glow-strong: rgba(0, 220, 130, 0.3);
+    --color-glow-secondary: rgba(45, 212, 191, 0.25);
+    --color-accent-glass: rgba(250, 204, 21, 0.1);
+    --color-shadow-primary: rgba(0, 220, 130, 0.15);
+    --color-shadow-dark: rgba(0, 0, 0, 0.6);
+    
+    /* Drop Shadows */
+    --drop-shadow-glow: 0 0 12px rgba(0, 220, 130, 0.15);
+    --drop-shadow-glow-strong: 0 0 20px rgba(0, 220, 130, 0.3);
+    
+    --color-white: #ffffff;
+    
+    /* Surface Elevations (for .living-gradient and decorative elements) */
+    --color-bg-light: #0f172a;
+    --color-bg-mint: #0a1a18;
+    --color-bg-warm: #1a1508;
+    --color-bg-neutral: #0c101a;
 
     --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
     --font-title: "Exo 2", ui-sans-serif, system-ui, sans-serif;
@@ -57,8 +112,8 @@
 @keyframes firefly-5 { 0%, 100% { transform: translate(0, 0) scale(1); opacity: 0; } 8% { opacity: 1; } 50% { transform: translate(60px, -160px) scale(0.9); opacity: 1; } 92% { opacity: 0.4; } }
 
 @keyframes cursor-glow-pulse {
-    0%, 100% { box-shadow: 0 0 8px 2px rgba(46, 196, 90, 0.3); }
-    50% { box-shadow: 0 0 20px 6px rgba(61, 212, 206, 0.2); }
+    0%, 100% { box-shadow: 0 0 8px 2px var(--color-glow-strong); }
+    50% { box-shadow: 0 0 20px 6px var(--color-glow-secondary); }
 }
 
 @keyframes breathe {
@@ -142,7 +197,7 @@ a, button, input, textarea, select, [role="button"] {
 
 ::selection {
     background-color: var(--color-primary);
-    color: white;
+    color: var(--color-white);
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -153,12 +208,12 @@ a, button, input, textarea, select, [role="button"] {
 .living-gradient {
     background: linear-gradient(
         135deg,
-        #eefcf3 0%,
-        #e0f7e9 20%,
-        #d4f0ea 40%,
-        #e8f4ef 60%,
-        #f0f5f0 80%,
-        #eefcf3 100%
+        var(--color-background) 0%,
+        var(--color-bg-light) 20%,
+        var(--color-bg-mint) 40%,
+        var(--color-bg-warm) 60%,
+        var(--color-bg-neutral) 80%,
+        var(--color-background) 100%
     );
     background-size: 400% 400%;
     animation: gradient-shift 20s ease infinite;
@@ -192,7 +247,7 @@ a, button, input, textarea, select, [role="button"] {
     width: 60px;
     height: 60px;
     border-color: var(--color-accent);
-    background: rgba(250, 140, 77, 0.05);
+    background: var(--color-accent-glass);
 }
 
 .poem-verse {
@@ -280,7 +335,7 @@ a, button, input, textarea, select, [role="button"] {
 
 .card-hover:hover {
     transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 20px 60px rgba(46, 196, 90, 0.1), 0 8px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 20px 60px var(--color-shadow-primary), 0 8px 20px var(--color-shadow-dark);
 }
 
 .section-divider {

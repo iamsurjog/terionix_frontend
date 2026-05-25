@@ -68,11 +68,11 @@ function GameItemsSection({ data }: { data: ReturnType<typeof Route.useLoaderDat
                 <Input value={item.name} onChange={v => updateName(i, v)} placeholder="Item name" />
               </div>
               <span className={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${
-                item.recyclable ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                item.recyclable ? 'bg-success-soft text-success-deep' : 'bg-error-soft text-error-deep'
               }`}>
                 {item.recyclable ? 'Recyclable' : 'Not Recyclable'}
               </span>
-              <button onClick={() => removeItem(i)} className="w-8 h-8 rounded-lg text-red-400 hover:text-red-600 hover:bg-red-50 transition-all flex items-center justify-center font-bold text-lg leading-none">
+              <button onClick={() => removeItem(i)} className="w-8 h-8 rounded-lg text-error hover:text-error-deep hover:bg-error-soft transition-all flex items-center justify-center font-bold text-lg leading-none">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                 </svg>
@@ -88,7 +88,7 @@ function GameItemsSection({ data }: { data: ReturnType<typeof Route.useLoaderDat
           <div className="pt-4 border-t border-primary/10 flex items-center justify-between">
             <div>
               {msg && (
-                <p className={`text-sm flex items-center gap-1.5 ${msg.type === 'success' ? 'text-green-600' : 'text-red-500'}`}>
+                <p className={`text-sm flex items-center gap-1.5 ${msg.type === 'success' ? 'text-success' : 'text-error'}`}>
                   {msg.type === 'success' ? (
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -163,7 +163,7 @@ function LeaderboardSection({ data }: { data: ReturnType<typeof Route.useLoaderD
                 <Input value={String(s.time)} onChange={v => updateTime(i, parseFloat(v) || 0)} placeholder="Seconds" />
               </div>
               <span className="text-xs text-text/40 font-mono w-16 text-right">sec</span>
-              <button onClick={() => removeScore(i)} className="w-8 h-8 rounded-lg text-red-400 hover:text-red-600 hover:bg-red-50 transition-all flex items-center justify-center">
+              <button onClick={() => removeScore(i)} className="w-8 h-8 rounded-lg text-error hover:text-error-deep hover:bg-error-soft transition-all flex items-center justify-center">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                 </svg>
@@ -179,7 +179,7 @@ function LeaderboardSection({ data }: { data: ReturnType<typeof Route.useLoaderD
           <div className="pt-4 border-t border-primary/10 flex items-center justify-between">
             <div>
               {msg && (
-                <p className={`text-sm flex items-center gap-1.5 ${msg.type === 'success' ? 'text-green-600' : 'text-red-500'}`}>
+                <p className={`text-sm flex items-center gap-1.5 ${msg.type === 'success' ? 'text-success' : 'text-error'}`}>
                   {msg.type === 'success' ? (
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />

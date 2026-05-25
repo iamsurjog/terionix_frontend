@@ -60,13 +60,13 @@ function AdminLogin() {
                   autoFocus
                   className="w-full pl-11 pr-4 py-3 rounded-xl border bg-white/60 focus:bg-white outline-none transition-all duration-300 text-sm"
                   style={{
-                    borderColor: error ? '#ef4444' : 'var(--color-primary, #3fd96d)',
+                    borderColor: error ? 'var(--color-error)' : 'var(--color-primary)',
                     borderWidth: error ? '2px' : '1px',
                   }}
                 />
               </div>
               {error && (
-                <p className="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+                <p className="text-error text-xs mt-1.5 flex items-center gap-1">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
