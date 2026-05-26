@@ -2,7 +2,7 @@
   "site": {
     "title": "Terionix - E-Waste Management",
     "name": "Terionix",
-    "logo": "/logo_big.png"
+    "logo": "/logo_big_dark.png"
   },
   "navbar": {
     "links": [
@@ -410,11 +410,10 @@
           "required": true
         },
         {
-          "label": "Resume",
-          "type": "file",
+          "label": "Resume (URL)",
+          "type": "url",
           "required": true,
-          "accept": ".pdf",
-          "note": "PDF files only"
+          "note": "Link to your resume (Google Drive, Dropbox, etc.)"
         },
         {
           "label": "Cover Letter",

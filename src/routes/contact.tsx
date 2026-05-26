@@ -86,13 +86,50 @@ function ContactUs() {
   )
 }
 
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mgoqnbzk'
+
 function GeneralForm({ segment }: { segment: { heading: string; description: string } }) {
   const content = Route.useLoaderData()!
   const { fields, submitText } = content.contact.generalForm
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setStatus('submitting')
+    const form = e.currentTarget
+    const data = new FormData(form)
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      })
+      if (res.ok) {
+        setStatus('success')
+        form.reset()
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
+
+  if (status === 'success') {
+    return (
+      <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 card-hover text-center">
+        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="font-title text-xl font-bold mb-1">Thank You!</h3>
+        <p className="text-text/60">Your message has been sent successfully. We'll get back to you soon.</p>
+      </div>
+    )
+  }
+
+  const fieldName = (label: string) => label.toLowerCase().replace(/\s+/g, '_')
 
   return (
     <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 card-hover">
@@ -104,25 +141,31 @@ function GeneralForm({ segment }: { segment: { heading: string; description: str
             <label className="block text-sm font-semibold text-text/80 mb-1.5 group-focus-within:text-primary transition-colors">{field.label}</label>
             {field.type === 'textarea' ? (
               <textarea
+                name={fieldName(field.label)}
                 rows={field.rows ?? 4}
                 required={field.required}
-                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 resize-y"
+                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300 resize-y"
               />
             ) : (
               <input
+                name={fieldName(field.label)}
                 type={field.type}
                 required={field.required}
-                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
+                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300"
               />
             )}
           </div>
         ))}
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-primary to-primary-deep text-white font-semibold px-8 py-3 rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:brightness-110 transition-all duration-300"
+          disabled={status === 'submitting'}
+          className="w-full bg-gradient-to-r from-primary to-primary-deep text-white font-semibold px-8 py-3 rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:brightness-110 transition-all duration-300 disabled:opacity-50"
         >
-          {submitText}
+          {status === 'submitting' ? 'Sending...' : submitText}
         </button>
+        {status === 'error' && (
+          <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+        )}
       </form>
     </div>
   )
@@ -131,14 +174,49 @@ function GeneralForm({ segment }: { segment: { heading: string; description: str
 function CareerForm({ segment, preselectedPosition }: { segment: { heading: string; description: string }; preselectedPosition?: string }) {
   const content = Route.useLoaderData()!
   const { fields, submitText, positions } = content.contact.careerForm
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setStatus('submitting')
+    const form = e.currentTarget
+    const data = new FormData(form)
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      })
+      if (res.ok) {
+        setStatus('success')
+        form.reset()
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 card-hover text-center">
+        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="font-title text-xl font-bold mb-1">Application Submitted!</h3>
+        <p className="text-text/60">Thank you for your interest. We'll review your application and get back to you.</p>
+      </div>
+    )
   }
 
   const defaultPosition = preselectedPosition
     ? categoryToFirstPosition[preselectedPosition] || ''
     : ''
+
+  const fieldName = (label: string) => label.toLowerCase().replace(/\s+/g, '_')
 
   return (
     <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-primary/10 card-hover">
@@ -151,9 +229,10 @@ function CareerForm({ segment, preselectedPosition }: { segment: { heading: stri
               <div key={field.label} className="group">
                 <label className="block text-sm font-semibold text-text/80 mb-1.5 group-focus-within:text-primary transition-colors">{field.label}</label>
                 <select
+                  name={fieldName(field.label)}
                   required={field.required}
                   defaultValue={defaultPosition}
-                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
+                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300"
                 >
                   <option value="">Select a position</option>
                   {positions.map((group) => (
@@ -169,15 +248,16 @@ function CareerForm({ segment, preselectedPosition }: { segment: { heading: stri
             )
           }
 
-          if (field.type === 'file') {
+          if (field.type === 'url') {
             return (
               <div key={field.label} className="group">
                 <label className="block text-sm font-semibold text-text/80 mb-1.5 group-focus-within:text-primary transition-colors">{field.label}</label>
                 <input
-                  type="file"
-                  accept={field.accept}
+                  name={fieldName(field.label)}
+                  type="url"
                   required={field.required}
-                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-primary/10 file:text-primary file:font-semibold file:text-sm hover:file:bg-primary/20"
+                  placeholder="https://drive.google.com/..."
+                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300"
                 />
                 {field.note && <p className="text-xs text-text/50 mt-1.5">{field.note}</p>}
               </div>
@@ -189,9 +269,10 @@ function CareerForm({ segment, preselectedPosition }: { segment: { heading: stri
               <div key={field.label} className="group">
                 <label className="block text-sm font-semibold text-text/80 mb-1.5 group-focus-within:text-primary transition-colors">{field.label}</label>
                 <textarea
+                  name={fieldName(field.label)}
                   rows={field.rows ?? 4}
                   required={field.required}
-                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 resize-y"
+                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300 resize-y"
                 />
               </div>
             )
@@ -201,19 +282,24 @@ function CareerForm({ segment, preselectedPosition }: { segment: { heading: stri
             <div key={field.label} className="group">
               <label className="block text-sm font-semibold text-text/80 mb-1.5 group-focus-within:text-primary transition-colors">{field.label}</label>
               <input
+                name={fieldName(field.label)}
                 type={field.type}
                 required={field.required}
-                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
+                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300"
               />
             </div>
           )
         })}
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-accent to-accent/80 text-white font-semibold px-8 py-3 rounded-xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:brightness-110 transition-all duration-300"
+          disabled={status === 'submitting'}
+          className="w-full bg-gradient-to-r from-accent to-accent/80 text-white font-semibold px-8 py-3 rounded-xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:brightness-110 transition-all duration-300 disabled:opacity-50"
         >
-          {submitText}
+          {status === 'submitting' ? 'Sending...' : submitText}
         </button>
+        {status === 'error' && (
+          <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+        )}
       </form>
     </div>
   )
