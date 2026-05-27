@@ -144,14 +144,14 @@ function GeneralForm({ segment }: { segment: { heading: string; description: str
                 name={fieldName(field.label)}
                 rows={field.rows ?? 4}
                 required={field.required}
-                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300 resize-y"
+                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-text transition-all duration-300 resize-y"
               />
             ) : (
               <input
                 name={fieldName(field.label)}
                 type={field.type}
                 required={field.required}
-                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300"
+                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-text transition-all duration-300"
               />
             )}
           </div>
@@ -232,7 +232,7 @@ function CareerForm({ segment, preselectedPosition }: { segment: { heading: stri
                   name={fieldName(field.label)}
                   required={field.required}
                   defaultValue={defaultPosition}
-                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300"
+                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-text transition-all duration-300"
                 >
                   <option value="">Select a position</option>
                   {positions.map((group) => (
@@ -257,7 +257,7 @@ function CareerForm({ segment, preselectedPosition }: { segment: { heading: stri
                   type="url"
                   required={field.required}
                   placeholder="https://drive.google.com/..."
-                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300"
+                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-text transition-all duration-300"
                 />
                 {field.note && <p className="text-xs text-text/50 mt-1.5">{field.note}</p>}
               </div>
@@ -272,7 +272,7 @@ function CareerForm({ segment, preselectedPosition }: { segment: { heading: stri
                   name={fieldName(field.label)}
                   rows={field.rows ?? 4}
                   required={field.required}
-                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300 resize-y"
+                  className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-text transition-all duration-300 resize-y"
                 />
               </div>
             )
@@ -285,7 +285,7 @@ function CareerForm({ segment, preselectedPosition }: { segment: { heading: stri
                 name={fieldName(field.label)}
                 type={field.type}
                 required={field.required}
-                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-background transition-all duration-300"
+                className="w-full px-4 py-3 rounded-xl border border-primary/20 bg-white/60 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-text transition-all duration-300"
               />
             </div>
           )

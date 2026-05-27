@@ -4,71 +4,71 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-    /* --- MIDNIGHT EMERALD THEME --- */
+    /* --- MORNING EMERALD THEME (Light) --- */
     
     /* Base */
-    --color-text: #f1f7f5;
-    --color-background: #080b10;
+    --color-text: #0f172a;
+    --color-background: #f8fafc;
     
-    /* Primary (Electric Emerald) */
-    --color-primary: #00dc82;
-    --color-primary-deep: #00a35c;
-    --color-primary-rgb: 0, 220, 130;
+    /* Primary (Emerald Green) */
+    --color-primary: #059669;
+    --color-primary-deep: #047857;
+    --color-primary-rgb: 5, 150, 105;
     
     /* Secondary (Teal — for text accents, badges, gradients) */
-    --color-secondary: #2dd4bf;
-    --color-secondary-deep: #14b8a6;
-    --color-secondary-rgb: 45, 212, 191;
+    --color-secondary: #0d9488;
+    --color-secondary-deep: #0f766e;
+    --color-secondary-rgb: 13, 148, 136;
     
     /* Surface (for cards, elevated panels) */
-    --color-surface: #0f172a;
-    --color-surface-deep: #0b1120;
-    --color-surface-rgb: 15, 23, 42;
+    --color-surface: #ffffff;
+    --color-surface-deep: #f1f5f9;
+    --color-surface-rgb: 255, 255, 255;
     
-    /* Accent (Vibrant Gold) */
-    --color-accent: #facc15;
-    --color-accent-deep: #ca8a04;
-    --color-accent-rgb: 250, 204, 21;
+    /* Accent (Amber) */
+    --color-accent: #d97706;
+    --color-accent-deep: #b45309;
+    --color-accent-rgb: 217, 119, 6;
     
     /* Base Effects */
-    --color-glow: rgba(0, 220, 130, 0.15);
-    --color-glass: rgba(255, 255, 255, 0.08);
+    --color-glow: rgba(5, 150, 105, 0.12);
+    --color-glass: rgba(0, 0, 0, 0.04);
     
     /* System & Status */
-    --color-success: #10b981;
-    --color-error: #f43f5e;
-    --color-warning: #facc15;
-    --color-success-soft: rgba(16, 185, 129, 0.15);
-    --color-error-soft: rgba(244, 63, 94, 0.15);
-    --color-success-deep: #047857;
-    --color-error-deep: #be123c;
+    --color-success: #16a34a;
+    --color-error: #dc2626;
+    --color-warning: #d97706;
+    --color-success-soft: rgba(22, 163, 74, 0.12);
+    --color-error-soft: rgba(220, 38, 38, 0.12);
+    --color-success-deep: #15803d;
+    --color-error-deep: #b91c1c;
     
     /* JSON Formatting */
-    --color-json-bg: #0b1018;
-    --color-json-surface: #121b29;
-    --color-json-key: #00dc82;
-    --color-json-string: #facc15;
-    --color-json-bool: #a78bfa;
-    --color-json-number: #38bdf8;
+    --color-json-bg: #f1f5f9;
+    --color-json-surface: #ffffff;
+    --color-json-key: #059669;
+    --color-json-string: #d97706;
+    --color-json-bool: #7c3aed;
+    --color-json-number: #0284c7;
     
     /* Extended Effects & Shadows */
-    --color-glow-strong: rgba(0, 220, 130, 0.3);
-    --color-glow-secondary: rgba(45, 212, 191, 0.25);
-    --color-accent-glass: rgba(250, 204, 21, 0.1);
-    --color-shadow-primary: rgba(0, 220, 130, 0.15);
-    --color-shadow-dark: rgba(0, 0, 0, 0.6);
+    --color-glow-strong: rgba(5, 150, 105, 0.2);
+    --color-glow-secondary: rgba(13, 148, 136, 0.18);
+    --color-accent-glass: rgba(217, 119, 6, 0.08);
+    --color-shadow-primary: rgba(5, 150, 105, 0.12);
+    --color-shadow-dark: rgba(0, 0, 0, 0.08);
     
     /* Drop Shadows */
-    --drop-shadow-glow: 0 0 12px rgba(0, 220, 130, 0.15);
-    --drop-shadow-glow-strong: 0 0 20px rgba(0, 220, 130, 0.3);
+    --drop-shadow-glow: 0 0 12px rgba(5, 150, 105, 0.12);
+    --drop-shadow-glow-strong: 0 0 20px rgba(5, 150, 105, 0.2);
     
     --color-white: #ffffff;
     
     /* Surface Elevations (for .living-gradient and decorative elements) */
-    --color-bg-light: #0f172a;
-    --color-bg-mint: #0a1a18;
-    --color-bg-warm: #1a1508;
-    --color-bg-neutral: #0c101a;
+    --color-bg-light: #f1f5f9;
+    --color-bg-mint: #ecfdf5;
+    --color-bg-warm: #fffbeb;
+    --color-bg-neutral: #f8fafc;
 
     --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
     --font-title: "Exo 2", ui-sans-serif, system-ui, sans-serif;
@@ -239,7 +239,7 @@ a, button, input, textarea, select, [role="button"] {
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
-    mix-blend-mode: screen;
+    mix-blend-mode: difference;
     transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
 }
 

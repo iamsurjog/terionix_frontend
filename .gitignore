@@ -13,3 +13,5 @@ __unconfig*
 todos.json
 /.opencode
 /graphify-out
+/AGENTS.md
+/.omo/run-continuation
