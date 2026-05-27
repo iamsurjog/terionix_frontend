@@ -14,7 +14,7 @@ function Careers() {
 
   return (
     <div className="font-sans text-text">
-      <Navbar active="Careers" links={content.navbar.links} logo={content.site.logo} siteName={content.site.name} />
+      <Navbar active="/careers" links={content.navbar.links} cta={content.navbar.cta} logo={content.site.logo} siteName={content.site.name} />
 
       <main className="relative overflow-hidden">
         <div className="absolute top-40 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-10 motion-preset-float motion-duration-4000" />
