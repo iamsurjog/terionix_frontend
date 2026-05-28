@@ -195,6 +195,16 @@ a, button, input, textarea, select, [role="button"] {
     cursor: none;
 }
 
+@media (pointer: coarse) {
+    html, body, a, button, input, textarea, select, [role="button"] {
+        cursor: auto;
+    }
+    .cursor-dot,
+    .cursor-ring {
+        display: none !important;
+    }
+}
+
 ::selection {
     background-color: var(--color-primary);
     color: var(--color-white);
