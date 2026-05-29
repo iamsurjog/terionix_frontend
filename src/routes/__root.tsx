@@ -1,10 +1,12 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { useEffect } from 'react'
 
 import appCss from '../styles.css?url'
 import { ParticleField } from '../components/ParticleField'
 import { CursorGlow } from '../components/CursorGlow'
+import { isSafari } from '#/lib/browser'
 
 const siteTitle = 'Terionix - E-Waste Management'
 const siteDesc = 'Where circuits bloom and waste finds purpose again. Responsible e-waste management for a sustainable future — Terionix offers end-to-end solutions for businesses and individuals.'
@@ -102,6 +104,12 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    if (isSafari()) {
+      document.documentElement.classList.add('safari')
+    }
+  }, [])
+
   return (
     <html lang="en">
       <head>
@@ -109,7 +117,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="living-gradient">
         <ParticleField />
-        <CursorGlow />
+        {!isSafari() && <CursorGlow />}
         {children}
         <TanStackDevtools
           config={{

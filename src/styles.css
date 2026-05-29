@@ -334,9 +334,10 @@ a, button, input, textarea, select, [role="button"] {
     width: 200%;
     height: 200%;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(40px);
     opacity: 0.08;
     animation: aurora-wave 12s ease-in-out infinite;
+    will-change: transform;
 }
 
 .card-hover {
@@ -359,4 +360,115 @@ a, button, input, textarea, select, [role="button"] {
         transparent 100%
     );
     opacity: 0.3;
+}
+
+/* ========================================================================
+   SAFARI PERFORMANCE FIXES
+   Safari has poor GPU handling of backdrop-filter, mix-blend-mode, and
+   complex CSS animations. These overrides reduce jank without breaking
+   the visual layout.
+   ======================================================================== */
+
+/* Safari-targeted performance improvements */
+.safari .backdrop-blur-sm,
+.safari .backdrop-blur,
+.safari \::-webkit-backdrop {
+    -webkit-backdrop-filter: blur(2px) !important;
+    backdrop-filter: blur(2px) !important;
+}
+
+.safari .backdrop-blur-xl,
+.safari .backdrop-blur-2xl {
+    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* Disable expensive entrance animations on Safari — elements stay visible */
+.safari .motion-preset-slide-up,
+.safari .motion-preset-pop,
+.safari .motion-preset-fade,
+.safari .motion-preset-bounce {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Slower aurora = less repaint cost */
+.safari .aurora-wave {
+    animation-duration: 30s !important;
+    opacity: 0.04 !important;
+}
+
+/* Disable floating blob animations on Safari */
+.safari [class*="motion-preset-float"],
+.safari [class*="motion-preset-pulse"] {
+    animation: none !important;
+}
+
+/* Reduce glow blur elements on Safari */
+.safari [class*="blur-3xl"] {
+    opacity: 0.3 !important;
+}
+
+/* Reset cursor to native on Safari — custom cursor with mix-blend-mode is
+   the #1 cause of Safari jank. The .safari class is added by __root.tsx. */
+.safari,
+.safari a,
+.safari button,
+.safari input,
+.safari textarea,
+.safari select,
+.safari [role="button"] {
+    cursor: auto !important;
+}
+
+/* Reduce particle field from 10 to 3 on Safari */
+.safari .safari-hide-particle {
+    display: none !important;
+}
+
+/* ========================================================================
+   PREFERS-REDUCED-MOTION
+   Standard accessibility feature — disable all non-essential motion for
+   users who have requested reduced motion in their OS settings.
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .living-gradient {
+        animation: none !important;
+        background-size: 100% !important;
+    }
+
+    .cursor-dot,
+    .cursor-ring {
+        display: none !important;
+    }
+
+    .aurora-wave {
+        animation: none !important;
+        opacity: 0.03 !important;
+    }
+
+    .card-hover:hover {
+        transform: none !important;
+    }
+
+    [class*="motion-preset-"] {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }

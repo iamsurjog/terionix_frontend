@@ -1,6 +1,6 @@
 const colorVars = ['--color-primary-rgb', '--color-secondary-rgb', '--color-accent-rgb']
 
-const particles = Array.from({ length: 20 }, (_, i) => ({
+const particles = Array.from({ length: 10 }, (_, i) => ({
   id: i,
   size: 2 + (i % 3) * 2,
   left: 5 + (i * 7) % 90,
@@ -17,16 +17,17 @@ export function ParticleField() {
       {particles.map((p) => (
         <div
           key={p.id}
-          className="absolute rounded-full"
+          className={`absolute rounded-full${p.id > 2 ? ' safari-hide-particle' : ''}`}
           style={{
             width: p.size,
             height: p.size,
             left: `${p.left}%`,
             top: `${p.top}%`,
             background: `rgba(var(${p.colorVar}), 0.8)`,
-            boxShadow: `0 0 ${p.size * 4}px rgba(var(${p.colorVar}), 0.6), 0 0 ${p.size * 8}px rgba(var(${p.colorVar}), 0.3)`,
+            boxShadow: `0 0 ${p.size * 2}px rgba(var(${p.colorVar}), 0.5)`,
             animation: `firefly-${(p.id % 5) + 1} ${p.duration}s ease-in-out ${p.delay}s infinite`,
             filter: p.blur,
+            willChange: 'transform, opacity',
           }}
         />
       ))}

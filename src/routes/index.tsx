@@ -5,6 +5,7 @@ import { RecyclingGame, Leaderboard } from '#/components/RecyclingGame'
 import { ImpactCalculator } from '#/components/ImpactCalculator'
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
+import { shouldReduceMotion } from '#/lib/browser'
 
 export const Route = createFileRoute('/')({
   loader: async () => readContent(),
@@ -15,6 +16,7 @@ function AnimatedHeading({ text }: { text: string }) {
   const ref = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {
+    if (shouldReduceMotion()) return
     const el = ref.current
     if (!el) return
     const words = el.querySelectorAll('.word')
@@ -40,12 +42,8 @@ function AnimatedHeading({ text }: { text: string }) {
 
 function Home() {
   const content = Route.useLoaderData()!
-  const { tagline, heroTitle, heroSubtitle, partnerButton, challengeButton, matrixCards, trustStats, authorization, audience, impactCalculator } = content.home
+  const { tagline, heroTitle, heroSubtitle, matrixCards, trustStats, authorization, audience, impactCalculator } = content.home
   const gameRef = useRef<HTMLDivElement>(null)
-
-  const handleB2CClick = () => {
-    gameRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
 
   return (
     <div className="font-sans text-text">
@@ -78,56 +76,26 @@ function Home() {
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center motion-preset-slide-up motion-duration-700 motion-delay-300">
-              {/* Partner with Us — B2B */}
-              <Link
-                to={partnerButton.href}
-                className="group relative font-sans font-semibold px-8 py-3.5 rounded-xl bg-primary text-white hover:brightness-110 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-500"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                  {partnerButton.label}
-                </span>
-                <span className="absolute inset-0 rounded-xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </Link>
-
-              {/* Take the E-Waste Challenge — B2C */}
-              <button
-                onClick={handleB2CClick}
-                className="group relative font-sans font-semibold px-8 py-3.5 rounded-xl border-2 border-accent text-accent hover:bg-accent hover:text-white shadow-lg shadow-accent/10 hover:shadow-accent/25 transition-all duration-500"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {challengeButton.label}
-                </span>
-              </button>
-            </div>
-
-            {/* Audience Segment CTAs */}
-            <div className="flex flex-wrap gap-3 justify-center mt-10 motion-preset-slide-up motion-duration-700 motion-delay-400">
-              <span className="w-full text-sm text-text/40 font-medium mb-1">Who we serve:</span>
               {audience.segments.map((segment: any, i: number) => {
-                const colorStyles = [
-                  'border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary',
-                  'border-secondary/30 text-secondary hover:bg-secondary hover:text-white hover:border-secondary',
-                  'border-accent/30 text-accent hover:bg-accent hover:text-white hover:border-accent'
+                const styles = [
+                  'bg-primary text-white hover:brightness-110 shadow-lg shadow-primary/25 hover:shadow-primary/40',
+                  'border-2 border-secondary text-secondary hover:bg-secondary hover:text-white shadow-lg shadow-secondary/10 hover:shadow-secondary/25',
+                  'border-2 border-accent text-accent hover:bg-accent hover:text-white shadow-lg shadow-accent/10 hover:shadow-accent/25'
                 ]
                 return (
                   <Link
                     key={segment.id}
                     to={segment.cta.href}
-                    className={`group font-sans font-semibold text-sm px-5 py-2 rounded-xl border backdrop-blur-sm bg-white/20 shadow-sm hover:shadow-lg transition-all duration-500 ${colorStyles[i]}`}
+                    className={`group relative font-sans font-semibold px-8 py-3.5 rounded-xl transition-all duration-500 ${styles[i]}`}
                     title={segment.title}
                   >
-                    <span className="flex items-center gap-2">
+                    <span className="relative z-10 flex items-center gap-2">
                       {segment.cta.label}
-                      <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                       </svg>
                     </span>
+                    {i === 0 && <span className="absolute inset-0 rounded-xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />}
                   </Link>
                 )
               })}
