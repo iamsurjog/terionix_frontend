@@ -127,6 +127,41 @@ function AdminHome() {
 
             <hr className="border-primary/10" />
 
+            {/* Audience Section */}
+            <h3 className="font-semibold text-primary text-sm uppercase tracking-wider">Audience Section (3 CTA Cards)</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Section Heading">
+                <Input value={values.audience?.heading} onChange={(v) => onChange('audience.heading', v)} placeholder="Who We Serve" />
+              </Field>
+              <Field label="Section Subtitle">
+                <Input value={values.audience?.subtitle} onChange={(v) => onChange('audience.subtitle', v)} placeholder="Tailored solutions..." />
+              </Field>
+            </div>
+            {values.audience?.segments?.map((segment: { title: string; description: string; icon: string; cta: { label: string; href: string } }, i: number) => (
+              <div key={i} className="p-4 bg-white/50 rounded-lg border border-primary/10 space-y-2">
+                <div className="text-xs text-text/50 font-medium uppercase tracking-wide">Segment {i + 1}</div>
+                <Field label="Title">
+                  <Input value={segment.title} onChange={(v) => onChange(`audience.segments.${i}.title`, v)} placeholder="Segment title" />
+                </Field>
+                <Field label="Description">
+                  <Textarea value={segment.description} onChange={(v) => onChange(`audience.segments.${i}.description`, v)} rows={2} />
+                </Field>
+                <Field label="Icon (building/academic/user)">
+                  <Input value={segment.icon} onChange={(v) => onChange(`audience.segments.${i}.icon`, v)} placeholder="building | academic | user" />
+                </Field>
+                <div className="grid grid-cols-2 gap-3">
+                  <Field label="CTA Label">
+                    <Input value={segment.cta?.label} onChange={(v) => onChange(`audience.segments.${i}.cta.label`, v)} placeholder="Button text" />
+                  </Field>
+                  <Field label="CTA Href">
+                    <Input value={segment.cta?.href} onChange={(v) => onChange(`audience.segments.${i}.cta.href`, v)} placeholder="/path" />
+                  </Field>
+                </div>
+              </div>
+            ))}
+
+            <hr className="border-primary/10" />
+
             {/* Impact Calculator */}
             <h3 className="font-semibold text-primary text-sm uppercase tracking-wider">Impact Calculator</h3>
             <Field label="Calculator Title">
@@ -135,6 +170,22 @@ function AdminHome() {
             <Field label="Calculator Description">
               <Textarea value={values.impactCalculator?.description} onChange={(v) => onChange('impactCalculator.description', v)} rows={2} />
             </Field>
+            <div className="space-y-3 mt-4">
+              <h4 className="font-semibold text-primary text-xs uppercase tracking-wider">Calculator Items</h4>
+              {values.impactCalculator?.items?.map((item: { name: string; co2: number; image: string }, i: number) => (
+                <div key={i} className="grid grid-cols-3 gap-3 p-3 bg-white/50 rounded-lg border border-primary/10">
+                  <Field label="Name">
+                    <Input value={item.name} onChange={(v) => onChange(`impactCalculator.items.${i}.name`, v)} placeholder="Smartphone" />
+                  </Field>
+                  <Field label="CO₂ (kg)">
+                    <Input value={String(item.co2)} onChange={(v) => onChange(`impactCalculator.items.${i}.co2`, Number(v))} placeholder="50" />
+                  </Field>
+                  <Field label="Image (emoji)">
+                    <Input value={item.image} onChange={(v) => onChange(`impactCalculator.items.${i}.image`, v)} placeholder="📱" />
+                  </Field>
+                </div>
+              ))}
+            </div>
           </>
         )}
       </AdminSection>

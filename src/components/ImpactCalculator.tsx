@@ -1,10 +1,8 @@
 import { useState } from 'react'
+import { useNavigate } from '@tanstack/react-router'
 
 export interface CalculatorItem {
   name: string
-  gold: number
-  copper: number
-  aluminum: number
   co2: number
   image: string
 }
@@ -23,100 +21,10 @@ function formatValue(value: number): string {
   return '0'
 }
 
-interface MetricConfig {
-  label: string
-  unit: string
-  icon: string
-  colorClass: 'primary' | 'secondary' | 'accent' | 'success'
-}
-
-const metrics: Record<string, MetricConfig> = {
-  gold: {
-    label: 'Gold',
-    unit: 'g',
-    icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
-    colorClass: 'accent',
-  },
-  copper: {
-    label: 'Copper',
-    unit: 'g',
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-    colorClass: 'secondary',
-  },
-  aluminum: {
-    label: 'Aluminum',
-    unit: 'g',
-    icon: 'M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z',
-    colorClass: 'primary',
-  },
-  co2: {
-    label: 'CO\u2082 Prevented',
-    unit: 'kg',
-    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-    colorClass: 'success',
-  },
-}
-
-function MetricCard({ metric, value }: { metric: MetricConfig; value: number }) {
-  const colorMap = {
-    primary: {
-      bg: 'bg-primary/5',
-      border: 'border-primary/10',
-      iconBg: 'bg-primary/10',
-      iconColor: 'text-primary',
-      valueClass: 'text-primary',
-      ring: 'ring-primary/20',
-    },
-    secondary: {
-      bg: 'bg-secondary/5',
-      border: 'border-secondary/10',
-      iconBg: 'bg-secondary/10',
-      iconColor: 'text-secondary',
-      valueClass: 'text-secondary',
-      ring: 'ring-secondary/20',
-    },
-    accent: {
-      bg: 'bg-accent/5',
-      border: 'border-accent/10',
-      iconBg: 'bg-accent/10',
-      iconColor: 'text-accent',
-      valueClass: 'text-accent',
-      ring: 'ring-accent/20',
-    },
-    success: {
-      bg: 'bg-success/5',
-      border: 'border-success/10',
-      iconBg: 'bg-success/10',
-      iconColor: 'text-success',
-      valueClass: 'text-success',
-      ring: 'ring-success/20',
-    },
-  }
-
-  const c = colorMap[metric.colorClass]
-
-  return (
-    <div
-      className={`${c.bg} rounded-xl sm:rounded-2xl p-4 sm:p-5 border ${c.border} transition-all duration-500 hover:shadow-lg hover:scale-[1.02] motion-preset-slide-up`}
-    >
-      <div className="flex items-center gap-2.5 mb-3">
-        <div className={`w-9 h-9 rounded-xl ${c.iconBg} flex items-center justify-center ring-1 ${c.ring} transition-all duration-300`}>
-          <svg className={`w-4 h-4 ${c.iconColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d={metric.icon} />
-          </svg>
-        </div>
-        <span className="text-[11px] font-semibold text-text/40 uppercase tracking-[0.08em]">{metric.label}</span>
-      </div>
-      <div className="flex items-baseline gap-1.5">
-        <span
-          className={`font-title text-2xl sm:text-3xl font-bold ${c.valueClass} transition-all duration-300`}
-        >
-          {formatValue(value)}
-        </span>
-        <span className="text-xs text-text/30 font-medium">{metric.unit}</span>
-      </div>
-    </div>
-  )
+function formatCompact(value: number): string {
+  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`
+  if (value >= 1_000) return `${(value / 1_000).toFixed(1)}K`
+  return value.toLocaleString()
 }
 
 export function ImpactCalculator({
@@ -124,39 +32,59 @@ export function ImpactCalculator({
   description = 'Select the devices you\'ve recycled and see the environmental impact of your contribution.',
   items = [],
 }: ImpactCalculatorProps) {
-  const [selected, setSelected] = useState<Set<number>>(new Set())
+  const navigate = useNavigate()
+  const [quantities, setQuantities] = useState<Map<number, number>>(new Map())
 
-  const toggleItem = (index: number) => {
-    setSelected((prev) => {
-      const next = new Set(prev)
-      if (next.has(index)) {
-        next.delete(index)
-      } else {
-        next.add(index)
-      }
+  const getQuantity = (index: number): number => quantities.get(index) ?? 0
+
+  const increment = (index: number) => {
+    setQuantities((prev) => {
+      const next = new Map(prev)
+      next.set(index, (next.get(index) ?? 0) + 1)
       return next
     })
   }
 
-  const clearAll = () => setSelected(new Set())
+  const decrement = (index: number) => {
+    setQuantities((prev) => {
+      const current = prev.get(index) ?? 0
+      if (current <= 1) {
+        const next = new Map(prev)
+        next.delete(index)
+        return next
+      }
+      const next = new Map(prev)
+      next.set(index, current - 1)
+      return next
+    })
+  }
 
-  const totals = { gold: 0, copper: 0, aluminum: 0, co2: 0 }
-  selected.forEach((index) => {
+  const clearAll = () => setQuantities(new Map())
+
+  const hasSelection = quantities.size > 0
+
+  let totalCO2 = 0
+  const selectedEntries: { name: string; quantity: number }[] = []
+  quantities.forEach((qty, index) => {
     const item = items[index]
     if (item) {
-      totals.gold += item.gold
-      totals.copper += item.copper
-      totals.aluminum += item.aluminum
-      totals.co2 += item.co2
+      totalCO2 += item.co2 * qty
+      selectedEntries.push({ name: item.name, quantity: qty })
     }
   })
 
-  const hasSelection = selected.size > 0
-  const itemCounts = items.reduce<Record<string, number>>((acc, item) => {
-    acc[item.name] = (acc[item.name] || 0) + 1
-    return acc
-  }, {})
-  const hasDuplicates = Object.values(itemCounts).some((c) => c > 1)
+  const totalDevices = Array.from(quantities.values()).reduce((sum, q) => sum + q, 0)
+
+  const trees = Math.round(totalCO2 / 20)
+  const carMiles = Math.round(totalCO2 / 0.4)
+  const homesEnergy = Math.round(totalCO2 / 15)
+
+  const handleRequestQuote = () => {
+    const entries = selectedEntries.map((e) => ({ name: e.name, quantity: e.quantity }))
+    const encoded = encodeURIComponent(JSON.stringify(entries))
+    const search: Record<string, string> = { tab: 'quote', materials: encoded }
+    navigate({ to: '/contact', search })
+  }
 
   return (
     <div className="relative">
@@ -187,11 +115,12 @@ export function ImpactCalculator({
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 mb-10">
           {items.map((item, index) => {
-            const isSelected = selected.has(index)
+            const qty = getQuantity(index)
+            const isSelected = qty > 0
             return (
               <button
-                key={hasDuplicates ? `${item.name}-${index}` : index}
-                onClick={() => toggleItem(index)}
+                key={`${item.name}-${index}`}
+                onClick={() => !isSelected && increment(index)}
                 className={`relative group bg-white/40 backdrop-blur-sm rounded-2xl border p-4 sm:p-5 text-center transition-all duration-300 card-hover motion-preset-slide-up motion-duration-500 ${
                   isSelected
                     ? 'border-primary/30 shadow-lg shadow-primary/10 bg-white/60 ring-2 ring-primary/20'
@@ -213,16 +142,35 @@ export function ImpactCalculator({
                   {item.name}
                 </p>
 
-                {/* Badge */}
-                <span
-                  className={`inline-block text-xs font-semibold px-2.5 py-1 rounded-full transition-all duration-300 ${
-                    isSelected
-                      ? 'bg-primary/15 text-primary shadow-sm'
-                      : 'bg-accent/10 text-accent group-hover:bg-accent/15'
-                  }`}
-                >
-                  {isSelected ? 'Added' : '+ Add'}
-                </span>
+                {!isSelected ? (
+                  <span className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full transition-all duration-300 bg-accent/10 text-accent group-hover:bg-accent/15">
+                    + Add
+                  </span>
+                ) : (
+                  <div className="flex items-center justify-center gap-2">
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        decrement(index)
+                      }}
+                      className="w-7 h-7 rounded-full bg-primary/15 text-primary flex items-center justify-center text-sm font-bold cursor-pointer hover:bg-primary/25 transition-colors select-none"
+                    >
+                      &minus;
+                    </span>
+                    <span className="text-sm font-bold text-primary min-w-[1.5ch] text-center">
+                      {qty}
+                    </span>
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        increment(index)
+                      }}
+                      className="w-7 h-7 rounded-full bg-primary/15 text-primary flex items-center justify-center text-sm font-bold cursor-pointer hover:bg-primary/25 transition-colors select-none"
+                    >
+                      +
+                    </span>
+                  </div>
+                )}
 
                 {/* Selection check indicator */}
                 {isSelected && (
@@ -263,7 +211,7 @@ export function ImpactCalculator({
           {hasSelection && (
             <div className="flex items-center gap-3">
               <span className="text-xs sm:text-sm text-text/40 font-medium hidden sm:block">
-                {selected.size} {selected.size === 1 ? 'device' : 'devices'}
+                {totalDevices} {totalDevices === 1 ? 'device' : 'devices'}
               </span>
               <button
                 onClick={clearAll}
@@ -292,87 +240,160 @@ export function ImpactCalculator({
           </div>
         ) : (
           <>
-            {/* Metric Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
-              <MetricCard metric={metrics.gold} value={totals.gold} />
-              <MetricCard metric={metrics.copper} value={totals.copper} />
-              <MetricCard metric={metrics.aluminum} value={totals.aluminum} />
-              <MetricCard metric={metrics.co2} value={totals.co2} />
-            </div>
-
-            {/* Visual breakdown bar */}
-            <div className="bg-white/30 rounded-xl p-4 sm:p-5 border border-primary/5 transition-all duration-300">
-              <p className="text-xs font-semibold text-text/40 uppercase tracking-[0.06em] mb-3">
-                Material Recovery Breakdown
-              </p>
-              <div className="flex h-3 sm:h-4 rounded-full overflow-hidden bg-primary/5 ring-1 ring-primary/5">
-                {totals.gold > 0 && (
-                  <div
-                    className="bg-accent transition-all duration-700 ease-out rounded-l-full"
-                    style={{
-                      width: `${(totals.gold / (totals.gold + totals.copper + totals.aluminum)) * 100}%`,
-                      minWidth: totals.gold > 0 ? '4px' : '0',
-                    }}
-                  />
-                )}
-                {totals.copper > 0 && (
-                  <div
-                    className="bg-secondary transition-all duration-700 ease-out"
-                    style={{
-                      width: `${(totals.copper / (totals.gold + totals.copper + totals.aluminum)) * 100}%`,
-                      minWidth: totals.copper > 0 ? '4px' : '0',
-                    }}
-                  />
-                )}
-                {totals.aluminum > 0 && (
-                  <div
-                    className="bg-primary transition-all duration-700 ease-out rounded-r-full"
-                    style={{
-                      width: `${(totals.aluminum / (totals.gold + totals.copper + totals.aluminum)) * 100}%`,
-                      minWidth: totals.aluminum > 0 ? '4px' : '0',
-                    }}
-                  />
-                )}
+            {/* CO₂ Metric Card */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+              {/* CO₂ Prevented */}
+              <div className="bg-success/5 rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-success/10 transition-all duration-500 hover:shadow-lg hover:scale-[1.02] motion-preset-slide-up">
+                <div className="flex items-center gap-2.5 mb-3">
+                  <div className="w-9 h-9 rounded-xl bg-success/10 flex items-center justify-center ring-1 ring-success/20 transition-all duration-300">
+                    <svg className="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-[11px] font-semibold text-text/40 uppercase tracking-[0.08em]">CO&#8322; Prevented</span>
+                </div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="font-title text-2xl sm:text-3xl font-bold text-success transition-all duration-300">
+                    {formatValue(totalCO2)}
+                  </span>
+                  <span className="text-xs text-text/30 font-medium">kg</span>
+                </div>
               </div>
-              <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-3">
-                <LegendDot color="bg-accent" label="Gold" />
-                <LegendDot color="bg-secondary" label="Copper" />
-                <LegendDot color="bg-primary" label="Aluminum" />
+
+              {/* Trees Planted */}
+              <div className="bg-primary/5 rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-primary/10 transition-all duration-500 hover:shadow-lg hover:scale-[1.02] motion-preset-slide-up">
+                <div className="flex items-center gap-2.5 mb-3">
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center ring-1 ring-primary/20 transition-all duration-300">
+                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-[11px] font-semibold text-text/40 uppercase tracking-[0.08em]">Trees Planted</span>
+                </div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="font-title text-2xl sm:text-3xl font-bold text-primary transition-all duration-300">
+                    {formatCompact(trees)}
+                  </span>
+                  <span className="text-xs text-text/30 font-medium">trees/year</span>
+                </div>
+              </div>
+
+              {/* Car Miles Avoided */}
+              <div className="bg-secondary/5 rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-secondary/10 transition-all duration-500 hover:shadow-lg hover:scale-[1.02] motion-preset-slide-up">
+                <div className="flex items-center gap-2.5 mb-3">
+                  <div className="w-9 h-9 rounded-xl bg-secondary/10 flex items-center justify-center ring-1 ring-secondary/20 transition-all duration-300">
+                    <svg className="w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-9.86a4.5 4.5 0 10-6.364 6.364L8.757 4.93"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-[11px] font-semibold text-text/40 uppercase tracking-[0.08em]">Car Miles Avoided</span>
+                </div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="font-title text-2xl sm:text-3xl font-bold text-secondary transition-all duration-300">
+                    {formatCompact(carMiles)}
+                  </span>
+                  <span className="text-xs text-text/30 font-medium">miles</span>
+                </div>
+              </div>
+
+              {/* Homes' Energy */}
+              <div className="bg-accent/5 rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-accent/10 transition-all duration-500 hover:shadow-lg hover:scale-[1.02] motion-preset-slide-up">
+                <div className="flex items-center gap-2.5 mb-3">
+                  <div className="w-9 h-9 rounded-xl bg-accent/10 flex items-center justify-center ring-1 ring-accent/20 transition-all duration-300">
+                    <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-[11px] font-semibold text-text/40 uppercase tracking-[0.08em]">Homes&#39; Energy</span>
+                </div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="font-title text-2xl sm:text-3xl font-bold text-accent transition-all duration-300">
+                    {formatCompact(homesEnergy)}
+                  </span>
+                  <span className="text-xs text-text/30 font-medium">homes/day</span>
+                </div>
               </div>
             </div>
 
             {/* CO₂ equivalence callout */}
-            {totals.co2 > 0 && (
-              <div className="mt-4 flex items-center justify-center gap-2 text-xs sm:text-sm text-text/50 font-light motion-preset-slide-up motion-duration-500">
-                <svg className="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-                <span>
-                  That&apos;s <strong className="text-success font-semibold">{formatValue(totals.co2)} kg</strong> of CO
-                  <sub className="text-[0.6em]">2</sub> emissions prevented — equivalent to planting{' '}
-                  <strong className="text-primary font-semibold">
-                    {totals.co2 >= 20 ? Math.round(totals.co2 / 20) : '<1'}
-                  </strong>{' '}
-                  tree{Math.round(totals.co2 / 20) !== 1 ? 's' : ''} this year.
-                </span>
+            {totalCO2 > 0 && (
+              <div className="mt-4 flex flex-col gap-3">
+                <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-text/50 font-light motion-preset-slide-up motion-duration-500">
+                  <svg className="w-4 h-4 text-success shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  </svg>
+                  <span>
+                    That&apos;s <strong className="text-success font-semibold">{formatValue(totalCO2)} kg</strong> of CO
+                    <sub className="text-[0.6em]">2</sub> emissions prevented.
+                  </span>
+                </div>
+
+                <div className="bg-white/30 rounded-xl p-4 sm:p-5 border border-primary/5 transition-all duration-300">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                    <div className="p-3 rounded-xl bg-primary/5 border border-primary/10">
+                      <span className="block font-title text-xl sm:text-2xl font-bold text-primary">{formatCompact(trees)}</span>
+                      <span className="text-xs text-text/40 font-medium">
+                        trees planted<br />this year
+                      </span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-secondary/5 border border-secondary/10">
+                      <span className="block font-title text-xl sm:text-2xl font-bold text-secondary">{formatCompact(carMiles)}</span>
+                      <span className="text-xs text-text/40 font-medium">
+                        car miles<br />avoided
+                      </span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-accent/5 border border-accent/10">
+                      <span className="block font-title text-xl sm:text-2xl font-bold text-accent">{formatCompact(homesEnergy)}</span>
+                      <span className="text-xs text-text/40 font-medium">
+                        homes&apos; energy<br />for a day
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Request a Quote Button */}
+                <div className="flex justify-center mt-4 motion-preset-slide-up motion-duration-500">
+                  <button
+                    onClick={handleRequestQuote}
+                    className="group relative font-sans font-semibold px-8 py-3.5 rounded-xl bg-gradient-to-r from-primary to-secondary text-white hover:brightness-110 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-500"
+                  >
+                    <span className="relative z-10 flex items-center gap-2">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                        />
+                      </svg>
+                      Request a Quote
+                    </span>
+                  </button>
+                </div>
               </div>
             )}
           </>
         )}
       </div>
     </div>
-  )
-}
-
-function LegendDot({ color, label }: { color: string; label: string }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 text-xs text-text/40 font-medium">
-      <span className={`w-2 h-2 rounded-full ${color}`} />
-      {label}
-    </span>
   )
 }

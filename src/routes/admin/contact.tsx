@@ -70,6 +70,28 @@ function AdminContact() {
                 <Input value={values.careerForm.submitText} onChange={(v) => onChange('careerForm.submitText', v)} />
               </Field>
             </div>
+            <div className="space-y-4">
+              <h3 className="font-medium text-sm">Quote Request Segment</h3>
+              <Field label="Quote Segment Heading">
+                <Input value={values.quoteSegment.heading} onChange={(v) => onChange('quoteSegment.heading', v)} />
+              </Field>
+              <Field label="Quote Segment Description">
+                <Textarea value={values.quoteSegment.description} onChange={(v) => onChange('quoteSegment.description', v)} rows={2} />
+              </Field>
+              <Field label="Quote Submit Button Text">
+                <Input value={values.quoteForm.submitText} onChange={(v) => onChange('quoteForm.submitText', v)} />
+              </Field>
+              <h4 className="font-medium text-xs text-primary uppercase tracking-wider mt-4 mb-2">Requester Types</h4>
+              {values.quoteForm?.types?.map((type, i) => (
+                <div key={type.id} className="flex items-center gap-3">
+                  <span className="text-xs font-mono text-text/40 w-24">{type.id}</span>
+                  <Field label={`"${type.id}" Label`}>
+                    <Input value={type.label} onChange={(v) => onChange(`quoteForm.types.${i}.label`, v)} />
+                  </Field>
+                </div>
+              ))}
+              <p className="text-xs text-text/40 mt-2">These toggle options appear at the top of the quote request form.</p>
+            </div>
           </>
         )}
       </AdminSection>

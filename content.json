@@ -100,18 +100,54 @@
       "badge": "/terionix-tnpcb-badge.png",
       "description": "Terionix is a registered and authorized e-waste recycler under the Tamil Nadu Pollution Control Board (TNPCB). We comply with all CPCB (Central Pollution Control Board) guidelines for safe e-waste handling, data destruction, and disposal. Corporate clients can verify our authorization and request compliance documentation at any time."
     },
+    "audience": {
+      "heading": "Who We Serve",
+      "subtitle": "Tailored e-waste solutions for every need — from corporate compliance to individual drop-offs.",
+      "segments": [
+        {
+          "id": "b2b",
+          "title": "Businesses & Enterprises",
+          "icon": "building",
+          "description": "End-to-end EPR compliance, bulk e-waste collection, certified data destruction, and material recovery for corporations, manufacturers, and institutions. Fully CPCB & TNPCB authorized.",
+          "cta": {
+            "label": "Explore Enterprise Solutions",
+            "href": "/solutions"
+          }
+        },
+        {
+          "id": "researchers",
+          "title": "Researchers & Academia",
+          "icon": "academic",
+          "description": "Access to e-waste data and reports, R&D collaboration opportunities, material samples for research, and co-authored sustainability papers from our in-house innovation lab.",
+          "cta": {
+            "label": "Visit Innovation Lab",
+            "href": "/innovation"
+          }
+        },
+        {
+          "id": "individuals",
+          "title": "Individual Users",
+          "icon": "user",
+          "description": "Responsible household e-waste disposal through nearby drop-off points and scheduled pickups. Test your recycling knowledge and get rewarded while making a difference.",
+          "cta": {
+            "label": "Schedule a Pickup",
+            "href": "/contact"
+          }
+        }
+      ]
+    },
     "impactCalculator": {
       "title": "E-Waste Impact Calculator",
-      "description": "See what your old electronics are really worth. Select devices to calculate recoverable materials and environmental impact.",
+      "description": "See the environmental impact of your e-waste. Select devices and quantities to calculate CO₂ emissions prevented.",
       "items": [
-        { "name": "Smartphone", "gold": 0.034, "copper": 15, "aluminum": 25, "co2": 50, "image": "📱" },
-        { "name": "Laptop", "gold": 0.2, "copper": 50, "aluminum": 180, "co2": 200, "image": "💻" },
-        { "name": "Tablet", "gold": 0.05, "copper": 20, "aluminum": 80, "co2": 90, "image": "📟" },
-        { "name": "Desktop PC", "gold": 0.3, "copper": 80, "aluminum": 250, "co2": 350, "image": "🖥️" },
-        { "name": "Monitor (LCD)", "gold": 0.01, "copper": 30, "aluminum": 100, "co2": 120, "image": "🖥️" },
-        { "name": "Printer", "gold": 0.005, "copper": 25, "aluminum": 60, "co2": 80, "image": "🖨️" },
-        { "name": "Keyboard / Mouse", "gold": 0.001, "copper": 5, "aluminum": 10, "co2": 15, "image": "⌨️" },
-        { "name": "Battery Pack", "gold": 0.0, "copper": 10, "aluminum": 5, "co2": 40, "image": "🔋" }
+        { "name": "Smartphone", "co2": 50, "image": "📱" },
+        { "name": "Laptop", "co2": 200, "image": "💻" },
+        { "name": "Tablet", "co2": 90, "image": "📟" },
+        { "name": "Desktop PC", "co2": 350, "image": "🖥️" },
+        { "name": "Monitor (LCD)", "co2": 120, "image": "🖥️" },
+        { "name": "Printer", "co2": 80, "image": "🖨️" },
+        { "name": "Keyboard / Mouse", "co2": 15, "image": "⌨️" },
+        { "name": "Battery Pack", "co2": 40, "image": "🔋" }
       ]
     }
   },
@@ -615,7 +651,8 @@
     },
     "tabs": [
       "General Inquiry",
-      "Career"
+      "Career",
+      "Request a Quote"
     ],
     "generalForm": {
       "fields": [
@@ -761,6 +798,27 @@
         }
       ],
       "submitText": "Submit Application"
+    },
+    "quoteSegment": {
+      "heading": "Request a Quote",
+      "description": "Tell us what e-waste materials you have and we'll provide a customized quote. Multiple items and quantities supported."
+    },
+    "quoteForm": {
+      "types": [
+        { "id": "individual", "label": "Individual" },
+        { "id": "business", "label": "Business" }
+      ],
+      "fields": [
+        { "label": "Full Name", "type": "text", "required": true },
+        { "label": "Email", "type": "email", "required": true },
+        { "label": "Phone", "type": "tel", "required": true },
+        { "label": "Street Address", "type": "text", "required": true },
+        { "label": "City", "type": "text", "required": true },
+        { "label": "State", "type": "text", "required": true },
+        { "label": "Pincode", "type": "text", "required": true },
+        { "label": "Additional Notes", "type": "textarea", "required": false, "rows": 4 }
+      ],
+      "submitText": "Request Quote"
     }
   },
   "game": {

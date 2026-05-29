@@ -40,7 +40,7 @@ function AnimatedHeading({ text }: { text: string }) {
 
 function Home() {
   const content = Route.useLoaderData()!
-  const { tagline, heroTitle, heroSubtitle, partnerButton, challengeButton, matrixCards, trustStats, authorization, impactCalculator } = content.home
+  const { tagline, heroTitle, heroSubtitle, partnerButton, challengeButton, matrixCards, trustStats, authorization, audience, impactCalculator } = content.home
   const gameRef = useRef<HTMLDivElement>(null)
 
   const handleB2CClick = () => {
@@ -105,6 +105,34 @@ function Home() {
                 </span>
               </button>
             </div>
+
+            {/* Audience Segment CTAs */}
+            <div className="flex flex-wrap gap-3 justify-center mt-10 motion-preset-slide-up motion-duration-700 motion-delay-400">
+              <span className="w-full text-sm text-text/40 font-medium mb-1">Who we serve:</span>
+              {audience.segments.map((segment: any, i: number) => {
+                const colorStyles = [
+                  'border-primary/30 text-primary hover:bg-primary hover:text-white hover:border-primary',
+                  'border-secondary/30 text-secondary hover:bg-secondary hover:text-white hover:border-secondary',
+                  'border-accent/30 text-accent hover:bg-accent hover:text-white hover:border-accent'
+                ]
+                return (
+                  <Link
+                    key={segment.id}
+                    to={segment.cta.href}
+                    className={`group font-sans font-semibold text-sm px-5 py-2 rounded-xl border backdrop-blur-sm bg-white/20 shadow-sm hover:shadow-lg transition-all duration-500 ${colorStyles[i]}`}
+                    title={segment.title}
+                  >
+                    <span className="flex items-center gap-2">
+                      {segment.cta.label}
+                      <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
+
           </div>
 
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 motion-preset-bounce motion-duration-2000 motion-loop-infinite">
@@ -114,7 +142,40 @@ function Home() {
           </div>
         </section>
 
-        {/* ====== 2. MATRIX GRID — 3 VALUE PILLARS ====== */}
+        {/* ====== 2. AUTHORIZATION & TRUST ANCHOR ====== */}
+        <section className="px-4 py-20 relative">
+          <div className="absolute top-0 left-0 right-0 section-divider" />
+
+          <div className="max-w-5xl mx-auto">
+            {/* TNPCB Authorization */}
+            <div className="text-center mb-16 motion-preset-slide-up">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-semibold mb-6">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Verified & Certified
+              </div>
+              <h2 className="font-title text-2xl sm:text-3xl font-bold text-text mb-4">{authorization.title}</h2>
+              <p className="text-text/60 max-w-3xl mx-auto leading-relaxed">{authorization.description}</p>
+            </div>
+
+            {/* Trust Stats */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 motion-preset-slide-up motion-delay-200">
+              {trustStats.map((stat: any, i: number) => (
+                <div
+                  key={i}
+                  className="bg-white/40 backdrop-blur-sm rounded-2xl border border-primary/10 p-6 text-center hover:border-primary/20 hover:bg-white/60 transition-all duration-300 card-hover"
+                >
+                  <div className="font-title text-3xl sm:text-4xl font-bold text-gradient-green mb-1">{stat.value}</div>
+                  <div className="text-xs text-text/40 font-medium uppercase tracking-wider">{stat.unit}</div>
+                  <div className="text-sm text-text/60 mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ====== 3. MATRIX GRID — 3 VALUE PILLARS ====== */}
         <section className="px-4 py-24 relative">
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
@@ -191,40 +252,84 @@ function Home() {
           </div>
         </section>
 
-        {/* ====== 3. AUTHORIZATION & TRUST ANCHOR ====== */}
-        <section className="px-4 py-20 relative">
+
+
+        {/* ====== 4. WHO WE SERVE ====== */}
+        <section className="px-4 py-24 relative">
           <div className="absolute top-0 left-0 right-0 section-divider" />
 
-          <div className="max-w-5xl mx-auto">
-            {/* TNPCB Authorization */}
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16 motion-preset-slide-up">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-semibold mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold mb-4">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                 </svg>
-                Verified & Certified
+                {audience.heading}
               </div>
-              <h2 className="font-title text-2xl sm:text-3xl font-bold text-text mb-4">{authorization.title}</h2>
-              <p className="text-text/60 max-w-3xl mx-auto leading-relaxed">{authorization.description}</p>
+              <h2 className="font-title text-3xl sm:text-4xl lg:text-5xl font-bold text-text mb-4">
+                Tailored for <span className="text-gradient">Every Community</span>
+              </h2>
+              <p className="text-text/60 max-w-2xl mx-auto">{audience.subtitle}</p>
             </div>
 
-            {/* Trust Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 motion-preset-slide-up motion-delay-200">
-              {trustStats.map((stat: any, i: number) => (
+            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+              {audience.segments.map((segment: any, i: number) => (
                 <div
-                  key={i}
-                  className="bg-white/40 backdrop-blur-sm rounded-2xl border border-primary/10 p-6 text-center hover:border-primary/20 hover:bg-white/60 transition-all duration-300 card-hover"
+                  key={segment.id}
+                  className="group bg-white/40 backdrop-blur-sm rounded-2xl border border-primary/10 p-8 hover:border-primary/30 hover:bg-white/60 hover:shadow-xl transition-all duration-500 card-hover motion-preset-slide-up flex flex-col"
+                  style={{ animationDelay: `${i * 150}ms` }}
                 >
-                  <div className="font-title text-3xl sm:text-4xl font-bold text-gradient-green mb-1">{stat.value}</div>
-                  <div className="text-xs text-text/40 font-medium uppercase tracking-wider">{stat.unit}</div>
-                  <div className="text-sm text-text/60 mt-1">{stat.label}</div>
+                  {/* Icon */}
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500
+                    ${i === 0 ? 'bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white' : ''}
+                    ${i === 1 ? 'bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-white' : ''}
+                    ${i === 2 ? 'bg-accent/10 text-accent group-hover:bg-accent group-hover:text-white' : ''}
+                  `}>
+                    {segment.icon === 'building' && (
+                      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                      </svg>
+                    )}
+                    {segment.icon === 'academic' && (
+                      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                      </svg>
+                    )}
+                    {segment.icon === 'user' && (
+                      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                      </svg>
+                    )}
+                  </div>
+
+                  <h3 className={`font-title text-xl font-bold text-text mb-3 transition-colors
+                    ${i === 0 ? 'group-hover:text-primary' : ''}
+                    ${i === 1 ? 'group-hover:text-secondary' : ''}
+                    ${i === 2 ? 'group-hover:text-accent' : ''}
+                  `}>{segment.title}</h3>
+                  <p className="text-text/60 leading-relaxed mb-6 text-sm flex-grow">{segment.description}</p>
+
+                  {/* CTA Button */}
+                  <Link
+                    to={segment.cta.href}
+                    className={`group/btn inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-500 w-fit
+                      ${i === 0 ? 'bg-primary/10 text-primary hover:bg-primary hover:text-white border border-primary/20 hover:border-primary' : ''}
+                      ${i === 1 ? 'bg-secondary/10 text-secondary hover:bg-secondary hover:text-white border border-secondary/20 hover:border-secondary' : ''}
+                      ${i === 2 ? 'bg-accent/10 text-accent hover:bg-accent hover:text-white border border-accent/20 hover:border-accent' : ''}
+                    `}
+                  >
+                    {segment.cta.label}
+                    <svg className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </Link>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ====== 4. E-WASTE IMPACT CALCULATOR ====== */}
+        {/* ====== 5. E-WASTE IMPACT CALCULATOR ====== */}
         <section className="px-4 py-24 relative">
           <div className="absolute top-0 left-0 right-0 section-divider" />
           <div className="absolute bottom-40 left-10 w-80 h-80 bg-secondary/5 rounded-full blur-3xl -z-10" />
@@ -239,7 +344,7 @@ function Home() {
           </div>
         </section>
 
-        {/* ====== 5. GAMIFIED CHALLENGE — RECYCLING GAME ====== */}
+        {/* ====== 6. GAMIFIED CHALLENGE — RECYCLING GAME ====== */}
         <section ref={gameRef} className="px-4 py-24 relative scroll-mt-24" id="game-section">
           <div className="absolute top-0 left-0 right-0 section-divider" />
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
