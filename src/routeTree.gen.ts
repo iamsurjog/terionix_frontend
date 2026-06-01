@@ -19,10 +19,13 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRecyclingRouteImport } from './routes/about-recycling'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LearnIndexRouteImport } from './routes/learn/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as LearnModuleIdRouteImport } from './routes/learn/$moduleId'
 import { Route as AdminSolutionsRouteImport } from './routes/admin/solutions'
 import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminLearnRouteImport } from './routes/admin/learn'
 import { Route as AdminJsonRouteImport } from './routes/admin/json'
 import { Route as AdminInnovationRouteImport } from './routes/admin/innovation'
 import { Route as AdminImpactInsightsRouteImport } from './routes/admin/impact-insights'
@@ -84,9 +87,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnIndexRoute = LearnIndexRouteImport.update({
+  id: '/learn/',
+  path: '/learn/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnModuleIdRoute = LearnModuleIdRouteImport.update({
+  id: '/learn/$moduleId',
+  path: '/learn/$moduleId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminSolutionsRoute = AdminSolutionsRouteImport.update({
@@ -102,6 +115,11 @@ const AdminServicesRoute = AdminServicesRouteImport.update({
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLearnRoute = AdminLearnRouteImport.update({
+  id: '/admin/learn',
+  path: '/admin/learn',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminJsonRoute = AdminJsonRouteImport.update({
@@ -176,10 +194,13 @@ export interface FileRoutesByFullPath {
   '/admin/impact-insights': typeof AdminImpactInsightsRoute
   '/admin/innovation': typeof AdminInnovationRoute
   '/admin/json': typeof AdminJsonRoute
+  '/admin/learn': typeof AdminLearnRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/solutions': typeof AdminSolutionsRoute
+  '/learn/$moduleId': typeof LearnModuleIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/learn/': typeof LearnIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -202,10 +223,13 @@ export interface FileRoutesByTo {
   '/admin/impact-insights': typeof AdminImpactInsightsRoute
   '/admin/innovation': typeof AdminInnovationRoute
   '/admin/json': typeof AdminJsonRoute
+  '/admin/learn': typeof AdminLearnRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/solutions': typeof AdminSolutionsRoute
+  '/learn/$moduleId': typeof LearnModuleIdRoute
   '/admin': typeof AdminIndexRoute
+  '/learn': typeof LearnIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -229,10 +253,13 @@ export interface FileRoutesById {
   '/admin/impact-insights': typeof AdminImpactInsightsRoute
   '/admin/innovation': typeof AdminInnovationRoute
   '/admin/json': typeof AdminJsonRoute
+  '/admin/learn': typeof AdminLearnRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/solutions': typeof AdminSolutionsRoute
+  '/learn/$moduleId': typeof LearnModuleIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/learn/': typeof LearnIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -257,10 +284,13 @@ export interface FileRouteTypes {
     | '/admin/impact-insights'
     | '/admin/innovation'
     | '/admin/json'
+    | '/admin/learn'
     | '/admin/login'
     | '/admin/services'
     | '/admin/solutions'
+    | '/learn/$moduleId'
     | '/admin/'
+    | '/learn/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -283,10 +313,13 @@ export interface FileRouteTypes {
     | '/admin/impact-insights'
     | '/admin/innovation'
     | '/admin/json'
+    | '/admin/learn'
     | '/admin/login'
     | '/admin/services'
     | '/admin/solutions'
+    | '/learn/$moduleId'
     | '/admin'
+    | '/learn'
   id:
     | '__root__'
     | '/'
@@ -309,10 +342,13 @@ export interface FileRouteTypes {
     | '/admin/impact-insights'
     | '/admin/innovation'
     | '/admin/json'
+    | '/admin/learn'
     | '/admin/login'
     | '/admin/services'
     | '/admin/solutions'
+    | '/learn/$moduleId'
     | '/admin/'
+    | '/learn/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -336,10 +372,13 @@ export interface RootRouteChildren {
   AdminImpactInsightsRoute: typeof AdminImpactInsightsRoute
   AdminInnovationRoute: typeof AdminInnovationRoute
   AdminJsonRoute: typeof AdminJsonRoute
+  AdminLearnRoute: typeof AdminLearnRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminServicesRoute: typeof AdminServicesRoute
   AdminSolutionsRoute: typeof AdminSolutionsRoute
+  LearnModuleIdRoute: typeof LearnModuleIdRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  LearnIndexRoute: typeof LearnIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -414,11 +453,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learn/': {
+      id: '/learn/'
+      path: '/learn'
+      fullPath: '/learn/'
+      preLoaderRoute: typeof LearnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/$moduleId': {
+      id: '/learn/$moduleId'
+      path: '/learn/$moduleId'
+      fullPath: '/learn/$moduleId'
+      preLoaderRoute: typeof LearnModuleIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/solutions': {
@@ -440,6 +493,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/login'
       fullPath: '/admin/login'
       preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/learn': {
+      id: '/admin/learn'
+      path: '/admin/learn'
+      fullPath: '/admin/learn'
+      preLoaderRoute: typeof AdminLearnRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/json': {
@@ -536,10 +596,13 @@ const rootRouteChildren: RootRouteChildren = {
   AdminImpactInsightsRoute: AdminImpactInsightsRoute,
   AdminInnovationRoute: AdminInnovationRoute,
   AdminJsonRoute: AdminJsonRoute,
+  AdminLearnRoute: AdminLearnRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminServicesRoute: AdminServicesRoute,
   AdminSolutionsRoute: AdminSolutionsRoute,
+  LearnModuleIdRoute: LearnModuleIdRoute,
   AdminIndexRoute: AdminIndexRoute,
+  LearnIndexRoute: LearnIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

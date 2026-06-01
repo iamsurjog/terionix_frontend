@@ -38,6 +38,13 @@
         ]
       },
       {
+        "name": "Learn",
+        "type": "dropdown",
+        "children": [
+          { "name": "Recycling 101", "to": "/learn" }
+        ]
+      },
+      {
         "name": "Company",
         "type": "dropdown",
         "children": [
@@ -851,5 +858,308 @@
     { "name": "Arjun", "time": 9.1 },
     { "name": "Priya", "time": 10.2 },
     { "name": "SG 3", "time": 14.194 }
-  ]
+  ],
+  "learn": {
+    "courseTitle": "E-Waste Recycling 101",
+    "courseSubtitle": "A beginner-friendly course on understanding e-waste and taking action for a cleaner planet.",
+    "moduleList": [
+      { "id": "what-is-ewaste", "contentKey": "whatIsEwaste", "title": "What is E-Waste?", "emoji": "🤔", "desc": "Learn what counts as e-waste and understand the scale of the global problem.", "time": "6 min" },
+      { "id": "hidden-value", "contentKey": "hiddenValue", "title": "The Hidden Value", "emoji": "💎", "desc": "Discover the precious materials hidden inside your old devices and why mining, not dumping, is the future.", "time": "7 min" },
+      { "id": "environmental-impact", "contentKey": "environmentalImpact", "title": "Environmental Impact", "emoji": "🌍", "desc": "Understand how improper e-waste disposal affects our planet, wildlife, and human health.", "time": "8 min" },
+      { "id": "the-process", "contentKey": "theProcess", "title": "The Recycling Process", "emoji": "🔄", "desc": "Follow e-waste on its journey from your home to becoming brand-new products.", "time": "8 min" },
+      { "id": "quiz", "contentKey": "quiz", "title": "Knowledge Check", "emoji": "🧠", "desc": "Test what you've learned with a fun quiz covering all course modules.", "time": "4 min" },
+      { "id": "take-action", "contentKey": "takeAction", "title": "Take Action", "emoji": "🤝", "desc": "Make a commitment, find recycling resources, and become a champion for change.", "time": "5 min" }
+    ],
+    "dashboard": {
+      "heading": "Welcome to E-Waste Recycling 101",
+      "body": "This course will take you from the basics of what e-waste is, through the hidden value in your old devices, the environmental impact of improper disposal, and how recycling works — all the way to taking real action. Each module builds on the last, and you can track your progress as you go.",
+      "stats": [
+        { "value": "6", "unit": "modules", "label": "to complete" },
+        { "value": "~40", "unit": "minutes", "label": "total time" },
+        { "value": "🧠", "unit": "quiz", "label": "test your knowledge" },
+        { "value": "🤝", "unit": "pledge", "label": "take action" }
+      ]
+    },
+    "whatIsEwaste": {
+      "heroTitle": "What is E-Waste?",
+      "heroSubtitle": "Before we can solve a problem, we need to understand it. Let's start with the basics — what exactly counts as e-waste, how much there is, and why it's different from regular trash.",
+      "sections": [
+        {
+          "type": "text",
+          "id": "intro",
+          "title": "Defining E-Waste",
+          "body": "E-waste (electronic waste) refers to any discarded electrical or electronic device — anything with a plug, battery, or circuit board that's reached the end of its useful life. This includes everything from a tiny smartwatch to a full-sized refrigerator. When these devices are thrown in the trash instead of being properly recycled, they release toxic substances that harm our environment and health."
+        },
+        {
+          "type": "grid",
+          "id": "categories",
+          "title": "What Counts as E-Waste?",
+          "items": [
+            { "emoji": "📱", "label": "Phones & Tablets", "desc": "Smartphones, tablets, e-readers, wearables" },
+            { "emoji": "💻", "label": "Computers & Laptops", "desc": "Desktops, laptops, servers, hard drives" },
+            { "emoji": "📺", "label": "Displays", "desc": "TVs, monitors, LED screens, projectors" },
+            { "emoji": "🔋", "label": "Batteries & Power", "desc": "Lithium-ion, power banks, UPS, adapters" },
+            { "emoji": "🔌", "label": "Cables & Accessories", "desc": "Chargers, cables, headphones, keyboards" },
+            { "emoji": "🧊", "label": "Large Appliances", "desc": "Refrigerators, ACs, washing machines" },
+            { "emoji": "🖨️", "label": "Peripherals", "desc": "Printers, scanners, routers, modems" },
+            { "emoji": "🎮", "label": "Gaming & Entertainment", "desc": "Consoles, controllers, VR headsets" }
+          ]
+        },
+        {
+          "type": "stats",
+          "id": "scale",
+          "title": "The Scale of the Problem",
+          "stats": [
+            { "value": "62M", "unit": "metric tons", "label": "e-waste generated in 2024 — that's 2x the weight of all cars sold in the US" },
+            { "value": "3x", "unit": "faster", "label": "e-waste is growing 3 times faster than any other waste stream" },
+            { "value": "$91B", "unit": "value", "label": "of recoverable materials are dumped or burned each year" },
+            { "value": "78%", "unit": "unaccounted", "label": "of the world's e-waste has no formal recycling tracking" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "growth",
+          "title": "Why Is E-Waste Growing So Fast?",
+          "body": "Three main drivers: First, planned obsolescence — devices are designed to be replaced every 2-3 years. Second, falling prices make it cheaper to buy new than repair old. Third, the rise of electronics in every part of our lives — from smart homes to electric vehicles — means more devices exist than ever before. The average person now owns over 10 connected devices, and that number keeps climbing."
+        },
+        {
+          "type": "callout",
+          "id": "why-different",
+          "emoji": "⚠️",
+          "title": "E-Waste is Different",
+          "body": "Unlike paper or glass waste, e-waste contains both highly valuable materials (gold, silver, copper) AND highly toxic substances (lead, mercury, cadmium). This dual nature makes proper recycling both economically important and environmentally critical — you can't just throw electronics in a landfill."
+        }
+      ]
+    },
+    "hiddenValue": {
+      "heroTitle": "The Hidden Value in Your Drawer",
+      "heroSubtitle": "That drawer full of old phones and cables isn't just clutter — it's an urban gold mine. Let's look at what's actually inside our electronic devices.",
+      "sections": [
+        {
+          "type": "text",
+          "id": "intro",
+          "title": "Your Devices Are Treasure Chests",
+          "body": "Every electronic device contains a surprising amount of valuable materials. A typical smartphone contains over 60 different elements from the periodic table — including precious metals like gold, silver, platinum, and palladium, as well as base metals like copper, tin, and aluminum. Even the small amounts add up dramatically when you consider the millions of devices discarded each year."
+        },
+        {
+          "type": "grid",
+          "id": "materials",
+          "title": "What's Inside Your Devices?",
+          "items": [
+            { "emoji": "🥇", "label": "Gold", "desc": "Used in circuit boards and connectors for its conductivity. One ton of smartphones = 100x more gold than one ton of ore." },
+            { "emoji": "🥈", "label": "Silver", "desc": "Found in circuit boards, keyboards, and displays. Essential for electrical contacts." },
+            { "emoji": "🪙", "label": "Copper", "desc": "The most abundant valuable metal in electronics. Used in wiring, cables, and circuit boards." },
+            { "emoji": "🧪", "label": "Rare Earth Elements", "desc": "Neodymium, dysprosium, and others used in speakers, vibration motors, and screens." },
+            { "emoji": "🪨", "label": "Lithium & Cobalt", "desc": "Critical for batteries. Mining them is environmentally destructive — recycling reduces the need." },
+            { "emoji": "🧊", "label": "Plastics & Glass", "desc": "Up to 40% of a device's weight. Can be recycled into new products, furniture, and building materials." }
+          ]
+        },
+        {
+          "type": "stats",
+          "id": "comparison",
+          "title": "Mining vs. Recycling: The Numbers",
+          "stats": [
+            { "value": "100x", "unit": "more gold", "label": "One ton of smartphones has 100x more gold than one ton of gold ore" },
+            { "value": "95%", "unit": "recoverable", "label": "of materials in a mobile phone can be recovered and reused" },
+            { "value": "80%", "unit": "less energy", "label": "Recycling aluminum uses 80% less energy than mining new bauxite" },
+            { "value": "7x", "unit": "more copper", "label": "in recycled PCBs than in natural copper ore" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "urban-mining",
+          "title": "What is Urban Mining?",
+          "body": "Urban mining is the concept of 'mining' valuable materials from discarded electronics instead of digging them out of the earth. It's called 'urban' because the resources are in our cities — in our homes, offices, and landfills. The concentration of precious metals in e-waste is often 10 to 100 times higher than in natural ore deposits. Urban mining creates local jobs, reduces environmental destruction from mining, and keeps valuable materials in the economy."
+        },
+        {
+          "type": "callout",
+          "id": "key-takeaway",
+          "emoji": "💎",
+          "title": "The Bottom Line",
+          "body": "Your old phone is not trash — it's a resource. The $91 billion worth of recoverable materials thrown away each year represents both an environmental tragedy and an enormous economic opportunity."
+        }
+      ]
+    },
+    "environmentalImpact": {
+      "heroTitle": "Environmental Impact",
+      "heroSubtitle": "What happens when e-waste ends up in landfills? The consequences are far more serious than most people realize.",
+      "sections": [
+        {
+          "type": "text",
+          "id": "intro",
+          "title": "The Hidden Cost of 'Out of Sight'",
+          "body": "When electronics are thrown in the trash, they end up in landfills where they're crushed under tons of garbage. Over time, rain water filters through the landfill, creating a toxic liquid called leachate that carries dangerous chemicals into the soil and groundwater. Meanwhile, burning e-waste releases toxic fumes into the air. The problem is global — an estimated 80% of e-waste is either landfilled or informally recycled in developing countries under unsafe conditions."
+        },
+        {
+          "type": "list",
+          "id": "toxins",
+          "title": "Toxic Materials in E-Waste",
+          "items": [
+            { "emoji": "☠️", "label": "Lead", "desc": "Found in solder and CRT monitors. Damages the nervous system and kidneys." },
+            { "emoji": "☠️", "label": "Mercury", "desc": "Used in flat-screen displays and switches. Highly toxic, accumulates in the food chain." },
+            { "emoji": "☠️", "label": "Cadmium", "desc": "Found in batteries and semiconductors. Carcinogenic, accumulates in organs." },
+            { "emoji": "☠️", "label": "Brominated Flame Retardants", "desc": "Added to plastic casings. Disrupts hormones and persists in the environment." },
+            { "emoji": "☠️", "label": "Beryllium", "desc": "Used in circuit boards. Causes chronic lung disease when inhaled." },
+            { "emoji": "☠️", "label": "PVC Plastics", "desc": "Cable insulation. Releases dioxins when burned — among the most toxic known substances." }
+          ]
+        },
+        {
+          "type": "grid",
+          "id": "impact-areas",
+          "title": "How E-Waste Affects Our World",
+          "items": [
+            { "emoji": "🌊", "label": "Water Contamination", "desc": "Toxic leachate seeps into groundwater, affecting drinking water supplies for communities near landfills." },
+            { "emoji": "🌱", "label": "Soil Degradation", "desc": "Heavy metals accumulate in soil, making it infertile and entering the food chain through crops." },
+            { "emoji": "🌬️", "label": "Air Pollution", "desc": "Burning e-waste releases dioxins, furans, and heavy metals into the air we breathe." },
+            { "emoji": "🧑‍⚕️", "label": "Human Health", "desc": "Communities near e-waste sites face higher rates of cancer, respiratory disease, and birth defects." }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "climate",
+          "title": "E-Waste and Climate Change",
+          "body": "The connection between e-waste and climate change is often overlooked. Mining and processing virgin materials for electronics is energy-intensive, contributing significant greenhouse gas emissions. When e-waste decomposes in landfills, it releases methane — a greenhouse gas 25 times more potent than CO₂. And manufacturing new electronics from scratch generates far more emissions than using recycled materials. For example, recycling one million laptops saves the energy equivalent of powering 3,500 US homes for an entire year."
+        },
+        {
+          "type": "callout",
+          "id": "solution",
+          "emoji": "🌱",
+          "title": "The Good News",
+          "body": "Every device you recycle makes a measurable difference. Proper recycling prevents toxic materials from entering the environment, saves energy, reduces mining, and cuts greenhouse gas emissions. Your actions matter — and they add up."
+        }
+      ]
+    },
+    "theProcess": {
+      "heroTitle": "The Recycling Process",
+      "heroSubtitle": "What actually happens to your device after you drop it off for recycling? Follow the journey from your home to becoming new products.",
+      "sections": [
+        {
+          "type": "text",
+          "id": "intro",
+          "title": "A Journey of Transformation",
+          "body": "E-waste recycling is a sophisticated, multi-stage process that combines human expertise with cutting-edge technology. Certified recyclers like Terionix follow strict protocols to ensure every component is handled safely and every recoverable material is captured. Here's how it works."
+        },
+        {
+          "type": "timeline",
+          "id": "steps",
+          "title": "The 6 Steps of E-Waste Recycling",
+          "steps": [
+            { "number": 1, "emoji": "🚛", "title": "Collection & Transport", "body": "E-waste is collected from homes, offices, schools, and drop-off centers. Certified transporters safely move it to the recycling facility with full tracking documentation." },
+            { "number": 2, "emoji": "🗂️", "title": "Manual Sorting", "body": "Items are sorted by type. Working devices are set aside for refurbishment and resale — extending their life. Non-working items are sorted into categories: large appliances, small electronics, cables, batteries, etc." },
+            { "number": 3, "emoji": "🔧", "title": "Dismantling", "body": "Skilled technicians take devices apart by hand. Batteries are removed (they require special handling). Circuit boards, hard drives, wiring, and plastic casings are separated into different streams." },
+            { "number": 4, "emoji": "⚙️", "title": "Shredding & Separation", "body": "Materials are fed into powerful shredders that break them into tiny pieces. Advanced technologies — magnets, eddy currents, optical sensors, and density separators — sort the materials into pure streams: ferrous metals, non-ferrous metals, plastics, and glass." },
+            { "number": 5, "emoji": "🔬", "title": "Material Recovery", "body": "Pure materials are processed further. Metals are smelted into ingots. Plastics are melted into pellets. Precious metals like gold and silver are extracted using chemical and electrolytic processes. These raw materials are sold to manufacturers." },
+            { "number": 6, "emoji": "✨", "title": "New Life", "body": "Recovered materials become new products. Gold from circuit boards goes into new electronics. Copper from wiring becomes plumbing or cables. Plastic pellets become furniture, auto parts, or even new electronics. The circle is complete." }
+          ]
+        },
+        {
+          "type": "stats",
+          "id": "outcome",
+          "title": "What Recycling Achieves",
+          "stats": [
+            { "value": "95%", "unit": "recovery rate", "label": "of e-waste materials can be recovered with modern recycling technology" },
+            { "value": "90%", "unit": "less emissions", "label": "compared to manufacturing new products from virgin materials" },
+            { "value": "15M+", "unit": "liters saved", "label": "of water saved per ton of electronics recycled instead of mined" },
+            { "value": "80%", "unit": "less energy", "label": "recycling aluminum requires 80% less energy than mining new ore" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "certification",
+          "title": "Certified Recycling Matters",
+          "body": "Not all recycling is equal. Certified recyclers like Terionix follow strict standards for data destruction, worker safety, and environmental protection. When you choose a certified recycler, you can be confident that your devices won't end up in a landfill or be shipped to developing countries for unsafe processing. Always ask for certification when choosing an e-waste recycler."
+        }
+      ]
+    },
+    "quiz": {
+      "heroTitle": "Knowledge Check",
+      "heroSubtitle": "You've learned a lot! Now let's see how much you remember. Answer these 8 questions covering everything from the course.",
+      "questions": [
+        {
+          "question": "What does 'e-waste' refer to?",
+          "options": ["Only computer monitors", "Any discarded electronic device with a plug or battery", "Only smartphones and tablets", "Packaging from electronics"],
+          "correct": 1,
+          "explanation": "E-waste includes any discarded electrical or electronic device — anything with a plug, battery, or circuit board."
+        },
+        {
+          "question": "How much e-waste was generated globally in 2024?",
+          "options": ["10 million metric tons", "62 million metric tons", "100 million metric tons", "5 million metric tons"],
+          "correct": 1,
+          "explanation": "A record 62 million metric tons of e-waste was generated in 2024 — that's growing 3x faster than any other waste stream."
+        },
+        {
+          "question": "What percentage of e-waste is formally recycled worldwide?",
+          "options": ["About 17%", "About 50%", "About 35%", "About 78%"],
+          "correct": 0,
+          "explanation": "Only about 17% of the world's e-waste is formally collected and recycled. The other 78%+ is unaccounted for — landfilled, burned, or informally processed."
+        },
+        {
+          "question": "How much more gold is in one ton of smartphones vs. one ton of gold ore?",
+          "options": ["About the same", "10 times more", "100 times more", "1000 times more"],
+          "correct": 2,
+          "explanation": "Smartphones have about 100 times more gold per ton than natural gold ore — making urban mining incredibly efficient!"
+        },
+        {
+          "question": "Which toxic substance is commonly found in flat-screen displays?",
+          "options": ["Lead", "Mercury", "Cadmium", "Arsenic"],
+          "correct": 1,
+          "explanation": "Mercury is used in flat-screen displays and switches. It's highly toxic and accumulates in the food chain."
+        },
+        {
+          "question": "What is 'urban mining'?",
+          "options": ["Mining in cities for minerals", "Recovering valuable materials from discarded electronics", "Recycling concrete from demolished buildings", "Extracting oil from urban waste"],
+          "correct": 1,
+          "explanation": "Urban mining is the process of recovering valuable materials like gold, silver, and copper from discarded electronics instead of mining them from the earth."
+        },
+        {
+          "question": "About how much of a mobile phone's materials can be recovered?",
+          "options": ["25%", "50%", "75%", "95%"],
+          "correct": 3,
+          "explanation": "Up to 95% of materials in a mobile phone can be recovered and reused, including precious metals, copper, plastics, and glass."
+        },
+        {
+          "question": "Why is certified recycling important?",
+          "options": ["It's cheaper", "It ensures safe handling, data destruction, and environmental standards", "It's faster", "It's the only legal option"],
+          "correct": 1,
+          "explanation": "Certified recyclers follow strict standards for worker safety, environmental protection, and data security — ensuring your devices are handled responsibly."
+        }
+      ]
+    },
+    "takeAction": {
+      "heroTitle": "Take Action",
+      "heroSubtitle": "Knowledge is only the first step. Now it's time to turn what you've learned into real action. Choose your commitments and start making a difference today.",
+      "sections": [
+        {
+          "type": "text",
+          "id": "why-act",
+          "title": "Your Actions Matter",
+          "body": "E-waste recycling starts with individual choices. Every device you recycle instead of trash, every friend you educate, every brand you question about their sustainability practices — it all adds up. When millions of people make the right choice, the impact is enormous."
+        },
+        {
+          "type": "list",
+          "id": "steps",
+          "title": "How to Recycle Your Electronics",
+          "items": [
+            { "emoji": "1️⃣", "label": "Find a Certified Recycler", "desc": "Search for TNPCB/CPCB authorized recyclers in your area. Look for certifications and read reviews." },
+            { "emoji": "2️⃣", "label": "Prepare Your Devices", "desc": "Back up your data, sign out of accounts, factory reset where possible. For hard drives, ask about data destruction." },
+            { "emoji": "3️⃣", "label": "Drop Off or Schedule Pickup", "desc": "Many recyclers offer free drop-off or scheduled pickups. Bundle your e-waste to minimize trips." },
+            { "emoji": "4️⃣", "label": "Get a Certificate", "desc": "Ask for a certificate of recycling or data destruction for your records — especially for business devices." },
+            { "emoji": "5️⃣", "label": "Spread the Word", "desc": "Tell friends, family, and colleagues. Share what you've learned. Collective action creates real change." }
+          ]
+        }
+      ],
+      "pledge": {
+        "title": "Take the Pledge",
+        "subtitle": "Make a personal commitment to be part of the solution.",
+        "commitments": [
+          "I will recycle all my old electronics responsibly instead of throwing them in the trash.",
+          "I will research and use certified e-waste recyclers in my area.",
+          "I will educate at least one friend or family member about e-waste recycling.",
+          "I will consider repairability and sustainability when buying new electronics.",
+          "I will support brands that design for recyclability and take responsibility for their products."
+        ],
+        "cta": "I Take the Pledge!"
+      }
+    }
+  }
 }
