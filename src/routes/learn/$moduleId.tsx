@@ -669,7 +669,7 @@ function ModulePage() {
   if (!moduleMeta) {
     return (
       <div className="font-sans text-text">
-        <Navbar active="/learn" links={content.navbar.links} cta={content.navbar.cta} logo={content.site.logo} siteName={content.site.name} />
+        <Navbar active="/learn" links={content.navbar.links} cta={content.navbar.cta} logo={content.site.logo} siteName={content.site.name} socialLinks={content.social?.links || []} />
         <main className="relative overflow-hidden pt-32 pb-24 px-4 min-h-[80vh] flex items-center justify-center">
           <div className="text-center motion-preset-slide-up">
             <div className="text-6xl mb-6">🔍</div>
@@ -698,7 +698,7 @@ function ModulePage() {
   if (!moduleData) {
     return (
       <div className="font-sans text-text">
-        <Navbar active="/learn" links={content.navbar.links} cta={content.navbar.cta} logo={content.site.logo} siteName={content.site.name} />
+        <Navbar active="/learn" links={content.navbar.links} cta={content.navbar.cta} logo={content.site.logo} siteName={content.site.name} socialLinks={content.social?.links || []} />
         <main className="relative overflow-hidden pt-32 pb-24 px-4 min-h-[80vh] flex items-center justify-center">
           <div className="text-center motion-preset-slide-up">
             <h1 className="font-title text-4xl font-bold text-text mb-3">Content Error</h1>
@@ -719,7 +719,7 @@ function ModulePage() {
 
   return (
     <div className="font-sans text-text">
-      <Navbar active="/learn" links={content.navbar.links} cta={content.navbar.cta} logo={content.site.logo} siteName={content.site.name} />
+      <Navbar active="/learn" links={content.navbar.links} cta={content.navbar.cta} logo={content.site.logo} siteName={content.site.name} socialLinks={content.social?.links || []} />
 
       <div className="relative overflow-hidden">
         {/* Background decorations */}

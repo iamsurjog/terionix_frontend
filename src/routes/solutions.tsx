@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Navbar } from '../components/Navbar'
+import { ProcessVisualizer } from '../components/ProcessVisualizer'
 import { readContent } from '#/lib/content'
 
 export const Route = createFileRoute('/solutions')({
@@ -13,7 +14,7 @@ function SolutionsPage() {
 
   return (
     <div className="font-sans text-text">
-      <Navbar active="/solutions" links={content.navbar.links} cta={content.navbar.cta} logo={content.site.logo} siteName={content.site.name} />
+      <Navbar active="/solutions" links={content.navbar.links} cta={content.navbar.cta} logo={content.site.logo} siteName={content.site.name} socialLinks={content.social?.links || []} />
 
       <main className="relative overflow-hidden">
         <div className="absolute top-40 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-10 motion-preset-float motion-duration-4000" />
@@ -70,6 +71,57 @@ function SolutionsPage() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* ====== PROCESS VISUALIZER ====== */}
+            <div className="mb-20 pt-8">
+              <div className="w-16 h-0.5 bg-gradient-to-r from-primary/40 to-transparent rounded-full mb-12" />
+              <ProcessVisualizer />
+            </div>
+
+            {/* ====== COMPLIANCE TRUST BADGES ====== */}
+            <div className="mb-20 motion-preset-slide-up">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-white/40 backdrop-blur-sm rounded-2xl border border-primary/10 p-5 text-center card-hover hover:border-primary/20">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <p className="font-title text-sm font-bold text-text">CPCB Compliant</p>
+                  <p className="text-xs text-text/50 mt-0.5">Green Certificates</p>
+                </div>
+
+                <div className="bg-white/40 backdrop-blur-sm rounded-2xl border border-primary/10 p-5 text-center card-hover hover:border-primary/20">
+                  <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                  <p className="font-title text-sm font-bold text-text">Form 6</p>
+                  <p className="text-xs text-text/50 mt-0.5">E-Waste Manifest</p>
+                </div>
+
+                <div className="bg-white/40 backdrop-blur-sm rounded-2xl border border-primary/10 p-5 text-center card-hover hover:border-primary/20">
+                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <p className="font-title text-sm font-bold text-text">MoEFCC Compliant</p>
+                  <p className="text-xs text-text/50 mt-0.5">E-Waste Rules 2022</p>
+                </div>
+
+                <div className="bg-white/40 backdrop-blur-sm rounded-2xl border border-primary/10 p-5 text-center card-hover hover:border-primary/20">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                    </svg>
+                  </div>
+                  <p className="font-title text-sm font-bold text-text">ISO 14001:2015</p>
+                  <p className="text-xs text-text/50 mt-0.5">EMS Certified</p>
+                </div>
+              </div>
             </div>
 
             {/* CTA Section */}

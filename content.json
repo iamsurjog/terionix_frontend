@@ -216,6 +216,21 @@
           "Plastic recycling and compounding",
           "Hazardous component safe disposal"
         ]
+      },
+      {
+        "id": "compliance-certification",
+        "title": "Compliance & Certification",
+        "icon": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+        "body": "We provide full compliance documentation for your annual environmental audits, including CPCB-compliant Green Certificates of Recycling and Form 6 manifests (Hazardous & E-Waste Manifest) as required under the E-Waste (Management) Rules issued by the Ministry of Environment, Forest and Climate Change (MoEFCC) and Central Pollution Control Board (CPCB). Corporate clients can legally write off assets only with proper Form 6 documentation and a Certificate of Disposal/Recycling from an authorized recycler — we provide both.",
+        "features": [
+          "CPCB-compliant Green Certificates of Recycling for every batch processed",
+          "Form 6 Manifest (Hazardous & E-Waste) for corporate asset write-off",
+          "Certificate of Data Destruction with serial number tracking",
+          "Certificate of Disposal/Recycling for regulatory audit trails",
+          "Full EPR documentation support under E-Waste (Management) Rules, 2022",
+          "Quarterly compliance reports for CPCB/SPCB inspections",
+          "Dedu credit management and transfer documentation"
+        ]
       }
     ],
     "cta": {
@@ -859,6 +874,21 @@
     { "name": "Priya", "time": 10.2 },
     { "name": "SG 3", "time": 14.194 }
   ],
+  "social": {
+    "whatsapp": {
+      "number": "919999999999",
+      "message": "Hi Terionix, I want to recycle some home e-waste. Can you help?",
+      "label": "Quick Pickup via WhatsApp",
+      "enabled": true
+    },
+    "links": [
+      { "platform": "linkedin", "url": "https://www.linkedin.com/company/terionix", "label": "LinkedIn" },
+      { "platform": "instagram", "url": "https://www.instagram.com/terionix", "label": "Instagram" },
+      { "platform": "facebook", "url": "https://www.facebook.com/terionix", "label": "Facebook" },
+      { "platform": "twitter", "url": "https://x.com/terionix", "label": "X (Twitter)" },
+      { "platform": "youtube", "url": "https://www.youtube.com/@terionix", "label": "YouTube" }
+    ]
+  },
   "learn": {
     "courseTitle": "E-Waste Recycling 101",
     "courseSubtitle": "A beginner-friendly course on understanding e-waste and taking action for a cleaner planet.",

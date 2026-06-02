@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import appCss from '../styles.css?url'
 import { ParticleField } from '../components/ParticleField'
 import { CursorGlow } from '../components/CursorGlow'
+import { WhatsappButton } from '../components/WhatsappButton'
 import { isSafari } from '#/lib/browser'
 
 const siteTitle = 'Terionix - E-Waste Management'
@@ -119,6 +120,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <ParticleField />
         {!isSafari() && <CursorGlow />}
         {children}
+        <WhatsappButton />
         <TanStackDevtools
           config={{
             position: 'bottom-right',
