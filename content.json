@@ -882,11 +882,8 @@
       "enabled": true
     },
     "links": [
-      { "platform": "linkedin", "url": "https://www.linkedin.com/company/terionix", "label": "LinkedIn" },
-      { "platform": "instagram", "url": "https://www.instagram.com/terionix", "label": "Instagram" },
-      { "platform": "facebook", "url": "https://www.facebook.com/terionix", "label": "Facebook" },
-      { "platform": "twitter", "url": "https://x.com/terionix", "label": "X (Twitter)" },
-      { "platform": "youtube", "url": "https://www.youtube.com/@terionix", "label": "YouTube" }
+      { "platform": "linkedin", "url": "https://www.linkedin.com/company/96150706/admin/dashboard/", "label": "LinkedIn" },
+      { "platform": "facebook", "url": "https://www.facebook.com/profile.php?id=61579600316044", "label": "Facebook" }
     ]
   },
   "learn": {

@@ -12,10 +12,7 @@ export const Route = createFileRoute('/admin/settings')({
 
 const platformOptions = [
   { value: 'linkedin', label: 'LinkedIn' },
-  { value: 'instagram', label: 'Instagram' },
   { value: 'facebook', label: 'Facebook' },
-  { value: 'twitter', label: 'X (Twitter)' },
-  { value: 'youtube', label: 'YouTube' },
 ]
 
 function AdminSettings() {
