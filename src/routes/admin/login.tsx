@@ -10,6 +10,7 @@ function AdminLogin() {
   const navigate = useNavigate()
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   // If already logged in, redirect to admin dashboard
   if (isAuthenticated()) {
@@ -17,13 +18,22 @@ function AdminLogin() {
     return null
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (login(password)) {
-      navigate({ to: '/admin' })
-    } else {
+    setLoading(true)
+    setError(false)
+    try {
+      const ok = await login(password)
+      if (ok) {
+        navigate({ to: '/admin' })
+      } else {
+        setError(true)
+        setPassword('')
+      }
+    } catch {
       setError(true)
-      setPassword('')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -76,13 +86,12 @@ function AdminLogin() {
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-primary to-primary/80 text-white font-semibold py-3 rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:brightness-110 transition-all duration-300"
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-primary to-primary/80 text-white font-semibold py-3 rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:brightness-110 transition-all duration-300 disabled:opacity-60"
             >
-              Sign In
+              {loading ? 'Verifying...' : 'Sign In'}
             </button>
           </form>
-
-          <p className="text-xs text-text/30 text-center mt-6">Hint: password is "admin"</p>
         </div>
       </div>
     </div>

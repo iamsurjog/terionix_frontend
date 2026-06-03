@@ -10,13 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SolutionsRouteImport } from './routes/solutions'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as InnovationRouteImport } from './routes/innovation'
 import { Route as ImpactInsightsRouteImport } from './routes/impact-insights'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
-import { Route as AboutRecyclingRouteImport } from './routes/about-recycling'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LearnIndexRouteImport } from './routes/learn/index'
@@ -24,7 +22,6 @@ import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as LearnModuleIdRouteImport } from './routes/learn/$moduleId'
 import { Route as AdminSolutionsRouteImport } from './routes/admin/solutions'
 import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
-import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminLearnRouteImport } from './routes/admin/learn'
 import { Route as AdminJsonRouteImport } from './routes/admin/json'
@@ -35,17 +32,11 @@ import { Route as AdminHistoryRouteImport } from './routes/admin/history'
 import { Route as AdminGameRouteImport } from './routes/admin/game'
 import { Route as AdminContactRouteImport } from './routes/admin/contact'
 import { Route as AdminCareersRouteImport } from './routes/admin/careers'
-import { Route as AdminAboutRecyclingRouteImport } from './routes/admin/about-recycling'
 import { Route as AdminAboutRouteImport } from './routes/admin/about'
 
 const SolutionsRoute = SolutionsRouteImport.update({
   id: '/solutions',
   path: '/solutions',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InnovationRoute = InnovationRouteImport.update({
@@ -71,11 +62,6 @@ const ContactRoute = ContactRouteImport.update({
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRecyclingRoute = AboutRecyclingRouteImport.update({
-  id: '/about-recycling',
-  path: '/about-recycling',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -111,11 +97,6 @@ const AdminSolutionsRoute = AdminSolutionsRouteImport.update({
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
   id: '/admin/settings',
   path: '/admin/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminServicesRoute = AdminServicesRouteImport.update({
-  id: '/admin/services',
-  path: '/admin/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
@@ -168,11 +149,6 @@ const AdminCareersRoute = AdminCareersRouteImport.update({
   path: '/admin/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminAboutRecyclingRoute = AdminAboutRecyclingRouteImport.update({
-  id: '/admin/about-recycling',
-  path: '/admin/about-recycling',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AdminAboutRoute = AdminAboutRouteImport.update({
   id: '/admin/about',
   path: '/admin/about',
@@ -182,16 +158,13 @@ const AdminAboutRoute = AdminAboutRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/about-recycling': typeof AboutRecyclingRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/history': typeof HistoryRoute
   '/impact-insights': typeof ImpactInsightsRoute
   '/innovation': typeof InnovationRoute
-  '/services': typeof ServicesRoute
   '/solutions': typeof SolutionsRoute
   '/admin/about': typeof AdminAboutRoute
-  '/admin/about-recycling': typeof AdminAboutRecyclingRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/contact': typeof AdminContactRoute
   '/admin/game': typeof AdminGameRoute
@@ -202,7 +175,6 @@ export interface FileRoutesByFullPath {
   '/admin/json': typeof AdminJsonRoute
   '/admin/learn': typeof AdminLearnRoute
   '/admin/login': typeof AdminLoginRoute
-  '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/solutions': typeof AdminSolutionsRoute
   '/learn/$moduleId': typeof LearnModuleIdRoute
@@ -212,16 +184,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/about-recycling': typeof AboutRecyclingRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/history': typeof HistoryRoute
   '/impact-insights': typeof ImpactInsightsRoute
   '/innovation': typeof InnovationRoute
-  '/services': typeof ServicesRoute
   '/solutions': typeof SolutionsRoute
   '/admin/about': typeof AdminAboutRoute
-  '/admin/about-recycling': typeof AdminAboutRecyclingRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/contact': typeof AdminContactRoute
   '/admin/game': typeof AdminGameRoute
@@ -232,7 +201,6 @@ export interface FileRoutesByTo {
   '/admin/json': typeof AdminJsonRoute
   '/admin/learn': typeof AdminLearnRoute
   '/admin/login': typeof AdminLoginRoute
-  '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/solutions': typeof AdminSolutionsRoute
   '/learn/$moduleId': typeof LearnModuleIdRoute
@@ -243,16 +211,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/about-recycling': typeof AboutRecyclingRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/history': typeof HistoryRoute
   '/impact-insights': typeof ImpactInsightsRoute
   '/innovation': typeof InnovationRoute
-  '/services': typeof ServicesRoute
   '/solutions': typeof SolutionsRoute
   '/admin/about': typeof AdminAboutRoute
-  '/admin/about-recycling': typeof AdminAboutRecyclingRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/contact': typeof AdminContactRoute
   '/admin/game': typeof AdminGameRoute
@@ -263,7 +228,6 @@ export interface FileRoutesById {
   '/admin/json': typeof AdminJsonRoute
   '/admin/learn': typeof AdminLearnRoute
   '/admin/login': typeof AdminLoginRoute
-  '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/solutions': typeof AdminSolutionsRoute
   '/learn/$moduleId': typeof LearnModuleIdRoute
@@ -275,16 +239,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/about-recycling'
     | '/careers'
     | '/contact'
     | '/history'
     | '/impact-insights'
     | '/innovation'
-    | '/services'
     | '/solutions'
     | '/admin/about'
-    | '/admin/about-recycling'
     | '/admin/careers'
     | '/admin/contact'
     | '/admin/game'
@@ -295,7 +256,6 @@ export interface FileRouteTypes {
     | '/admin/json'
     | '/admin/learn'
     | '/admin/login'
-    | '/admin/services'
     | '/admin/settings'
     | '/admin/solutions'
     | '/learn/$moduleId'
@@ -305,16 +265,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
-    | '/about-recycling'
     | '/careers'
     | '/contact'
     | '/history'
     | '/impact-insights'
     | '/innovation'
-    | '/services'
     | '/solutions'
     | '/admin/about'
-    | '/admin/about-recycling'
     | '/admin/careers'
     | '/admin/contact'
     | '/admin/game'
@@ -325,7 +282,6 @@ export interface FileRouteTypes {
     | '/admin/json'
     | '/admin/learn'
     | '/admin/login'
-    | '/admin/services'
     | '/admin/settings'
     | '/admin/solutions'
     | '/learn/$moduleId'
@@ -335,16 +291,13 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
-    | '/about-recycling'
     | '/careers'
     | '/contact'
     | '/history'
     | '/impact-insights'
     | '/innovation'
-    | '/services'
     | '/solutions'
     | '/admin/about'
-    | '/admin/about-recycling'
     | '/admin/careers'
     | '/admin/contact'
     | '/admin/game'
@@ -355,7 +308,6 @@ export interface FileRouteTypes {
     | '/admin/json'
     | '/admin/learn'
     | '/admin/login'
-    | '/admin/services'
     | '/admin/settings'
     | '/admin/solutions'
     | '/learn/$moduleId'
@@ -366,16 +318,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AboutRecyclingRoute: typeof AboutRecyclingRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   HistoryRoute: typeof HistoryRoute
   ImpactInsightsRoute: typeof ImpactInsightsRoute
   InnovationRoute: typeof InnovationRoute
-  ServicesRoute: typeof ServicesRoute
   SolutionsRoute: typeof SolutionsRoute
   AdminAboutRoute: typeof AdminAboutRoute
-  AdminAboutRecyclingRoute: typeof AdminAboutRecyclingRoute
   AdminCareersRoute: typeof AdminCareersRoute
   AdminContactRoute: typeof AdminContactRoute
   AdminGameRoute: typeof AdminGameRoute
@@ -386,7 +335,6 @@ export interface RootRouteChildren {
   AdminJsonRoute: typeof AdminJsonRoute
   AdminLearnRoute: typeof AdminLearnRoute
   AdminLoginRoute: typeof AdminLoginRoute
-  AdminServicesRoute: typeof AdminServicesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminSolutionsRoute: typeof AdminSolutionsRoute
   LearnModuleIdRoute: typeof LearnModuleIdRoute
@@ -401,13 +349,6 @@ declare module '@tanstack/react-router' {
       path: '/solutions'
       fullPath: '/solutions'
       preLoaderRoute: typeof SolutionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/innovation': {
@@ -443,13 +384,6 @@ declare module '@tanstack/react-router' {
       path: '/careers'
       fullPath: '/careers'
       preLoaderRoute: typeof CareersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about-recycling': {
-      id: '/about-recycling'
-      path: '/about-recycling'
-      fullPath: '/about-recycling'
-      preLoaderRoute: typeof AboutRecyclingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -499,13 +433,6 @@ declare module '@tanstack/react-router' {
       path: '/admin/settings'
       fullPath: '/admin/settings'
       preLoaderRoute: typeof AdminSettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/services': {
-      id: '/admin/services'
-      path: '/admin/services'
-      fullPath: '/admin/services'
-      preLoaderRoute: typeof AdminServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/login': {
@@ -578,13 +505,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCareersRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/about-recycling': {
-      id: '/admin/about-recycling'
-      path: '/admin/about-recycling'
-      fullPath: '/admin/about-recycling'
-      preLoaderRoute: typeof AdminAboutRecyclingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/admin/about': {
       id: '/admin/about'
       path: '/admin/about'
@@ -598,16 +518,13 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AboutRecyclingRoute: AboutRecyclingRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   HistoryRoute: HistoryRoute,
   ImpactInsightsRoute: ImpactInsightsRoute,
   InnovationRoute: InnovationRoute,
-  ServicesRoute: ServicesRoute,
   SolutionsRoute: SolutionsRoute,
   AdminAboutRoute: AdminAboutRoute,
-  AdminAboutRecyclingRoute: AdminAboutRecyclingRoute,
   AdminCareersRoute: AdminCareersRoute,
   AdminContactRoute: AdminContactRoute,
   AdminGameRoute: AdminGameRoute,
@@ -618,7 +535,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdminJsonRoute: AdminJsonRoute,
   AdminLearnRoute: AdminLearnRoute,
   AdminLoginRoute: AdminLoginRoute,
-  AdminServicesRoute: AdminServicesRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminSolutionsRoute: AdminSolutionsRoute,
   LearnModuleIdRoute: LearnModuleIdRoute,

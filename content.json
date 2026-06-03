@@ -435,43 +435,6 @@
       }
     ]
   },
-  "services": {
-    "heading": {
-      "prefix": "Services & ",
-      "highlight": "Solutions"
-    },
-    "intro": "Terionix offers end-to-end e-waste management solutions tailored for businesses, institutions, and individuals. From collection to certified disposal, we handle it all.",
-    "segments": [
-      {
-        "title": "Collection & Pickup",
-        "body": "We offer scheduled pickup services for businesses and institutions. Our logistics team arrives at your location, carefully packs and transports the e-waste to our processing facility, ensuring zero damage or data breach during transit."
-      },
-      {
-        "title": "Data Destruction & Security",
-        "body": "Before any device is recycled, we ensure all data is securely erased or physically destroyed. Our data destruction process meets international standards, giving you peace of mind that sensitive information does not fall into the wrong hands."
-      },
-      {
-        "title": "Sorting & Segregation",
-        "body": "At our facility, e-waste is sorted into categories — metals, plastics, PCBs, glass, batteries, and hazardous components. Each category is processed separately using the most efficient and safe methods available."
-      },
-      {
-        "title": "Material Recovery",
-        "body": "We recover valuable materials like copper, aluminum, gold, silver, and rare earth metals from e-waste. These materials are sent back to manufacturers, closing the loop in the circular economy and reducing the need for virgin mining."
-      },
-      {
-        "title": "Certified Disposal",
-        "body": "For components that cannot be recycled, we provide certified disposal services in compliance with CPCB and SPCB guidelines. We maintain detailed records and provide disposal certificates for your regulatory compliance."
-      },
-      {
-        "title": "EPR Compliance Support",
-        "body": "Terionix helps producers meet their Extended Producer Responsibility obligations under the E-Waste Management Rules. We provide end-to-end documentation, reporting, and compliance support so you stay ahead of regulatory requirements."
-      },
-      {
-        "title": "Awareness & Training",
-        "body": "We conduct workshops and training sessions for organizations on responsible e-waste management. Our team educates employees on proper segregation, storage, and disposal practices to build a culture of sustainability."
-      }
-    ]
-  },
   "history": {
     "heading": {
       "prefix": "Our ",
@@ -514,39 +477,6 @@
             "text": "Looking ahead, Terionix aims to expand its reach, develop partnerships with more manufacturers, and continue pushing for better e-waste infrastructure across the country. Our goal is to make responsible e-waste disposal the norm, not the exception."
           }
         ]
-      }
-    ]
-  },
-  "aboutRecycling": {
-    "heading": {
-      "prefix": "About ",
-      "highlight": "Recycling"
-    },
-    "intro": "Electronic waste, or e-waste, is one of the fastest-growing waste streams in the world. Learn why recycling e-waste matters and how it works.",
-    "facts": [
-      {
-        "title": "What is E-Waste?",
-        "body": "E-waste refers to discarded electrical or electronic devices. This includes everything from old smartphones and laptops to large appliances like refrigerators and air conditioners. E-waste contains both valuable and hazardous materials, making proper handling critical."
-      },
-      {
-        "title": "Why Recycle E-Waste?",
-        "body": "Electronics contain toxic substances like lead, mercury, cadmium, and brominated flame retardants. When sent to landfills, these toxins leach into soil and water, causing serious environmental and health problems. Recycling captures valuable materials like gold, silver, copper, and aluminum, reducing the need for mining and conserving natural resources."
-      },
-      {
-        "title": "The E-Waste Recycling Process",
-        "body": "The recycling process involves several steps: collection and transport, manual dismantling, shredding and size reduction, sorting by material type (metals, plastics, glass), safe treatment of hazardous components, and finally material recovery where valuable metals and plastics are extracted and sent for re-processing."
-      },
-      {
-        "title": "What Can Be Recycled?",
-        "body": "Almost all electronic devices can be recycled. Common items include: computers and laptops, mobile phones and tablets, Televisions and monitors, printers and scanners, keyboards, mice, and cables, small and large home appliances, batteries and power banks, LED panels and circuit boards."
-      },
-      {
-        "title": "E-Waste Rules in India",
-        "body": "India's E-Waste Management Rules, 2022 mandate that producers of electronic goods are responsible for the collection and environmentally sound management of their end-of-life products through Extended Producer Responsibility (EPR). Terionix helps producers comply with these regulations by providing complete EPR services."
-      },
-      {
-        "title": "Terionix's Role",
-        "body": "As an authorized e-waste recycler, Terionix bridges the gap between the generators of e-waste and the environment. We ensure that every device we collect is either recycled responsibly or refurbished for reuse. Our certified processes meet all regulatory standards, and we maintain full traceability from pickup to final disposal."
       }
     ]
   },
@@ -875,12 +805,6 @@
     { "name": "SG 3", "time": 14.194 }
   ],
   "social": {
-    "whatsapp": {
-      "number": "919999999999",
-      "message": "Hi Terionix, I want to recycle some home e-waste. Can you help?",
-      "label": "Quick Pickup via WhatsApp",
-      "enabled": true
-    },
     "links": [
       { "platform": "linkedin", "url": "https://www.linkedin.com/company/96150706/admin/dashboard/", "label": "LinkedIn" },
       { "platform": "facebook", "url": "https://www.facebook.com/profile.php?id=61579600316044", "label": "Facebook" }
@@ -1188,5 +1112,8 @@
         "cta": "I Take the Pledge!"
       }
     }
+  },
+  "admin": {
+    "passwordHash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
   }
 }
