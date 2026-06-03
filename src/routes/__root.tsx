@@ -12,7 +12,7 @@ import { isSafari } from '#/lib/browser'
 const siteTitle = 'Terionix - E-Waste Management'
 const siteDesc = 'Where circuits bloom and waste finds purpose again. Responsible e-waste management for a sustainable future — Terionix offers end-to-end solutions for businesses and individuals.'
 const siteUrl = 'https://vercel.terionix.app'
-const ogImage = '/ogimage.png'
+const ogImage = `${siteUrl}/ogimage.png`
 const siteKeywords = 'top global e-waste recycling companies 2026, leading e-waste recycling companies in India 2026, foundational papers in e-waste management and recycling technology, recent survey papers on e-waste recycling 2024-2026, SOTA e-waste recycling technologies and datasets 2026, top e-waste recycling companies global Sims Umicore, top e-waste recycling companies India E-Parisaraa Attero'
 
 export const Route = createRootRoute({
@@ -98,6 +98,26 @@ export const Route = createRootRoute({
       {
         rel: 'canonical',
         href: siteUrl,
+      },
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '192x192',
+        href: '/favicon-192x192.png',
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
+      },
+      {
+        rel: 'manifest',
+        href: '/manifest.json',
       },
     ],
   }),
