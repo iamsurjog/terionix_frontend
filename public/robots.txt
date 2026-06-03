@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://vercel.terionix.app/sitemap.xml
+Sitemap: https://terionix.vercel.app/sitemap.xml
