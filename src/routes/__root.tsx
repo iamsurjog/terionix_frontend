@@ -8,8 +8,8 @@ import { ParticleField } from '../components/ParticleField'
 import { CursorGlow } from '../components/CursorGlow'
 import { isSafari } from '#/lib/browser'
 
-const siteTitle = 'Terionix - E-Waste Management'
-const siteDesc = 'Where circuits bloom and waste finds purpose again. Responsible e-waste management for a sustainable future — Terionix offers end-to-end solutions for businesses and individuals.'
+const siteTitle = 'Terionix | E-Waste Disposal & Recycling Services for All'
+const siteDesc = 'Responsible e-waste management for a sustainable future. Terionix offers end-to-end recycling, data destruction, and EPR compliance solutions.'
 const siteUrl = 'https://terionix.vercel.app'
 const ogImage = `${siteUrl}/ogimage.png`
 const siteKeywords = 'top global e-waste recycling companies 2026, leading e-waste recycling companies in India 2026, foundational papers in e-waste management and recycling technology, recent survey papers on e-waste recycling 2024-2026, SOTA e-waste recycling technologies and datasets 2026, top e-waste recycling companies global Sims Umicore, top e-waste recycling companies India E-Parisaraa Attero'
@@ -63,6 +63,10 @@ export const Route = createRootRoute({
       {
         property: 'og:type',
         content: 'website',
+      },
+      {
+        property: 'og:locale',
+        content: 'en_IN',
       },
       {
         property: 'og:site_name',
