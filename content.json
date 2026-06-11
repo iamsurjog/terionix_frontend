@@ -156,6 +156,53 @@
         { "name": "Keyboard / Mouse", "co2": 15, "image": "⌨️" },
         { "name": "Battery Pack", "co2": 40, "image": "🔋" }
       ]
+    },
+    "corporateDashboard": {
+      "title": "Corporate Command Center",
+      "subtitle": "Your complete e-waste management suite — from scheduling to sustainability reporting.",
+      "features": [
+        {
+          "icon": "calendar",
+          "title": "Schedule a Pickup",
+          "description": "Request on-demand or recurring pickups for your corporate locations. Choose collection windows, specify equipment types, and get real-time logistics updates."
+        },
+        {
+          "icon": "tracking",
+          "title": "Real-Time Waste Tracking",
+          "description": "GPS-enabled tracking from collection to final processing. Know exactly where your e-waste is at every stage with a complete chain of custody."
+        },
+        {
+          "icon": "certificate",
+          "title": "Data Destruction Certificates",
+          "description": "Instantly access tamper-proof, serialized Blancco certificates for every data-bearing asset. Full video-graphed audit trail included."
+        },
+        {
+          "icon": "impact",
+          "title": "Environmental Impact Reports",
+          "description": "Download detailed ESG reports quantifying your carbon savings. 'You saved X tons of CO₂ by recycling with us' — perfect for BRSR and sustainability disclosures."
+        }
+      ]
+    },
+    "whyTerionix": {
+      "heading": "Built for Enterprise",
+      "subtitle": "Three pillars that make Terionix the trusted partner for corporate e-waste management.",
+      "pillars": [
+        {
+          "icon": "lock",
+          "title": "Data Security",
+          "body": "We don't just recycle your hardware; we eliminate your data liability. We provide a tamper-proof, video-graphed data destruction process with serialized Blancco certificates that stand up to any global security audit."
+        },
+        {
+          "icon": "shield",
+          "title": "Legal Compliance",
+          "body": "Under the E-Waste Management Rules, your company is legally liable if your waste ends up in a landfill. We handle Form 6 manifests, provide CPCB-authorized recycling certificates, and insulate your brand from regulatory penalties."
+        },
+        {
+          "icon": "trending",
+          "title": "Green PR / ESG",
+          "body": "We provide a quarterly 'Green Dashboard' for your annual BRSR report. We don't just give you a bill; we tell you exactly how many tons of carbon emissions your company averted by recycling with Terionix."
+        }
+      ]
     }
   },
   "solutions": {
