@@ -51,7 +51,7 @@ function Home() {
 
       <main className="relative overflow-hidden">
         {/* ====== STICKY SIDE NAV — Explore CTAs (collapsed, expands on hover) ====== */}
-        <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-1">
+        <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-end gap-1">
           {audience.segments.map((segment: any, i: number) => {
             const sideStyles = [
               'bg-primary/90 hover:bg-primary text-white border-l-2 border-primary/50',
@@ -67,12 +67,12 @@ function Home() {
               <Link
                 key={segment.id}
                 to={segment.cta.href}
-                className={`group relative flex items-center gap-0 pr-3 pl-0 py-3 rounded-l-xl transition-all duration-300 text-sm font-semibold w-12 hover:w-auto overflow-hidden ${sideStyles[i]}`}
+                className={`group relative flex items-center gap-2.5 pl-3 pr-4 py-3 rounded-l-xl transition-all duration-300 text-sm font-semibold w-12 hover:w-60 overflow-hidden ${sideStyles[i]}`}
                 title={segment.title}
               >
-                <span className="flex items-center gap-2.5 whitespace-nowrap transition-all duration-300">
+                <span className="flex items-center gap-2.5 whitespace-nowrap">
                   {sideIcons[i]}
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 pr-3">{segment.cta.label}</span>
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">{segment.cta.label}</span>
                 </span>
               </Link>
             )
