@@ -1,24 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { createServerFn } from '@tanstack/react-start'
-import { writeFile } from 'fs/promises'
-import { join } from 'path'
-import _content from '../../content.json'
 
-const data: Record<string, any> = JSON.parse(JSON.stringify(_content))
-
-async function persist() {
-  await writeFile(join(process.cwd(), 'content.json'), JSON.stringify(data, null, 2), 'utf-8')
+function getCsrfToken(): string {
+  const match = document.cookie.match(/csrftoken=([^;]+)/)
+  return match ? match[1] : ''
 }
-
-const submitScore = createServerFn({ method: 'POST' })
-  .inputValidator((d: { name: string; time: number }) => d)
-  .handler(async ({ data: d }) => {
-    data.leaderboard.push({ name: d.name, time: d.time })
-    data.leaderboard.sort((a: { time: number }, b: { time: number }) => a.time - b.time)
-    data.leaderboard = data.leaderboard.slice(0, 10)
-    await persist()
-    return { success: true }
-  })
 
 interface Item {
   name: string
@@ -81,7 +66,19 @@ export function RecyclingGame({ items }: GameProps) {
 
   const handleSubmit = async () => {
     if (!name.trim()) return
-    await submitScore({ data: { name: name.trim(), time: elapsed } })
+    try {
+      await fetch('http://localhost:8001/api/leaderboard', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCsrfToken(),
+        },
+        credentials: 'include',
+        body: JSON.stringify({ name: name.trim(), time: elapsed }),
+      })
+    } catch {
+      void null
+    }
     setSubmitted(true)
   }
 
@@ -208,11 +205,28 @@ export function RecyclingGame({ items }: GameProps) {
   )
 }
 
-interface LeaderboardProps {
-  scores: { name: string; time: number }[]
+interface Score {
+  name: string
+  time: number
 }
 
-export function Leaderboard({ scores }: LeaderboardProps) {
+async function fetchLeaderboard(): Promise<Score[]> {
+  try {
+    const res = await fetch('http://localhost:8001/api/leaderboard')
+    if (!res.ok) return []
+    const data = await res.json()
+    return data.map((e: { name: string; time: number }) => ({ name: e.name, time: e.time }))
+  } catch {
+    return []
+  }
+}
+
+export function Leaderboard() {
+  const [scores, setScores] = useState<Score[]>([])
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    fetchLeaderboard().then(s => { setScores(s); setLoading(false) })
+  }, [])
   const sorted = [...scores].sort((a, b) => a.time - b.time).slice(0, 10)
   const medals = ['text-warning', 'text-text/40', 'text-accent']
 

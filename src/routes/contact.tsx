@@ -134,7 +134,9 @@ function ContactUs() {
   )
 }
 
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mgoqnbzk'
+const API_BASE = import.meta.env.SSR
+  ? 'http://backend:8001/api'
+  : 'http://localhost:8001/api'
 
 function GeneralForm({ segment }: { segment: { heading: string; description: string } }) {
   const content = Route.useLoaderData()!
@@ -145,12 +147,12 @@ function GeneralForm({ segment }: { segment: { heading: string; description: str
     e.preventDefault()
     setStatus('submitting')
     const form = e.currentTarget
-    const data = new FormData(form)
+    const data = Object.fromEntries(new FormData(form).entries())
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(`${API_BASE}/contact/general`, {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       })
       if (res.ok) {
         setStatus('success')
@@ -228,12 +230,12 @@ function CareerForm({ segment, preselectedPosition }: { segment: { heading: stri
     e.preventDefault()
     setStatus('submitting')
     const form = e.currentTarget
-    const data = new FormData(form)
+    const data = Object.fromEntries(new FormData(form).entries())
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(`${API_BASE}/contact/career`, {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       })
       if (res.ok) {
         setStatus('success')
@@ -360,7 +362,6 @@ function QuoteForm({ segment, materialsQuery }: { segment: { heading: string; de
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [isBusiness, setIsBusiness] = useState(false)
   const [quantities, setQuantities] = useState<Map<number, number>>(new Map())
-
   let urlMaterials: { name: string; quantity: number }[] = []
   let parseError = false
   if (materialsQuery) {
@@ -416,12 +417,12 @@ function QuoteForm({ segment, materialsQuery }: { segment: { heading: string; de
     e.preventDefault()
     setStatus('submitting')
     const form = e.currentTarget
-    const data = new FormData(form)
+    const data = Object.fromEntries(new FormData(form).entries())
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(`${API_BASE}/contact/quote`, {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       })
       if (res.ok) {
         setStatus('success')

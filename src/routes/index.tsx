@@ -465,7 +465,7 @@ function Home() {
 
             <div className="bg-white/50 backdrop-blur-xl rounded-3xl border border-primary/10 p-8 max-w-md mx-auto shadow-2xl shadow-primary/5 motion-preset-pop motion-duration-700 card-hover">
               <RecyclingGame items={content.game.items} />
-              <Leaderboard scores={content.leaderboard} />
+              <Leaderboard />
             </div>
 
             {/* Post-game CTA hint */}

@@ -66,7 +66,7 @@ function AdminJson() {
       // Workaround: write each top-level key
       for (const [key, value] of Object.entries(parsed)) {
         if (key === '$schema') continue
-        await contentAction({ data: { action: 'write', section: key, content: value } })
+        await contentAction({ action: 'write', section: key, content: value })
       }
       setMsg({ type: 'success', text: 'JSON restored successfully! Refresh the page to see changes.' })
     } catch (e: unknown) {

@@ -1,91 +1,79 @@
-import { createServerFn } from '@tanstack/react-start'
-import { writeFile } from 'fs/promises'
-import { join } from 'path'
-import { createHash } from 'crypto'
+const API_BASE = import.meta.env.SSR
+  ? 'http://backend:8001/api'
+  : 'http://localhost:8001/api'
 
-import _content from '../../content.json'
-
-const data: Record<string, any> = JSON.parse(JSON.stringify(_content))
-
-async function persist() {
-  await writeFile(join(process.cwd(), 'content.json'), JSON.stringify(data, null, 2), 'utf-8')
+function getCsrfToken(): string {
+  const match = document.cookie.match(/csrftoken=([^;]+)/)
+  return match ? match[1] : ''
 }
 
-export const readContent = createServerFn().handler(async () => {
-  return data
-})
-
-export const contentAction = createServerFn({ method: 'POST' })
-  .inputValidator((d: { action: string; section?: string; content?: unknown }) => d)
-  .handler(async ({ data: d }) => {
-    if (d.action === 'read') {
-      return data
-    }
-    if (d.action === 'write') {
-      data[d.section!] = d.content
-      await persist()
-      return { success: true }
-    }
+async function apiFetch(path: string, options: RequestInit = {}): Promise<Response> {
+  const isFormData = options.body instanceof FormData
+  const headers: Record<string, string> = {}
+  if (!isFormData) {
+    headers['Content-Type'] = 'application/json'
+  }
+  const method = (options.method || 'GET').toUpperCase()
+  if (method !== 'GET') {
+    headers['X-CSRFToken'] = getCsrfToken()
+  }
+  return fetch(`${API_BASE}${path}`, {
+    ...options,
+    headers: { ...headers, ...(options.headers as Record<string, string> || {}) },
+    credentials: 'include',
   })
-
-function hashPassword(password: string): string {
-  return createHash('sha256').update(password).digest('hex')
 }
 
-export const verifyPassword = createServerFn({ method: 'POST' })
-  .inputValidator((d: { password: string }) => {
-    console.log('[server] verifyPassword inputValidator received:', JSON.stringify(d))
-    return d
-  })
-  .handler(async ({ data: d }) => {
-    console.log('[server] verifyPassword handler data:', JSON.stringify({ hasPassword: !!d?.password, pwLen: d?.password?.length }))
-    const storedHash = data.admin?.passwordHash
-    console.log('[server] storedHash:', storedHash ? storedHash.substring(0, 10) + '...' : 'null')
-    const inputHash = d?.password ? hashPassword(d.password) : 'NO_PASSWORD'
-    console.log('[server] inputHash:', inputHash.substring(0, 10) + '...')
-    const defaultHash = hashPassword('admin')
-    if (!storedHash) {
-      const match = inputHash === defaultHash
-      console.log('[server] no stored hash, comparing to default admin. Match:', match)
-      return match
+export async function readContent(): Promise<Record<string, unknown>> {
+  const res = await apiFetch('/content')
+  if (!res.ok) throw new Error(`Failed to fetch content: ${res.status}`)
+  return res.json()
+}
+
+export async function contentAction(d: {
+  action: string
+  section?: string
+  content?: unknown
+}): Promise<unknown> {
+  if (d.action === 'read') {
+    return readContent()
+  }
+  if (d.action === 'write' && d.section && d.content !== undefined) {
+    const res = await apiFetch(`/content/${d.section}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ data: d.content }),
+    })
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}))
+      throw new Error(err.error || `Failed to save: ${res.status}`)
     }
-    const match = storedHash === inputHash
-    console.log('[server] comparing stored vs input. Match:', match)
-    return match
-  })
-
-export const updatePassword = createServerFn({ method: 'POST' })
-  .inputValidator((d: { currentPassword: string; newPassword: string }) => {
-    console.log('[server] updatePassword inputValidator received:', JSON.stringify({ hasCurrent: !!d?.currentPassword, hasNew: !!d?.newPassword }))
-    return d
-  })
-  .handler(async ({ data: d }) => {
-    console.log('[server] updatePassword handler called')
-    const storedHash = data.admin?.passwordHash
-    const defaultHash = hashPassword('admin')
-    const currentHash = d?.currentPassword ? hashPassword(d.currentPassword) : ''
-    console.log('[server] storedHash:', storedHash ? 'present' : 'null')
-    console.log('[server] currentHash matches default:', currentHash === defaultHash)
-
-    if (storedHash) {
-      if (storedHash !== currentHash) {
-        console.log('[server] stored hash mismatch')
-        return { success: false, error: 'Current password is incorrect' }
-      }
-    } else if (defaultHash !== currentHash) {
-      console.log('[server] default hash mismatch')
-      return { success: false, error: 'Current password is incorrect' }
-    }
-
-    if (d.newPassword.length < 4) {
-      return { success: false, error: 'New password must be at least 4 characters' }
-    }
-
-    const newHash = hashPassword(d.newPassword)
-    data.admin = { ...(data.admin || {}), passwordHash: newHash }
-    await persist()
-    console.log('[server] password updated successfully')
     return { success: true }
+  }
+  return { success: false, error: 'Invalid action' }
+}
+
+export async function verifyPassword(d: {
+  data: { password: string }
+}): Promise<boolean> {
+  const res = await apiFetch('/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({ username: 'admin', password: d.data.password }),
   })
+  const json = await res.json()
+  return json.success === true
+}
+
+export async function updatePassword(d: {
+  data: { currentPassword: string; newPassword: string }
+}): Promise<{ success: boolean; error?: string }> {
+  const res = await apiFetch('/auth/change-password', {
+    method: 'POST',
+    body: JSON.stringify({
+      current_password: d.data.currentPassword,
+      new_password: d.data.newPassword,
+    }),
+  })
+  return res.json()
+}
 
 

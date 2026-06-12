@@ -20,8 +20,8 @@ export function AdminNavbar({ active, links, logo, siteName }: { active: string;
   const navigate = useNavigate()
   const location = useLocation()
 
-  const handleLogout = () => {
-    logout()
+  const handleLogout = async () => {
+    await logout()
     navigate({ to: '/admin/login' })
   }
 

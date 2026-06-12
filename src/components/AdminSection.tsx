@@ -144,5 +144,5 @@ export function Textarea({ value, onChange, placeholder, rows = 4 }: TextareaPro
 }
 
 export function writeSection(section: string, content: unknown) {
-  return contentAction({ data: { action: 'write', section, content } })
+  return contentAction({ action: 'write', section, content })
 }
