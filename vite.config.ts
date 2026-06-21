@@ -10,6 +10,7 @@ import { nitro } from 'nitro/vite'
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
   server: {
+    allowedHosts: true,
     proxy: {
       '/api': 'http://localhost:8001',
     },
