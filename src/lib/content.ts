@@ -1,5 +1,5 @@
 const API_BASE = import.meta.env.SSR
-  ? 'http://backend:8001/api'
+  ? 'http://localhost:8001/api'
   : '/api'
 
 function getCsrfToken(): string {
