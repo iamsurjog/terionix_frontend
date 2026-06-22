@@ -9,4 +9,4 @@ npm install
 
 echo "🚀  Starting frontend on http://localhost:3000"
 npm run build
-exec npm run dev
+exec node .output/server/index.mjs
