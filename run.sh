@@ -4,10 +4,9 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-if [ ! -d node_modules ]; then
-    echo "📦  Installing frontend dependencies…"
-    npm install
-fi
+echo "📦  Installing frontend dependencies…"
+npm install
 
 echo "🚀  Starting frontend on http://localhost:3000"
+npm run build
 exec npm run dev
