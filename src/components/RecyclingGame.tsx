@@ -67,7 +67,7 @@ export function RecyclingGame({ items }: GameProps) {
   const handleSubmit = async () => {
     if (!name.trim()) return
     try {
-      await fetch('http://localhost:8001/api/leaderboard', {
+      await fetch('/api/leaderboard', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -212,7 +212,7 @@ interface Score {
 
 async function fetchLeaderboard(): Promise<Score[]> {
   try {
-    const res = await fetch('http://localhost:8001/api/leaderboard')
+    const res = await fetch('/api/leaderboard')
     if (!res.ok) return []
     const data = await res.json()
     return data.map((e: { name: string; time: number }) => ({ name: e.name, time: e.time }))

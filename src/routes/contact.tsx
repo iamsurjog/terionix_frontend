@@ -135,8 +135,8 @@ function ContactUs() {
 }
 
 const API_BASE = import.meta.env.SSR
-  ? 'http://backend:8001/api'
-  : 'http://localhost:8001/api'
+  ? (process.env.API_URL || 'http://localhost:8001/api')
+  : '/api'
 
 function GeneralForm({ segment }: { segment: { heading: string; description: string } }) {
   const content = Route.useLoaderData()!
