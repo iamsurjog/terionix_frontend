@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Navbar } from '../components/Navbar'
+import { Footer } from '../components/Footer'
 import { readContent } from '#/lib/content'
 
 export const Route = createFileRoute('/impact-insights')({
@@ -81,7 +82,7 @@ function ImpactInsightsPage() {
           </div>
         </div>
 
-        <div className="h-1 bg-gradient-to-r from-primary via-secondary to-accent" />
+        <Footer content={content} />
       </main>
     </div>
   )

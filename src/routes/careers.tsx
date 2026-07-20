@@ -1,7 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { Navbar } from '../components/Navbar'
+import { Footer } from '../components/Footer'
 import { readContent } from '#/lib/content'
-import { Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/careers')({
   loader: async () => readContent(),
@@ -107,7 +107,7 @@ function Careers() {
           </div>
         </div>
 
-        <div className="h-1 bg-gradient-to-r from-primary via-secondary to-accent" />
+        <Footer content={content} />
       </main>
     </div>
   )
